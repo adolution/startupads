@@ -359,6 +359,19 @@
       pointer-events: none;
     }
 
+    /* ===== MOBILE ===== */
+    @media (max-width: 640px) {
+      nav { top: 0.5rem; padding-left: 1rem; padding-right: 1rem; }
+      .accordion-content.open { max-height: 600px; }
+      /* Ensure section headings don't overflow */
+      h2, h3 { overflow-wrap: break-word; word-break: break-word; }
+      /* Tighten section padding */
+      section.py-24 { padding-top: 4rem; padding-bottom: 4rem; }
+      section.py-32 { padding-top: 5rem; padding-bottom: 5rem; }
+      /* ROI card inner padding */
+      .rounded-3xl { border-radius: 1.25rem; }
+    }
+
     /* ===== CLIP REVEAL ===== */
     .clip-reveal {
       clip-path: inset(0 100% 0 0);
@@ -406,7 +419,7 @@
 <!-- ============================================================
      SECTION 2 — HERO
      ============================================================ -->
-<section class="relative overflow-hidden bg-black" style="height: 1000px">
+<section class="relative overflow-hidden bg-black" style="min-height: 100svh">
 
   <!-- BG Video -->
   <video
@@ -421,7 +434,7 @@
   <div class="absolute bottom-0 left-0 right-0 z-[2] pointer-events-none" style="height:500px;background:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,0.55) 45%,#000 100%)"></div>
 
   <!-- Content -->
-  <div class="relative z-10 flex flex-col items-center text-center px-6" style="padding-top:150px">
+  <div class="relative z-10 flex flex-col items-center text-center px-6" style="padding-top:clamp(100px,18vh,160px); padding-bottom:120px">
 
     <!-- Badge -->
     <div class="liquid-glass rounded-full px-4 py-1.5 mb-8 inline-flex items-center gap-2">
@@ -429,14 +442,14 @@
     </div>
 
     <!-- Heading (BlurText) -->
-    <h1 class="max-w-4xl mx-auto mb-7" style="letter-spacing:-4px">
-      <span class="blur-text block font-heading italic text-white leading-[0.82]" style="font-size:clamp(2.75rem,8vw,5.5rem)">Dein Marketing gehört inhouse</span>
+    <h1 class="max-w-4xl mx-auto mb-7" style="letter-spacing:clamp(-2px,-0.05em,-4px)">
+      <span class="blur-text block font-heading italic text-white leading-[0.88]" style="font-size:clamp(2.4rem,8vw,5.5rem)">Dein Marketing gehört inhouse</span>
     </h1>
 
     <!-- Subtext -->
     <p class="fade-in font-body font-light text-white/60 text-sm md:text-base max-w-md mx-auto mb-10 leading-[1.75]" style="transition-delay:0.5s">
-      In 90 Tagen baust du dir die Marketing-Kompetenz auf,<br>
-      für die andere Startups dauerhaft 2.500&nbsp;€ im Monat verbrennen.<br>
+      In 90 Tagen baust du dir die Marketing-Kompetenz auf,
+      für die andere Startups dauerhaft 2.500&nbsp;€ im Monat verbrennen.
       Ich zeige dir exakt wie — weil ich selbst da war.
     </p>
 
@@ -453,25 +466,25 @@
   </div>
 
   <!-- Stats Bar -->
-  <div class="absolute bottom-0 left-0 right-0 z-10 pb-10">
-    <div class="flex items-center justify-center gap-6 md:gap-12 flex-wrap px-6">
+  <div class="absolute bottom-0 left-0 right-0 z-10 pb-8">
+    <div class="grid grid-cols-2 md:flex md:items-center md:justify-center gap-y-5 md:gap-12 px-8 md:px-6">
       <div class="text-center">
-        <div class="text-2xl md:text-3xl font-heading italic text-white">7+</div>
+        <div class="text-xl md:text-3xl font-heading italic text-white">7+</div>
         <div class="text-white/50 font-body font-light text-xs mt-0.5">Jahre Performance Marketing</div>
       </div>
       <div class="hidden md:block w-px h-8 bg-white/10"></div>
       <div class="text-center">
-        <div class="text-2xl md:text-3xl font-heading italic text-white">150+</div>
+        <div class="text-xl md:text-3xl font-heading italic text-white">150+</div>
         <div class="text-white/50 font-body font-light text-xs mt-0.5">beratene Unternehmen</div>
       </div>
       <div class="hidden md:block w-px h-8 bg-white/10"></div>
       <div class="text-center">
-        <div class="text-2xl md:text-3xl font-heading italic text-white">Mehrere</div>
+        <div class="text-xl md:text-3xl font-heading italic text-white">Mehrere</div>
         <div class="text-white/50 font-body font-light text-xs mt-0.5">Investment-Runden</div>
       </div>
       <div class="hidden md:block w-px h-8 bg-white/10"></div>
       <div class="text-center">
-        <div class="text-2xl md:text-3xl font-heading italic text-white">5</div>
+        <div class="text-xl md:text-3xl font-heading italic text-white">5</div>
         <div class="text-white/50 font-body font-light text-xs mt-0.5">eigene Brands</div>
       </div>
     </div>
@@ -482,7 +495,7 @@
 <!-- ============================================================
      SECTION 3+4 — PROBLEM (Combined, HLS Video BG)
      ============================================================ -->
-<section class="video-section" style="min-height:900px">
+<section class="video-section" style="min-height:clamp(600px,100svh,900px)">
   <video id="vid-problem" autoplay loop muted playsinline
     style="filter: brightness(0.45)"
     class="absolute inset-0 w-full h-full object-cover z-0">
@@ -490,7 +503,7 @@
   <div class="fade-top"></div>
   <div class="fade-bottom"></div>
 
-  <div class="content flex flex-col items-center justify-center py-40 px-6 md:px-16 lg:px-24" style="min-height:900px">
+  <div class="content flex flex-col items-center justify-center py-28 md:py-40 px-6 md:px-16 lg:px-24" style="min-height:clamp(600px,100svh,900px)">
     <div class="max-w-4xl mx-auto w-full grid md:grid-cols-2 gap-16 md:gap-24 items-start">
 
       <!-- Problem 1 -->
@@ -822,28 +835,28 @@
       </div>
 
       <!-- Numbers Row -->
-      <div class="grid grid-cols-2 gap-6 md:gap-8 mb-8">
+      <div class="grid grid-cols-2 gap-4 md:gap-8 mb-8">
         <div>
           <p class="text-white/40 font-body text-xs uppercase tracking-widest mb-2">Agentur-Modell</p>
-          <p id="roi-agency-val" class="text-4xl md:text-5xl font-heading italic" style="color: rgba(239,68,68,0.9); white-space: nowrap">50.000&nbsp;€</p>
+          <p id="roi-agency-val" class="text-2xl md:text-4xl lg:text-5xl font-heading italic" style="color: rgba(239,68,68,0.9); white-space: nowrap">50.000&nbsp;€</p>
           <p id="roi-agency-sub" class="text-white/40 font-body text-xs mt-1">20 × 2.500 €/Monat</p>
         </div>
         <div>
           <p class="text-white/40 font-body text-xs uppercase tracking-widest mb-2">StartupAds Ausbildung</p>
-          <p class="text-4xl md:text-5xl font-heading italic text-white" style="white-space: nowrap">12.000&nbsp;€</p>
+          <p class="text-2xl md:text-4xl lg:text-5xl font-heading italic text-white" style="white-space: nowrap">12.000&nbsp;€</p>
           <p class="text-white/40 font-body text-xs mt-1">Einmalige Investition</p>
         </div>
       </div>
 
       <!-- Result Row -->
-      <div class="grid grid-cols-2 gap-6 md:gap-8 pt-8 border-t border-white/10">
+      <div class="grid grid-cols-2 gap-4 md:gap-8 pt-8 border-t border-white/10">
         <div>
-          <p class="text-white/60 font-body text-sm mb-2">Deine Ersparnis nach <span id="roi-savings-months">20</span> Monaten</p>
-          <p id="roi-savings-val" class="text-4xl md:text-5xl font-heading italic" style="color: rgba(74,222,128,0.9); white-space: nowrap; text-shadow: 0 0 22px rgba(74,222,128,0.45), 0 0 44px rgba(74,222,128,0.18)">+38.000&nbsp;€</p>
+          <p class="text-white/60 font-body text-xs md:text-sm mb-2">Deine Ersparnis nach <span id="roi-savings-months">20</span> Monaten</p>
+          <p id="roi-savings-val" class="text-2xl md:text-4xl lg:text-5xl font-heading italic" style="color: rgba(74,222,128,0.9); white-space: nowrap; text-shadow: 0 0 22px rgba(74,222,128,0.45), 0 0 44px rgba(74,222,128,0.18)">+38.000&nbsp;€</p>
         </div>
         <div>
-          <p class="text-white/60 font-body text-sm mb-2">Break-Even</p>
-          <p class="text-4xl md:text-5xl font-heading italic text-white">5 Monate</p>
+          <p class="text-white/60 font-body text-xs md:text-sm mb-2">Break-Even</p>
+          <p class="text-2xl md:text-4xl lg:text-5xl font-heading italic text-white">5 Monate</p>
         </div>
       </div>
 
@@ -868,39 +881,39 @@
 
       <div class="reveal-up liquid-glass rounded-2xl p-8 flex flex-col relative">
         <p class="text-white/80 font-body font-light text-sm italic leading-[1.75] mb-6 flex-1">
-          "Ich dachte, ich bräuchte eine Agentur. Nach drei Monaten verstehe ich meine Zahlen besser als mein früheres Agentur-Team — und habe im ersten Jahr über 20.000&nbsp;€ gespart."
+          "Unsere Kosten pro Registrierung sind seit der Zusammenarbeit mit Alex drastisch gesunken."
         </p>
         <div class="flex items-center gap-3">
-          <div class="liquid-glass-strong rounded-full w-8 h-8 flex items-center justify-center text-xs font-body font-medium text-white flex-shrink-0">M</div>
+          <img src="https://framerusercontent.com/images/v3eSqxxhMdN5FavSzj6RcndPjE.png?width=100" alt="Sebastian" class="w-9 h-9 rounded-full object-cover flex-shrink-0" style="object-position:47.9% 38.9%" />
           <div>
-            <p class="text-white font-body font-medium text-sm">Max M.</p>
-            <p class="text-white/50 font-body font-light text-xs">Founder, [Startup], SaaS</p>
+            <p class="text-white font-body font-medium text-sm">Sebastian</p>
+            <p class="text-white/50 font-body font-light text-xs">Founder, Vansite</p>
           </div>
         </div>
       </div>
 
-      <div class="reveal-up liquid-glass card-shimmer rounded-2xl p-8 flex flex-col relative" style="transition-delay:0.12s">
+      <div class="reveal-up liquid-glass rounded-2xl p-8 flex flex-col relative" style="transition-delay:0.12s">
         <p class="text-white/80 font-body font-light text-sm italic leading-[1.75] mb-6 flex-1">
-          "Das Wissen, das ich hier aufgebaut habe, war im Investor-Pitch direkt spürbar. Wir haben die Fragen zur Marketing-Skalierbarkeit souverän beantwortet — weil wir's selbst verstehen."
+          "Alex hat uns immer wieder schnell und unkompliziert bei technischen Schwierigkeiten geholfen."
         </p>
         <div class="flex items-center gap-3">
-          <div class="liquid-glass-strong rounded-full w-8 h-8 flex items-center justify-center text-xs font-body font-medium text-white flex-shrink-0">S</div>
+          <img src="https://framerusercontent.com/images/S1Eq5hpeHn9xlsyAZ73oflJAKc.webp?width=100" alt="Leo & Carla" class="w-9 h-9 rounded-full object-cover flex-shrink-0" />
           <div>
-            <p class="text-white font-body font-medium text-sm">Sarah K.</p>
-            <p class="text-white/50 font-body font-light text-xs">Co-Founder, [Startup], FinTech</p>
+            <p class="text-white font-body font-medium text-sm">Leo &amp; Carla</p>
+            <p class="text-white/50 font-body font-light text-xs">Founder, PURE U</p>
           </div>
         </div>
       </div>
 
-      <div class="reveal-up liquid-glass card-shimmer rounded-2xl p-8 flex flex-col relative" style="transition-delay:0.24s">
+      <div class="reveal-up liquid-glass rounded-2xl p-8 flex flex-col relative" style="transition-delay:0.24s">
         <p class="text-white/80 font-body font-light text-sm italic leading-[1.75] mb-6 flex-1">
-          "In weniger als 5 Monaten hatte sich die Investition amortisiert. Was mich am meisten überrascht hat: Ich hätte nie gedacht, dass ich das selbst hinbekomme."
+          "Durch die Ausbildung haben wir es geschafft, unser Startup besser zu monetarisieren."
         </p>
         <div class="flex items-center gap-3">
-          <div class="liquid-glass-strong rounded-full w-8 h-8 flex items-center justify-center text-xs font-body font-medium text-white flex-shrink-0">J</div>
+          <img src="https://framerusercontent.com/images/xENDxFCGW2pL9yflPAVXmZEmOMY.webp?width=100" alt="Felix" class="w-9 h-9 rounded-full object-cover flex-shrink-0" />
           <div>
-            <p class="text-white font-body font-medium text-sm">Jonas W.</p>
-            <p class="text-white/50 font-body font-light text-xs">CEO, [Startup], E-Commerce</p>
+            <p class="text-white font-body font-medium text-sm">Felix</p>
+            <p class="text-white/50 font-body font-light text-xs">Founder, Curawork</p>
           </div>
         </div>
       </div>
@@ -927,7 +940,7 @@
       <!-- Card 1: Agentur -->
       <div class="fade-in liquid-glass rounded-2xl p-8" style="box-shadow: 0 0 50px rgba(180,0,0,0.08), inset 0 1px 1px rgba(255,80,80,0.06);">
         <p class="font-body text-xs uppercase tracking-widest mb-5" style="color: rgba(220,80,80,0.7)">Agentur-Modell</p>
-        <p class="text-4xl md:text-5xl font-heading italic mb-1" style="color: rgba(239,68,68,0.9)">2.500&nbsp;€&nbsp;/ Monat</p>
+        <p class="text-3xl md:text-4xl lg:text-5xl font-heading italic mb-1" style="color: rgba(239,68,68,0.9); white-space: nowrap">2.500&nbsp;€&nbsp;/ Monat</p>
         <p class="text-white/40 font-body text-xs mb-8">Dauerhaft · Ohne Ende</p>
         <ul class="space-y-3 mb-8">
           <li class="flex items-start gap-2.5 text-white/60 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Abhängigkeit von Dritten</li>
@@ -948,7 +961,7 @@
           <p class="text-white/70 font-body text-xs uppercase tracking-widest">StartupAds Ausbildung</p>
           <span class="rounded-full px-2 py-0.5 text-xs font-body font-semibold leading-none" style="background: rgba(22,163,74,0.15); border: 1px solid rgba(22,163,74,0.3); color: rgba(74,222,128,1)">Empfohlen</span>
         </div>
-        <p class="text-5xl font-heading italic text-white mb-1">12.000 €</p>
+        <p class="text-3xl md:text-4xl lg:text-5xl font-heading italic text-white mb-1" style="white-space: nowrap">12.000&nbsp;€</p>
         <p class="text-white/40 font-body text-xs mb-8">Einmalig · Für immer</p>
         <ul class="space-y-3 mb-6">
           <li class="flex items-start gap-2.5 text-white font-body font-light text-sm"><span class="solution-check mt-0.5 flex-shrink-0">✓</span>Komplette Videobibliothek (Meta, Google, TikTok)</li>
@@ -1070,9 +1083,9 @@
   <div class="content max-w-4xl mx-auto text-center">
 
     <!-- Heading (BlurText) -->
-    <h2 class="mb-8" style="letter-spacing:-2px">
-      <span class="blur-text block text-5xl md:text-6xl lg:text-7xl font-heading italic text-white tracking-tight leading-[0.85]">Du weißt schon, dass sich</span>
-      <span class="blur-text block text-5xl md:text-6xl lg:text-7xl font-heading italic text-white tracking-tight leading-[0.85]">etwas ändern muss</span>
+    <h2 class="mb-8" style="letter-spacing:-1px">
+      <span class="blur-text block text-4xl md:text-6xl lg:text-7xl font-heading italic text-white tracking-tight leading-[0.9]">Du weißt schon, dass sich</span>
+      <span class="blur-text block text-4xl md:text-6xl lg:text-7xl font-heading italic text-white tracking-tight leading-[0.9]">etwas ändern muss</span>
     </h2>
 
     <p class="font-body font-light text-white/60 text-sm max-w-lg mx-auto mb-10 leading-[1.75]">
