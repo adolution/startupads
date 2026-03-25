@@ -95,6 +95,11 @@
       pointer-events: none;
     }
 
+    /* ===== ALEX PHOTO — taller on mobile so face clears the cards ===== */
+    @media (max-width: 1023px) {
+      .alex-photo { aspect-ratio: 4/3 !important; }
+    }
+
     /* ===== BLUR TEXT ===== */
     .blur-word {
       display: inline-block;
@@ -729,7 +734,7 @@
 
     <!-- Image with stats overlay -->
     <div class="relative" style="padding-bottom: 44px;">
-      <img src="brand_assets/startup-marketing-ausbildung-alex.webp" alt="Alex — Marketing Experte" class="w-full object-cover rounded-2xl" style="aspect-ratio: 5/4; object-position: top center; display: block;" />
+      <img src="brand_assets/startup-marketing-ausbildung-alex.webp" alt="Alex — Marketing Experte" class="w-full object-cover rounded-2xl alex-photo" style="aspect-ratio: 5/4; object-position: 50% 15%; display: block;" />
       <!-- gradient fade at bottom of image only -->
       <div class="absolute left-0 right-0 rounded-2xl bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" style="top:0; bottom: 44px;"></div>
       <!-- 2×2 card grid shifted down so bottom row is half below the image -->
