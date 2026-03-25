@@ -1332,15 +1332,29 @@ document.querySelectorAll('.section-line').forEach(el => lineObs.observe(el));
 function setupHLS(videoId, src) {
   const video = document.getElementById(videoId);
   if (!video) return;
+
+  // Hide video if autoplay is blocked (iOS Low Power Mode, etc.)
+  function hideIfPaused() {
+    setTimeout(() => {
+      if (video.paused) video.style.display = 'none';
+    }, 2500);
+  }
+
   if (typeof Hls !== 'undefined' && Hls.isSupported()) {
     const hls = new Hls({ startLevel: -1, autoStartLoad: true });
     hls.loadSource(src);
     hls.attachMedia(video);
-    hls.on(Hls.Events.MANIFEST_PARSED, () => video.play().catch(() => {}));
+    hls.on(Hls.Events.MANIFEST_PARSED, () => {
+      video.play().catch(() => { video.style.display = 'none'; });
+      hideIfPaused();
+    });
   } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
     // Safari native HLS
     video.src = src;
-    video.addEventListener('loadedmetadata', () => video.play().catch(() => {}));
+    video.addEventListener('loadedmetadata', () => {
+      video.play().catch(() => { video.style.display = 'none'; });
+      hideIfPaused();
+    });
   }
   // Falls neither works: video stays empty, black bg from section shows
 }
