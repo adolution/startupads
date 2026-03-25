@@ -186,21 +186,21 @@
       background-repeat: no-repeat;
       z-index: 0;
     }
-    /* Videos start hidden; revealed only when actually playing */
+    /* Videos start completely hidden — display:none removes them from the
+       rendering pipeline so iOS WebKit cannot draw its play button UI over them */
     .video-section video,
     #vid-hero {
+      display: none;
       position: absolute;
       inset: 0;
       width: 100%; height: 100%;
       object-fit: cover;
       z-index: 1;
-      opacity: 0;
       pointer-events: none;
-      transition: opacity 0.4s ease;
     }
     .video-section.video-ready video,
     .hero-video-ready #vid-hero {
-      opacity: 1;
+      display: block;
     }
     .video-section .fade-top {
       position: absolute;
@@ -441,7 +441,7 @@
 <section class="relative overflow-hidden bg-black" style="min-height: 100svh;">
 
   <!-- Fallback image (always visible underneath) -->
-  <div class="absolute inset-0 z-0" style="background-image:url('brand_assets/hero-section-fallback.webp'); background-size:cover; background-position:center 40%;"></div>
+  <div style="position:absolute; inset:0; z-index:0; background-image:url('brand_assets/hero-section-fallback.webp'); background-size:cover; background-position:center 40%;"></div>
 
   <!-- BG Video (hidden until playing) -->
   <video
