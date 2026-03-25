@@ -1,0 +1,1358 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StartupAds.de — Performance Marketing Ausbildung für Startup-Founder</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ["'Instrument Serif'", "serif"],
+            body: ["'Barlow'", "sans-serif"],
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+
+  <style>
+    :root {
+      --radius: 9999px;
+      --font-heading: 'Instrument Serif', serif;
+      --font-body: 'Barlow', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: #000; }
+
+    /* ===== LIQUID GLASS ===== */
+    .liquid-glass {
+      background: rgba(255,255,255,0.035);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: none;
+      box-shadow: inset 0 1px 1px rgba(255,255,255,0.12);
+      position: relative;
+      overflow: hidden;
+    }
+    .liquid-glass::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.45) 0%,
+        rgba(255,255,255,0.15) 20%,
+        rgba(255,255,255,0) 40%,
+        rgba(255,255,255,0) 60%,
+        rgba(255,255,255,0.15) 80%,
+        rgba(255,255,255,0.45) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    .liquid-glass-strong {
+      background: rgba(255,255,255,0.07);
+      background-blend-mode: luminosity;
+      backdrop-filter: blur(50px);
+      -webkit-backdrop-filter: blur(50px);
+      border: none;
+      box-shadow: 4px 4px 4px rgba(0,0,0,0.05), inset 0 1px 1px rgba(255,255,255,0.18);
+      position: relative;
+      overflow: hidden;
+    }
+    .liquid-glass-strong::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.4px;
+      background: linear-gradient(180deg,
+        rgba(255,255,255,0.5) 0%,
+        rgba(255,255,255,0.2) 20%,
+        rgba(255,255,255,0) 40%,
+        rgba(255,255,255,0) 60%,
+        rgba(255,255,255,0.2) 80%,
+        rgba(255,255,255,0.5) 100%
+      );
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+
+    /* ===== BLUR TEXT ===== */
+    .blur-word {
+      display: inline-block;
+      opacity: 0;
+      filter: blur(14px);
+      transform: translateY(32px);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), filter 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .blur-word.visible {
+      opacity: 1;
+      filter: blur(0);
+      transform: translateY(0);
+    }
+
+    /* ===== FADE IN ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s cubic-bezier(0.16,1,0.3,1), transform 0.65s cubic-bezier(0.16,1,0.3,1);
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== RANGE SLIDER ===== */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 100%;
+      height: 2px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 9999px;
+      outline: none;
+      cursor: pointer;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #fff;
+      cursor: pointer;
+      box-shadow: 0 0 16px rgba(255,255,255,0.5);
+      transition: box-shadow 0.2s;
+    }
+    input[type="range"]::-webkit-slider-thumb:hover {
+      box-shadow: 0 0 24px rgba(255,255,255,0.7);
+    }
+    input[type="range"]::-moz-range-thumb {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #fff;
+      cursor: pointer;
+      border: none;
+      box-shadow: 0 0 16px rgba(255,255,255,0.5);
+    }
+
+    /* ===== ACCORDION ===== */
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.38s cubic-bezier(0.16,1,0.3,1);
+    }
+    .accordion-content.open {
+      max-height: 400px;
+    }
+    .accordion-chevron {
+      transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
+      flex-shrink: 0;
+    }
+    .accordion-trigger.active .accordion-chevron {
+      transform: rotate(180deg);
+    }
+
+    /* ===== VIDEO BG ===== */
+    .video-section {
+      position: relative;
+      overflow: hidden;
+    }
+    .video-section video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+    .video-section .fade-top {
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(to bottom, #000, transparent);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .video-section .fade-bottom {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 200px;
+      background: linear-gradient(to top, #000, transparent);
+      z-index: 1;
+      pointer-events: none;
+    }
+    .video-section .content {
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ===== GLOW PULSE ===== */
+    @keyframes glow-pulse {
+      0%, 100% { box-shadow: 0 0 30px rgba(255,255,255,0.03), inset 0 1px 1px rgba(255,255,255,0.08); }
+      50%       { box-shadow: 0 0 60px rgba(255,255,255,0.10), inset 0 1px 1px rgba(255,255,255,0.16); }
+    }
+    .glow-animate { animation: glow-pulse 4s ease-in-out infinite; }
+
+    /* ===== BUTTON STATES ===== */
+    .btn-primary {
+      transition: transform 0.18s cubic-bezier(0.16,1,0.3,1), box-shadow 0.18s ease;
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(255,255,255,0.18);
+    }
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-glass {
+      transition: transform 0.18s cubic-bezier(0.16,1,0.3,1);
+    }
+    .btn-glass:hover { transform: translateY(-2px); }
+    .btn-glass:active { transform: translateY(0); }
+
+    /* ===== NAV LINK ===== */
+    .nav-link {
+      transition: color 0.2s ease, background 0.2s ease;
+      border-radius: 9999px;
+    }
+    .nav-link:hover {
+      color: white;
+      background: rgba(255,255,255,0.07);
+    }
+
+    /* ===== SCROLLBAR ===== */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #000; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 9999px; }
+
+    /* ===== ARROW ICON ===== */
+    .icon-arrow {
+      display: inline-block;
+      width: 14px;
+      height: 14px;
+    }
+
+    /* ===== BUTTON GLOW (Bewerben) ===== */
+    @keyframes btn-breathe {
+      0%, 100% { box-shadow: 0 0 0px rgba(255,255,255,0), inset 0 1px 1px rgba(255,255,255,0.18); transform: scale(1); }
+      50%       { box-shadow: 0 0 18px rgba(255,255,255,0.12), inset 0 1px 1px rgba(255,255,255,0.22); transform: scale(1.012); }
+    }
+    .btn-cta {
+      animation: btn-breathe 3s ease-in-out infinite;
+      transition: box-shadow 0.22s ease, transform 0.22s cubic-bezier(0.16,1,0.3,1);
+    }
+    .btn-cta:hover {
+      box-shadow: 0 0 36px rgba(255,255,255,0.35), 0 0 60px rgba(255,255,255,0.12) !important;
+      transform: translateY(-2px) scale(1.02) !important;
+      animation: none;
+    }
+    .btn-cta:active { transform: translateY(0) scale(0.98) !important; }
+
+    /* ===== PROBLEM SECTION RED ACCENTS ===== */
+    .problem-badge {
+      background: rgba(220,38,38,0.12);
+      border: 1px solid rgba(220,38,38,0.25);
+      color: rgba(255,120,120,1);
+    }
+    .problem-badge::before { display: none; }
+    .problem-glow {
+      box-shadow: 0 0 60px rgba(180,0,0,0.08), inset 0 1px 1px rgba(255,100,100,0.08);
+    }
+    .problem-x { color: rgba(220,80,80,0.7) !important; }
+
+    /* ===== GREEN SECTION ACCENTS ===== */
+    .solution-badge {
+      background: rgba(22,163,74,0.12);
+      border: 1px solid rgba(22,163,74,0.28);
+      color: rgba(74,222,128,1);
+    }
+    .solution-badge::before { display: none; }
+    .solution-glow {
+      box-shadow: 0 0 60px rgba(0,160,60,0.08), inset 0 1px 1px rgba(80,220,120,0.08);
+    }
+    .solution-check { color: rgba(74,222,128,0.9) !important; }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-up.visible { opacity: 1; transform: translateY(0); }
+
+    .reveal-left {
+      opacity: 0;
+      transform: translateX(-40px);
+      transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+
+    .reveal-right {
+      opacity: 0;
+      transform: translateX(40px);
+      transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+    .reveal-scale {
+      opacity: 0;
+      transform: scale(0.94);
+      transition: opacity 0.75s cubic-bezier(0.16,1,0.3,1), transform 0.75s cubic-bezier(0.16,1,0.3,1);
+    }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+    /* ===== FLOAT CARDS ===== */
+    @keyframes float-card {
+      0%, 100% { transform: translateY(0px); }
+      50%       { transform: translateY(-6px); }
+    }
+    .float-anim { animation: float-card 5s ease-in-out infinite; }
+    .float-anim-2 { animation: float-card 6s 1s ease-in-out infinite; }
+
+    /* ===== COUNTER STAT ===== */
+    .stat-num {
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+
+    /* ===== SECTION LINE ===== */
+    @keyframes line-grow {
+      from { transform: scaleX(0); }
+      to   { transform: scaleX(1); }
+    }
+    .section-line {
+      transform-origin: left center;
+      animation: none;
+    }
+    .section-line.visible { animation: line-grow 0.9s cubic-bezier(0.16,1,0.3,1) forwards; }
+
+    /* ===== SHIMMER on cards ===== */
+    @keyframes shimmer {
+      0%   { background-position: -300% 0; }
+      100% { background-position: 300% 0; }
+    }
+    .card-shimmer::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: linear-gradient(110deg, transparent 30%, rgba(255,255,255,0.018) 50%, transparent 70%);
+      background-size: 300% 100%;
+      animation: shimmer 9s cubic-bezier(0.4,0,0.6,1) infinite;
+      pointer-events: none;
+    }
+
+    /* ===== CLIP REVEAL ===== */
+    .clip-reveal {
+      clip-path: inset(0 100% 0 0);
+      transition: clip-path 0.9s cubic-bezier(0.16,1,0.3,1);
+    }
+    .clip-reveal.visible { clip-path: inset(0 0% 0 0); }
+  </style>
+</head>
+
+<body class="bg-black overflow-x-hidden font-body">
+
+<!-- ============================================================
+     SECTION 1 — NAVBAR
+     ============================================================ -->
+<nav class="fixed top-4 left-0 right-0 z-50 px-4 md:px-6">
+  <div class="max-w-7xl mx-auto flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="#" class="flex items-center gap-2 flex-shrink-0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+        <path d="M13 2L3.5 13.5H10.5L9.5 22L21 10.5H14L13 2Z"/>
+      </svg>
+      <span class="font-heading italic text-white text-xl leading-none">startupads</span>
+    </a>
+
+    <!-- Center Nav Pill -->
+    <div class="hidden lg:flex liquid-glass rounded-full px-2 py-1.5 items-center gap-0.5">
+      <a href="#warum"      class="nav-link px-3.5 py-1.5 text-sm font-body font-medium text-white/70">Warum das funktioniert</a>
+      <a href="#angebot"    class="nav-link px-3.5 py-1.5 text-sm font-body font-medium text-white/70">Was drin ist</a>
+      <a href="#roi"        class="nav-link px-3.5 py-1.5 text-sm font-body font-medium text-white/70">Dein ROI</a>
+      <a href="#investition" class="nav-link px-3.5 py-1.5 text-sm font-body font-medium text-white/70">Investition</a>
+    </div>
+
+    <!-- CTA Button -->
+    <a href="#kontakt" class="btn-cta btn-primary bg-white text-black rounded-full px-4 py-2 text-sm font-body font-medium flex items-center gap-1.5 cursor-pointer flex-shrink-0">
+      Bewerben
+      <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+      </svg>
+    </a>
+  </div>
+</nav>
+
+
+<!-- ============================================================
+     SECTION 2 — HERO
+     ============================================================ -->
+<section class="relative overflow-hidden bg-black" style="height: 1000px">
+
+  <!-- BG Video -->
+  <video
+    src="brand_assets/1774160847209081.MP4"
+    autoplay loop muted playsinline
+    class="absolute inset-0 w-full h-full object-cover z-0"
+    style="filter: brightness(0.65)"
+  ></video>
+
+  <!-- Overlays -->
+  <div class="absolute inset-0 bg-black/10 z-[1] pointer-events-none"></div>
+  <div class="absolute bottom-0 left-0 right-0 z-[2] pointer-events-none" style="height:500px;background:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,0.55) 45%,#000 100%)"></div>
+
+  <!-- Content -->
+  <div class="relative z-10 flex flex-col items-center text-center px-6" style="padding-top:150px">
+
+    <!-- Badge -->
+    <div class="liquid-glass rounded-full px-4 py-1.5 mb-8 inline-flex items-center gap-2">
+      <span class="text-xs font-body font-medium text-white">Für Startups &amp; Founder</span>
+    </div>
+
+    <!-- Heading (BlurText) -->
+    <h1 class="max-w-4xl mx-auto mb-7" style="letter-spacing:-4px">
+      <span class="blur-text block font-heading italic text-white leading-[0.82]" style="font-size:clamp(2.75rem,8vw,5.5rem)">Dein Marketing gehört inhouse</span>
+    </h1>
+
+    <!-- Subtext -->
+    <p class="fade-in font-body font-light text-white/60 text-sm md:text-base max-w-md mx-auto mb-10 leading-[1.75]" style="transition-delay:0.5s">
+      In 90 Tagen baust du dir die Marketing-Kompetenz auf,<br>
+      für die andere Startups dauerhaft 2.500&nbsp;€ im Monat verbrennen.<br>
+      Ich zeige dir exakt wie — weil ich selbst da war.
+    </p>
+
+    <!-- CTA -->
+    <div class="fade-in flex flex-col sm:flex-row items-center gap-4" style="transition-delay:0.75s">
+      <a href="#kontakt" class="btn-cta btn-glass liquid-glass-strong rounded-full px-6 py-3 text-white font-body font-medium text-sm flex items-center gap-2 cursor-pointer">
+        Bewerben
+        <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+        </svg>
+      </a>
+      <a href="#roi" class="font-body font-light text-white/50 text-sm hover:text-white/80 transition-colors cursor-pointer">▷ Rechne deinen ROI</a>
+    </div>
+  </div>
+
+  <!-- Stats Bar -->
+  <div class="absolute bottom-0 left-0 right-0 z-10 pb-10">
+    <div class="flex items-center justify-center gap-6 md:gap-12 flex-wrap px-6">
+      <div class="text-center">
+        <div class="text-2xl md:text-3xl font-heading italic text-white">7+</div>
+        <div class="text-white/50 font-body font-light text-xs mt-0.5">Jahre Performance Marketing</div>
+      </div>
+      <div class="hidden md:block w-px h-8 bg-white/10"></div>
+      <div class="text-center">
+        <div class="text-2xl md:text-3xl font-heading italic text-white">150+</div>
+        <div class="text-white/50 font-body font-light text-xs mt-0.5">beratene Unternehmen</div>
+      </div>
+      <div class="hidden md:block w-px h-8 bg-white/10"></div>
+      <div class="text-center">
+        <div class="text-2xl md:text-3xl font-heading italic text-white">Mehrere</div>
+        <div class="text-white/50 font-body font-light text-xs mt-0.5">Investment-Runden</div>
+      </div>
+      <div class="hidden md:block w-px h-8 bg-white/10"></div>
+      <div class="text-center">
+        <div class="text-2xl md:text-3xl font-heading italic text-white">5</div>
+        <div class="text-white/50 font-body font-light text-xs mt-0.5">eigene Brands</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 3+4 — PROBLEM (Combined, HLS Video BG)
+     ============================================================ -->
+<section class="video-section" style="min-height:900px">
+  <video id="vid-problem" autoplay loop muted playsinline
+    style="filter: brightness(0.45)"
+    class="absolute inset-0 w-full h-full object-cover z-0">
+  </video>
+  <div class="fade-top"></div>
+  <div class="fade-bottom"></div>
+
+  <div class="content flex flex-col items-center justify-center py-40 px-6 md:px-16 lg:px-24" style="min-height:900px">
+    <div class="max-w-4xl mx-auto w-full grid md:grid-cols-2 gap-16 md:gap-24 items-start">
+
+      <!-- Problem 1 -->
+      <div class="fade-in text-center md:text-left">
+        <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-5">Problem 1</div>
+        <h2 class="text-3xl md:text-4xl font-heading italic text-white tracking-tight leading-[0.9] mb-5">
+          Agenturen kosten dich mehr als nur Geld
+        </h2>
+        <p class="font-body font-light text-white/55 text-sm leading-[1.75]">
+          Das klassische Modell ist designed, dich abhängig zu halten.<br>
+          Das ist Absicht. Das ist Kalkül.
+        </p>
+      </div>
+
+      <!-- Problem 2 -->
+      <div class="fade-in text-center md:text-left" style="transition-delay:0.18s">
+        <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-5">Problem 2</div>
+        <h2 class="text-3xl md:text-4xl font-heading italic text-white tracking-tight leading-[0.9] mb-5">
+          Du zahlst — und baust nichts auf
+        </h2>
+        <p class="font-body font-light text-white/55 text-sm leading-[1.75]">
+          2.500&nbsp;€ im Monat, jeden Monat. Keine Skills inhouse.<br>
+          Keine Kontrolle. Kein Asset. Und falls die Agentur kündigt?<br>
+          Startest du von null.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 5 — FEATURES CHESS — ANGEBOT
+     ============================================================ -->
+<section id="angebot" class="py-24 px-6 md:px-16 lg:px-24">
+  <div class="max-w-6xl mx-auto">
+
+    <!-- Header -->
+    <div class="text-center mb-20">
+      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">✓ Der bessere Weg</div>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">
+        Eine echte Ausbildung — von Founder zu Founder
+      </h2>
+    </div>
+
+    <!-- Row 1: Text L, Visual R -->
+    <div class="flex flex-col lg:flex-row items-center gap-12 mb-24">
+      <div class="flex-1 reveal-left">
+        <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-4 leading-tight">
+          Wöchentliche 1:1 Live-Calls — direkt mit mir
+        </h3>
+        <p class="font-body font-light text-white/60 text-sm leading-[1.75] mb-8 max-w-sm">
+          Du bringst deine Kampagnen, ich gebe dir Feedback in Echtzeit. Direkt. Persönlich. Das ist der Unterschied zwischen Lernen und Umsetzen.
+        </p>
+        <a href="#kontakt" class="btn-glass liquid-glass-strong rounded-full px-6 py-3 text-white font-body font-medium text-sm inline-flex items-center gap-2 cursor-pointer">
+          Mehr erfahren
+        </a>
+      </div>
+      <div class="flex-1 w-full lg:max-w-sm reveal-right" style="transition-delay:0.15s">
+        <div class="liquid-glass glow-animate float-anim rounded-2xl aspect-video flex items-center justify-center relative" style="box-shadow: 0 0 40px rgba(74,222,128,0.06), inset 0 1px 1px rgba(255,255,255,0.12)">
+          <div class="text-center p-8">
+            <div class="liquid-glass-strong rounded-full w-14 h-14 flex items-center justify-center mx-auto mb-4">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+                <circle cx="9" cy="7" r="4"/>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+              </svg>
+            </div>
+            <p class="font-body text-white/30 text-xs uppercase tracking-widest">1:1 Live Sessions</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 2: Visual L, Text R -->
+    <div class="flex flex-col lg:flex-row-reverse items-center gap-12">
+      <div class="flex-1 reveal-right">
+        <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-4 leading-tight">
+          Komplette Videobibliothek für alle Plattformen
+        </h3>
+        <p class="font-body font-light text-white/60 text-sm leading-[1.75] mb-8 max-w-sm">
+          Meta, Google & TikTok Ads. Schritt-für-Schritt, nicht theoretisch. Jede Taktik habe ich selbst in mindestens einer Branche getestet und optimiert.
+        </p>
+        <a href="#kontakt" class="btn-glass liquid-glass-strong rounded-full px-6 py-3 text-white font-body font-medium text-sm inline-flex items-center gap-2 cursor-pointer">
+          Zur Bibliothek
+        </a>
+      </div>
+      <div class="flex-1 w-full lg:max-w-sm reveal-left" style="transition-delay:0.15s">
+        <div class="liquid-glass glow-animate float-anim-2 rounded-2xl aspect-video flex items-center justify-center relative" style="box-shadow: 0 0 40px rgba(74,222,128,0.06), inset 0 1px 1px rgba(255,255,255,0.12)">
+          <div class="text-center p-8">
+            <div class="liquid-glass-strong rounded-full w-14 h-14 flex items-center justify-center mx-auto mb-4">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="23 7 16 12 23 17 23 7"/>
+                <rect x="1" y="5" width="15" height="14" rx="2"/>
+              </svg>
+            </div>
+            <p class="font-body text-white/30 text-xs uppercase tracking-widest">Videobibliothek</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 6 — FEATURES GRID — WARUM DAS FUNKTIONIERT
+     ============================================================ -->
+<section id="warum" class="py-24 px-6 md:px-16 lg:px-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">✦ Warum das funktioniert</div>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">
+        Der Unterschied liegt im Detail
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+      <!-- Card 1 -->
+      <div class="reveal-scale liquid-glass card-shimmer rounded-2xl p-6 relative">
+        <div class="liquid-glass-strong rounded-full w-10 h-10 flex items-center justify-center mb-5">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-heading italic text-white mb-2">90 Tage. Nicht 9 Monate</h3>
+        <p class="text-white/60 font-body font-light text-sm leading-[1.7]">Strukturierter Lernpfad vom ersten Setup bis zur eigenständigen Optimierung.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="reveal-scale liquid-glass card-shimmer rounded-2xl p-6 relative" style="transition-delay:0.1s">
+        <div class="liquid-glass-strong rounded-full w-10 h-10 flex items-center justify-center mb-5">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="6"/>
+            <circle cx="12" cy="12" r="2"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-heading italic text-white mb-2">Founder-Perspektive</h3>
+        <p class="text-white/60 font-body font-light text-sm leading-[1.7]">Ich bin selbst Founder. Ich weiß, was auf dem Spiel steht — und was Agentur-Bullshit ist.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="reveal-scale liquid-glass card-shimmer rounded-2xl p-6 relative" style="transition-delay:0.2s">
+        <div class="liquid-glass-strong rounded-full w-10 h-10 flex items-center justify-center mb-5">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+            <polyline points="17 6 23 6 23 12"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-heading italic text-white mb-2">Exit-Value steigern</h3>
+        <p class="text-white/60 font-body font-light text-sm leading-[1.7]">Interne Kompetenz ist ein Asset. Investoren kaufen keine Agenturabhängigkeit.</p>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="reveal-scale liquid-glass card-shimmer rounded-2xl p-6 relative" style="transition-delay:0.3s">
+        <div class="liquid-glass-strong rounded-full w-10 h-10 flex items-center justify-center mb-5">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3 class="text-lg font-heading italic text-white mb-2">ROI nach 5 Monaten</h3>
+        <p class="text-white/60 font-body font-light text-sm leading-[1.7]">Die Investition amortisiert sich. Danach sparst du jeden Monat — für immer.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     CREDIBILITY — ÜBER MICH
+     ============================================================ -->
+<section class="py-32 px-6 md:px-16 lg:px-24">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+    <!-- Text Left -->
+    <div class="fade-in">
+      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-6">👤 Dein Experte</div>
+      <h2 class="text-4xl md:text-5xl font-heading italic text-white tracking-tight leading-[0.9] mb-8">
+        Expertise, die<br>Investment-Runden entscheidet
+      </h2>
+      <div class="space-y-5">
+        <p class="font-body font-light text-white/60 text-sm leading-[1.75]">
+          Ich bin selbst Founder. Ich habe Shops wie Liebe Leben von Null aufgebaut, digitale Produkte entwickelt und über 7 Jahre lang erfolgreich verkauft — und dabei alles selbst bezahlt, getestet und optimiert.
+        </p>
+        <p class="font-body font-light text-white/60 text-sm leading-[1.75]">
+          Über 150 Unternehmen habe ich seitdem beraten. Aus fast jeder Branche. Das gibt mir einen Vorteil, den eine klassische Fließband-Agentur nie hat: Ich erkenne Muster. Ich sehe in zehn Minuten, wo Geld verbrennt — weil ich diesen Fehler schon bei zwanzig anderen Startups gesehen habe.
+        </p>
+        <p class="font-body font-light text-white/60 text-sm leading-[1.75]">
+          Sieben Jahre echte Performance-Praxis. Aus eigener Tasche bezahlt, getestet, optimiert — plus das, was man nur lernt, wenn man selbst im Risiko sitzt.
+        </p>
+      </div>
+    </div>
+
+    <!-- Stats Grid Right -->
+    <div class="grid grid-cols-2 gap-4">
+      <div class="reveal-scale liquid-glass rounded-2xl p-6 text-center relative">
+        <div class="text-4xl md:text-5xl font-heading italic text-white mb-2">7+</div>
+        <div class="text-white/60 font-body font-light text-sm">Jahre im Marketing</div>
+      </div>
+      <div class="reveal-scale liquid-glass card-shimmer rounded-2xl p-6 text-center relative" style="transition-delay:0.12s">
+        <div class="text-4xl md:text-5xl font-heading italic text-white mb-2">200+</div>
+        <div class="text-white/60 font-body font-light text-sm">Projekte abgeschlossen</div>
+      </div>
+      <div class="reveal-scale liquid-glass card-shimmer rounded-2xl p-6 text-center relative" style="transition-delay:0.24s">
+        <div class="text-3xl md:text-4xl font-heading italic text-white mb-2">Mehrere</div>
+        <div class="text-white/60 font-body font-light text-sm">Investment-Runden entschieden</div>
+      </div>
+      <div class="reveal-scale liquid-glass card-shimmer rounded-2xl p-6 text-center relative" style="transition-delay:0.36s">
+        <div class="text-4xl md:text-5xl font-heading italic text-white mb-2">100%</div>
+        <div class="text-white/60 font-body font-light text-sm">Praxiswissen</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     VORHER / NACHHER
+     ============================================================ -->
+<section class="py-24 px-6 md:px-16 lg:px-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">✦ Was sich ändert</div>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">
+        Was sich ändert — in 90 Tagen
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-6">
+
+      <!-- Vorher -->
+      <div class="fade-in liquid-glass rounded-2xl p-8" style="box-shadow: 0 0 40px rgba(180,0,0,0.07), inset 0 1px 1px rgba(255,80,80,0.06);">
+        <p class="font-body text-xs uppercase tracking-widest mb-6" style="color: rgba(220,80,80,0.7)">VORHER</p>
+        <div class="divide-y divide-white/5">
+          <div class="flex items-start gap-3 py-3.5">
+            <span class="problem-x mt-0.5 flex-shrink-0">✗</span>
+            <span class="font-body font-light text-white/60 text-sm">Du weißt nicht, ob die Agentur wirklich liefert</span>
+          </div>
+          <div class="flex items-start gap-3 py-3.5">
+            <span class="problem-x mt-0.5 flex-shrink-0">✗</span>
+            <span class="font-body font-light text-white/60 text-sm">2.500&nbsp;€/Monat, ohne Lerneffekt</span>
+          </div>
+          <div class="flex items-start gap-3 py-3.5">
+            <span class="problem-x mt-0.5 flex-shrink-0">✗</span>
+            <span class="font-body font-light text-white/60 text-sm">Reaktionszeit: Tage bis Wochen</span>
+          </div>
+          <div class="flex items-start gap-3 py-3.5">
+            <span class="problem-x mt-0.5 flex-shrink-0">✗</span>
+            <span class="font-body font-light text-white/60 text-sm">Investoren sehen externe Abhängigkeit</span>
+          </div>
+          <div class="flex items-start gap-3 py-3.5">
+            <span class="problem-x mt-0.5 flex-shrink-0">✗</span>
+            <span class="font-body font-light text-white/60 text-sm">Du hoffst, dass andere liefern</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nachher -->
+      <div class="fade-in liquid-glass-strong rounded-2xl p-8" style="transition-delay:0.1s; box-shadow: 0 0 40px rgba(0,160,60,0.08), inset 0 1px 1px rgba(80,220,120,0.08);">
+        <p class="font-body text-xs uppercase tracking-widest mb-6 solution-check">NACHHER</p>
+        <div class="divide-y divide-white/5">
+          <div class="flex items-start gap-3 py-3.5">
+            <span class="solution-check mt-0.5 flex-shrink-0">✓</span>
+            <span class="font-body font-light text-white/80 text-sm">Du siehst selbst, was funktioniert — und warum</span>
+          </div>
+          <div class="flex items-start gap-3 py-3.5">
+            <span class="solution-check mt-0.5 flex-shrink-0">✓</span>
+            <span class="font-body font-light text-white/80 text-sm">Einmalige Investition, dauerhafter Kompetenz-Aufbau</span>
+          </div>
+          <div class="flex items-start gap-3 py-3.5">
+            <span class="solution-check mt-0.5 flex-shrink-0">✓</span>
+            <span class="font-body font-light text-white/80 text-sm">Marktchance erkannt → sofort umgesetzt</span>
+          </div>
+          <div class="flex items-start gap-3 py-3.5">
+            <span class="solution-check mt-0.5 flex-shrink-0">✓</span>
+            <span class="font-body font-light text-white/80 text-sm">Inhouse-Kompetenz als echter Unternehmens-Asset</span>
+          </div>
+          <div class="flex items-start gap-3 py-3.5">
+            <span class="solution-check mt-0.5 flex-shrink-0">✓</span>
+            <span class="font-body font-light text-white/80 text-sm">Du führst — mit vollem Durchblick</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 7 — ROI RECHNER (HLS Video BG)
+     ============================================================ -->
+<section id="roi" class="video-section py-32 px-6 md:px-16 lg:px-24">
+  <video id="vid-roi" autoplay loop muted playsinline
+    style="filter: saturate(0) brightness(0.5)"
+    class="absolute inset-0 w-full h-full object-cover z-0">
+  </video>
+  <div class="fade-top"></div>
+  <div class="fade-bottom"></div>
+
+  <div class="content max-w-4xl mx-auto text-center">
+    <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">✦ Rechne es selbst</div>
+    <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9] mb-4">
+      Wie viel kostet dich die Agentur wirklich?
+    </h2>
+    <p class="font-body font-light text-white/60 text-sm mb-14 leading-[1.75]">
+      Stell ein, wie lange du Ads schalten willst.
+    </p>
+
+    <!-- ROI Calculator Card -->
+    <div class="liquid-glass rounded-3xl p-8 md:p-12 text-left">
+
+      <!-- Slider -->
+      <div class="mb-10">
+        <div class="flex justify-between items-center mb-5">
+          <span class="font-body font-medium text-white text-sm">
+            Zeitraum: <span id="roi-months-label">20</span> Monate
+          </span>
+          <span class="font-body text-white/40 text-xs">6 – 36 Monate</span>
+        </div>
+        <input type="range" id="roi-slider" min="6" max="36" value="20" />
+      </div>
+
+      <!-- Numbers Row -->
+      <div class="grid grid-cols-2 gap-6 md:gap-8 mb-8">
+        <div>
+          <p class="text-white/40 font-body text-xs uppercase tracking-widest mb-2">Agentur-Modell</p>
+          <p id="roi-agency-val" class="text-4xl md:text-5xl font-heading italic" style="color: rgba(239,68,68,0.9); white-space: nowrap">50.000&nbsp;€</p>
+          <p id="roi-agency-sub" class="text-white/40 font-body text-xs mt-1">20 × 2.500 €/Monat</p>
+        </div>
+        <div>
+          <p class="text-white/40 font-body text-xs uppercase tracking-widest mb-2">StartupAds Ausbildung</p>
+          <p class="text-4xl md:text-5xl font-heading italic text-white" style="white-space: nowrap">12.000&nbsp;€</p>
+          <p class="text-white/40 font-body text-xs mt-1">Einmalige Investition</p>
+        </div>
+      </div>
+
+      <!-- Result Row -->
+      <div class="grid grid-cols-2 gap-6 md:gap-8 pt-8 border-t border-white/10">
+        <div>
+          <p class="text-white/60 font-body text-sm mb-2">Deine Ersparnis nach <span id="roi-savings-months">20</span> Monaten</p>
+          <p id="roi-savings-val" class="text-4xl md:text-5xl font-heading italic" style="color: rgba(74,222,128,0.9); white-space: nowrap; text-shadow: 0 0 22px rgba(74,222,128,0.45), 0 0 44px rgba(74,222,128,0.18)">+38.000&nbsp;€</p>
+        </div>
+        <div>
+          <p class="text-white/60 font-body text-sm mb-2">Break-Even</p>
+          <p class="text-4xl md:text-5xl font-heading italic text-white">5 Monate</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 8 — TESTIMONIALS
+     ============================================================ -->
+<section class="py-24 px-6 md:px-16 lg:px-24">
+  <div class="max-w-6xl mx-auto">
+    <div class="text-center mb-12">
+      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">✦ Was andere sagen</div>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">
+        Ergebnisse, die für sich sprechen
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <div class="reveal-up liquid-glass rounded-2xl p-8 flex flex-col relative">
+        <p class="text-white/80 font-body font-light text-sm italic leading-[1.75] mb-6 flex-1">
+          "Ich dachte, ich bräuchte eine Agentur. Nach drei Monaten verstehe ich meine Zahlen besser als mein früheres Agentur-Team — und habe im ersten Jahr über 20.000&nbsp;€ gespart."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="liquid-glass-strong rounded-full w-8 h-8 flex items-center justify-center text-xs font-body font-medium text-white flex-shrink-0">M</div>
+          <div>
+            <p class="text-white font-body font-medium text-sm">Max M.</p>
+            <p class="text-white/50 font-body font-light text-xs">Founder, [Startup], SaaS</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-up liquid-glass card-shimmer rounded-2xl p-8 flex flex-col relative" style="transition-delay:0.12s">
+        <p class="text-white/80 font-body font-light text-sm italic leading-[1.75] mb-6 flex-1">
+          "Das Wissen, das ich hier aufgebaut habe, war im Investor-Pitch direkt spürbar. Wir haben die Fragen zur Marketing-Skalierbarkeit souverän beantwortet — weil wir's selbst verstehen."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="liquid-glass-strong rounded-full w-8 h-8 flex items-center justify-center text-xs font-body font-medium text-white flex-shrink-0">S</div>
+          <div>
+            <p class="text-white font-body font-medium text-sm">Sarah K.</p>
+            <p class="text-white/50 font-body font-light text-xs">Co-Founder, [Startup], FinTech</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-up liquid-glass card-shimmer rounded-2xl p-8 flex flex-col relative" style="transition-delay:0.24s">
+        <p class="text-white/80 font-body font-light text-sm italic leading-[1.75] mb-6 flex-1">
+          "In weniger als 5 Monaten hatte sich die Investition amortisiert. Was mich am meisten überrascht hat: Ich hätte nie gedacht, dass ich das selbst hinbekomme."
+        </p>
+        <div class="flex items-center gap-3">
+          <div class="liquid-glass-strong rounded-full w-8 h-8 flex items-center justify-center text-xs font-body font-medium text-white flex-shrink-0">J</div>
+          <div>
+            <p class="text-white font-body font-medium text-sm">Jonas W.</p>
+            <p class="text-white/50 font-body font-light text-xs">CEO, [Startup], E-Commerce</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 9 — PRICING
+     ============================================================ -->
+<section id="investition" class="py-24 px-6 md:px-16 lg:px-24">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">✦ Investition</div>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">
+        Einmal investieren. Für immer profitieren
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+
+      <!-- Card 1: Agentur -->
+      <div class="fade-in liquid-glass rounded-2xl p-8" style="box-shadow: 0 0 50px rgba(180,0,0,0.08), inset 0 1px 1px rgba(255,80,80,0.06);">
+        <p class="font-body text-xs uppercase tracking-widest mb-5" style="color: rgba(220,80,80,0.7)">Agentur-Modell</p>
+        <p class="text-4xl md:text-5xl font-heading italic mb-1" style="color: rgba(239,68,68,0.9)">2.500&nbsp;€&nbsp;/ Monat</p>
+        <p class="text-white/40 font-body text-xs mb-8">Dauerhaft · Ohne Ende</p>
+        <ul class="space-y-3 mb-8">
+          <li class="flex items-start gap-2.5 text-white/60 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Abhängigkeit von Dritten</li>
+          <li class="flex items-start gap-2.5 text-white/60 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Kein interner Know-how-Aufbau</li>
+          <li class="flex items-start gap-2.5 text-white/60 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Laufende Kosten ohne Ende</li>
+          <li class="flex items-start gap-2.5 text-white/60 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Reduziert deinen Exit-Value</li>
+          <li class="flex items-start gap-2.5 text-white/60 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Null Ownership, null Transparenz</li>
+        </ul>
+        <div class="rounded-xl p-4" style="background: rgba(220,38,38,0.07); border: 1px solid rgba(220,38,38,0.15);">
+          <p class="text-white/40 font-body text-xs mb-1.5">Kosten nach 12 Monaten</p>
+          <p class="text-2xl font-heading italic" style="color: rgba(239,68,68,0.9)">30.000 €</p>
+        </div>
+      </div>
+
+      <!-- Card 2: StartupAds -->
+      <div class="fade-in liquid-glass-strong rounded-2xl p-8" style="transition-delay:0.1s; box-shadow: 0 0 50px rgba(0,160,60,0.1), inset 0 1px 1px rgba(80,220,120,0.1);">
+        <div class="flex items-center gap-3 mb-5">
+          <p class="text-white/70 font-body text-xs uppercase tracking-widest">StartupAds Ausbildung</p>
+          <span class="rounded-full px-2 py-0.5 text-xs font-body font-semibold leading-none" style="background: rgba(22,163,74,0.15); border: 1px solid rgba(22,163,74,0.3); color: rgba(74,222,128,1)">Empfohlen</span>
+        </div>
+        <p class="text-5xl font-heading italic text-white mb-1">12.000 €</p>
+        <p class="text-white/40 font-body text-xs mb-8">Einmalig · Für immer</p>
+        <ul class="space-y-3 mb-6">
+          <li class="flex items-start gap-2.5 text-white font-body font-light text-sm"><span class="solution-check mt-0.5 flex-shrink-0">✓</span>Komplette Videobibliothek (Meta, Google, TikTok)</li>
+          <li class="flex items-start gap-2.5 text-white font-body font-light text-sm"><span class="solution-check mt-0.5 flex-shrink-0">✓</span>Wöchentliche Live 1:1 Sessions — direkt mit mir</li>
+          <li class="flex items-start gap-2.5 text-white font-body font-light text-sm"><span class="solution-check mt-0.5 flex-shrink-0">✓</span>3 Monate intensive Begleitung</li>
+          <li class="flex items-start gap-2.5 text-white font-body font-light text-sm"><span class="solution-check mt-0.5 flex-shrink-0">✓</span>Landingpage-Optimierung</li>
+          <li class="flex items-start gap-2.5 text-white font-body font-light text-sm"><span class="solution-check mt-0.5 flex-shrink-0">✓</span>Angebots- &amp; Positionierungsstrategie</li>
+          <li class="flex items-start gap-2.5 text-white font-body font-light text-sm"><span class="solution-check mt-0.5 flex-shrink-0">✓</span>Monetarisierungsstrategien</li>
+          <li class="flex items-start gap-2.5 text-white font-body font-light text-sm"><span class="solution-check mt-0.5 flex-shrink-0">✓</span>Lebenslanger Zugang zum gesamten Content</li>
+        </ul>
+        <a href="#kontakt" class="btn-cta btn-primary bg-white text-black rounded-full w-full py-3 font-body font-medium text-sm mt-2 mb-4 flex items-center justify-center gap-2 cursor-pointer">
+          Bewerben
+          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+          </svg>
+        </a>
+        <div class="rounded-xl p-4" style="background: rgba(22,163,74,0.07); border: 1px solid rgba(22,163,74,0.18);">
+          <p class="text-white/40 font-body text-xs mb-1.5">Deine Ersparnis nach 12 Monaten</p>
+          <p class="text-2xl font-heading italic" style="color: rgba(74,222,128,0.9)">+18.000 €</p>
+          <p class="text-white/40 text-xs font-body mt-1">+Unbezahlbare Skills inhouse</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 10 — FAQ
+     ============================================================ -->
+<section class="py-24 px-6 md:px-16 lg:px-24">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-12">
+      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">✦ Häufige Fragen</div>
+      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">
+        Was Founder immer fragen
+      </h2>
+    </div>
+
+    <div class="liquid-glass rounded-2xl overflow-hidden">
+
+      <div class="border-b border-white/5">
+        <button class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+          <span class="font-body font-medium text-white text-sm pr-4">Ich habe keine Zeit, das alles selbst zu lernen.</span>
+          <svg class="accordion-chevron w-4 h-4 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-content">
+          <p class="px-6 pb-5 font-body font-light text-white/60 text-sm leading-[1.75]">Das höre ich oft — und ich verstehe es. Deshalb ist das Programm so gebaut, dass es individuell auf dich zugeschnitten ist und dir nur das wichtigste für deinen speziellen Case mitgibt. Ich halte alle Videos absichtlich so kurz wie möglich, da ich es selbst nicht leiden kann, wenn jemand wie in einem Youtube Video 10 Minuten braucht, um zum Punkt zu kommen. Ich respektiere deine Zeit, das wirst du an der Geschwindigkeit merken.</p>
+        </div>
+      </div>
+
+      <div class="border-b border-white/5">
+        <button class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+          <span class="font-body font-medium text-white text-sm pr-4">Ich bin kein Marketing-Profi. Ist das zu technisch für mich?</span>
+          <svg class="accordion-chevron w-4 h-4 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-content">
+          <p class="px-6 pb-5 font-body font-light text-white/60 text-sm leading-[1.75]">Nein. Ich habe das bewusst so aufgebaut, dass jemand ohne Vorkenntnisse einsteigen kann. Und wer schon Grundlagen hat, skaliert schneller. Ich habe beide Typen in der Ausbildung — und beide kommen ans Ziel.</p>
+        </div>
+      </div>
+
+      <div class="border-b border-white/5">
+        <button class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+          <span class="font-body font-medium text-white text-sm pr-4">Was unterscheidet dich von einem normalen Online-Kurs?</span>
+          <svg class="accordion-chevron w-4 h-4 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-content">
+          <p class="px-6 pb-5 font-body font-light text-white/60 text-sm leading-[1.75]">Du bekommst wöchentlich direktes Feedback auf deine konkreten Kampagnen — von jemandem, der selbst Founder ist und genau weiß, was auf dem Spiel steht. Da ich das Wissen täglich für meine eigenen Projekte anwenden muss und immer auf dem neuesten Stand bin, gebe ich hier kein veraltetes Wissen weiter, wie es in Kursen oft der Fall ist.</p>
+        </div>
+      </div>
+
+      <div class="border-b border-white/5">
+        <button class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+          <span class="font-body font-medium text-white text-sm pr-4">Was, wenn es nicht das Richtige für mich ist?</span>
+          <svg class="accordion-chevron w-4 h-4 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-content">
+          <p class="px-6 pb-5 font-body font-light text-white/60 text-sm leading-[1.75]">Dafür gibt es das Erstgespräch. Ich nehme niemanden, bei dem ich nicht wirklich glaube, dass es passt und ich einen echten Mehrwert liefern kann. Dafür habe ich zu wenig freie Plätze. Das Schützt uns also beide. Ich lehne tatsächlich mehr Anfragen pro Monat ab, als ich annehme.</p>
+        </div>
+      </div>
+
+      <div class="border-b border-white/5">
+        <button class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+          <span class="font-body font-medium text-white text-sm pr-4">Können wir den Preis auf Raten zahlen?</span>
+          <svg class="accordion-chevron w-4 h-4 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-content">
+          <p class="px-6 pb-5 font-body font-light text-white/60 text-sm leading-[1.75]">Ja, das besprechen wir im Gespräch. Es gibt flexible Optionen.</p>
+        </div>
+      </div>
+
+      <div>
+        <button class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+          <span class="font-body font-medium text-white text-sm pr-4">Gilt das nur für bestimmte Branchen?</span>
+          <svg class="accordion-chevron w-4 h-4 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="accordion-content">
+          <p class="px-6 pb-5 font-body font-light text-white/60 text-sm leading-[1.75]">Nein. Ich habe Startups aus SaaS, E-Commerce, Physical Products, B2B, Fintech, Healthtech und vielen weiteren Bereichen begleitet. Das Prinzip funktioniert überall — was sich ändert, sind die Taktiken. Die besprechen wir konkret für dein Modell.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SECTION 11 — FINAL CTA + FORM (HLS Video BG)
+     ============================================================ -->
+<section id="kontakt" class="video-section py-32 px-6 md:px-16 lg:px-24">
+  <video id="vid-cta" autoplay loop muted playsinline
+    style="filter: brightness(0.45)"
+    class="absolute inset-0 w-full h-full object-cover z-0">
+  </video>
+  <div class="fade-top"></div>
+  <div class="fade-bottom"></div>
+
+  <div class="content max-w-4xl mx-auto text-center">
+
+    <!-- Heading (BlurText) -->
+    <h2 class="mb-8" style="letter-spacing:-2px">
+      <span class="blur-text block text-5xl md:text-6xl lg:text-7xl font-heading italic text-white tracking-tight leading-[0.85]">Du weißt schon, dass sich</span>
+      <span class="blur-text block text-5xl md:text-6xl lg:text-7xl font-heading italic text-white tracking-tight leading-[0.85]">etwas ändern muss</span>
+    </h2>
+
+    <p class="font-body font-light text-white/60 text-sm max-w-lg mx-auto mb-10 leading-[1.75]">
+      Die Frage ist nur: Wann willst du aufhören, dafür zu zahlen,
+      dass jemand anderes die Kontrolle hat?<br><br>
+      Buch dir jetzt ein kostenloses Erstgespräch. Ein ehrliches Gespräch —
+      offen, direkt — darüber, ob und wie ich wirklich helfen kann.
+    </p>
+
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-3">
+      <a href="#kontakt" class="btn-cta btn-glass liquid-glass-strong rounded-full px-6 py-3 text-white font-body font-medium text-sm inline-flex items-center gap-2 cursor-pointer">
+        Bewerben
+        <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+        </svg>
+      </a>
+      <a href="#roi" class="btn-primary bg-white text-black rounded-full px-6 py-3 font-body font-medium text-sm cursor-pointer">ROI berechnen</a>
+    </div>
+    <p class="text-white/40 font-body text-xs mb-16">Kostenlos · Unverbindlich · 30 Minuten · Max. 3 neue Plätze pro Monat</p>
+
+    <!-- Contact Form -->
+    <div class="liquid-glass-strong rounded-2xl p-8 max-w-lg mx-auto text-left">
+      <h3 class="text-xl font-heading italic text-white mb-6">Schreib mir direkt</h3>
+      <form class="space-y-3" onsubmit="return false">
+        <input
+          type="text"
+          placeholder="Dein Name"
+          class="liquid-glass rounded-full px-4 py-3 w-full font-body font-light text-white text-sm focus:outline-none"
+          style="background:transparent;color:white;"
+        />
+        <input
+          type="email"
+          placeholder="deine@email.com"
+          class="liquid-glass rounded-full px-4 py-3 w-full font-body font-light text-white text-sm focus:outline-none"
+          style="background:transparent;color:white;"
+        />
+        <input
+          type="text"
+          placeholder="Dein Startup / Unternehmen"
+          class="liquid-glass rounded-full px-4 py-3 w-full font-body font-light text-white text-sm focus:outline-none"
+          style="background:transparent;color:white;"
+        />
+        <textarea
+          rows="4"
+          placeholder="Wo stehst du gerade — und was ist dein größtes Marketing-Problem?"
+          class="liquid-glass rounded-2xl px-4 py-3 w-full font-body font-light text-white text-sm focus:outline-none resize-none"
+          style="background:transparent;color:white;"
+        ></textarea>
+        <button type="submit" class="btn-primary bg-white text-black rounded-full w-full py-3 font-body font-medium text-sm flex items-center justify-center gap-2 cursor-pointer mt-1">
+          Nachricht senden
+          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+          </svg>
+        </button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer class="px-6 md:px-16 lg:px-24 pb-12">
+  <div class="max-w-6xl mx-auto pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+    <p class="text-white/40 text-xs font-body">© 2026 StartupAds · startupads.de</p>
+    <div class="flex gap-6">
+      <a href="#" class="text-white/40 text-xs font-body hover:text-white/70 transition-colors">Impressum</a>
+      <a href="#" class="text-white/40 text-xs font-body hover:text-white/70 transition-colors">Datenschutz</a>
+      <a href="#" class="text-white/40 text-xs font-body hover:text-white/70 transition-colors">Kontakt</a>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ============================================================
+     SCRIPTS
+     ============================================================ -->
+<script>
+// ---- PLACEHOLDER INPUT STYLES ----
+// CSS ::placeholder doesn't work inline — add a style tag approach
+const phStyle = document.createElement('style');
+phStyle.textContent = `
+  input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.2); }
+  input { color: white !important; }
+  textarea { color: white !important; }
+`;
+document.head.appendChild(phStyle);
+
+
+// ---- BLUR TEXT ----
+document.querySelectorAll('.blur-text').forEach(container => {
+  const text = container.textContent.trim();
+  const words = text.split(/\s+/);
+  container.innerHTML = '';
+  words.forEach((word, i) => {
+    const span = document.createElement('span');
+    span.className = 'blur-word';
+    span.textContent = word;
+    span.style.transitionDelay = (i * 160) + 'ms';
+    container.appendChild(span);
+    if (i < words.length - 1) container.appendChild(document.createTextNode('\u00a0'));
+  });
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        container.querySelectorAll('.blur-word').forEach(s => s.classList.add('visible'));
+        obs.unobserve(container);
+      }
+    });
+  }, { threshold: 0.15 });
+  obs.observe(container);
+});
+
+
+// ---- FADE IN ----
+const fadeObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      fadeObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => fadeObs.observe(el));
+
+// Guarantee all elements become visible (handles screenshots + slow scrollers)
+window.addEventListener('load', () => {
+  setTimeout(() => {
+    document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
+    document.querySelectorAll('.blur-word').forEach(s => s.classList.add('visible'));
+  }, 200);
+});
+
+
+// ---- ROI CALCULATOR ----
+const slider   = document.getElementById('roi-slider');
+const mLabel   = document.getElementById('roi-months-label');
+const sMLabel  = document.getElementById('roi-savings-months');
+const agencyEl = document.getElementById('roi-agency-val');
+const agencySubEl = document.getElementById('roi-agency-sub');
+const savingsEl = document.getElementById('roi-savings-val');
+
+let prevAgency  = 50000;
+let prevSavings = 38000;
+
+function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+function animNum(el, from, to, prefix, suffix, duration) {
+  const start = performance.now();
+  function tick(now) {
+    const t = Math.min((now - start) / duration, 1);
+    const val = Math.round(from + (to - from) * easeOut(t));
+    el.textContent = prefix + val.toLocaleString('de-DE') + suffix.replace(' €', '\u00a0€');
+    if (t < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+function updateROI() {
+  const m       = parseInt(slider.value);
+  const agency  = m * 2500;
+  const savings = agency - 12000;
+
+  mLabel.textContent  = m;
+  sMLabel.textContent = m;
+  agencySubEl.textContent = m + ' × 2.500 €/Monat';
+
+  animNum(agencyEl,  prevAgency,  agency,  '', ' €', 350);
+  animNum(savingsEl, prevSavings, savings, '+', ' €', 350);
+
+  prevAgency  = agency;
+  prevSavings = savings;
+}
+
+if (slider) slider.addEventListener('input', updateROI);
+
+// ---- SLIDER AUTO-ANIMATION ----
+(function() {
+  if (!slider) return;
+  let direction = 1;
+  let animFrame = null;
+  let userControlled = false;
+  let lastTime = null;
+  const speed = 0.004; // slider units per ms — slow, elegant sweep
+
+  function autoTick(ts) {
+    if (userControlled) return;
+    if (lastTime === null) lastTime = ts;
+    const dt = ts - lastTime;
+    lastTime = ts;
+
+    let val = parseFloat(slider.value) + direction * speed * dt;
+    const min = parseFloat(slider.min);
+    const max = parseFloat(slider.max);
+
+    if (val >= max) { val = max; direction = -1; }
+    if (val <= min) { val = min; direction = 1; }
+
+    slider.value = val;
+    updateROI();
+    animFrame = requestAnimationFrame(autoTick);
+  }
+
+  function stopAuto() {
+    userControlled = true;
+    if (animFrame) cancelAnimationFrame(animFrame);
+  }
+
+  slider.addEventListener('mousedown', stopAuto);
+  slider.addEventListener('touchstart', stopAuto);
+  slider.addEventListener('keydown', stopAuto);
+
+  // Start after a short delay so it's not immediate on page load
+  setTimeout(() => {
+    animFrame = requestAnimationFrame(autoTick);
+  }, 1200);
+})();
+
+
+// ---- SCROLL REVEAL (reveal-up / left / right / scale) ----
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+document.querySelectorAll('.reveal-up, .reveal-left, .reveal-right, .reveal-scale').forEach(el => revealObs.observe(el));
+
+// ---- SECTION LINE ----
+const lineObs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); lineObs.unobserve(e.target); }
+  });
+}, { threshold: 0.5 });
+document.querySelectorAll('.section-line').forEach(el => lineObs.observe(el));
+
+// ---- HLS VIDEO SETUP ----
+function setupHLS(videoId, src) {
+  const video = document.getElementById(videoId);
+  if (!video) return;
+  if (typeof Hls !== 'undefined' && Hls.isSupported()) {
+    const hls = new Hls({ startLevel: -1, autoStartLoad: true });
+    hls.loadSource(src);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, () => video.play().catch(() => {}));
+  } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+    // Safari native HLS
+    video.src = src;
+    video.addEventListener('loadedmetadata', () => video.play().catch(() => {}));
+  }
+  // Falls neither works: video stays empty, black bg from section shows
+}
+
+setupHLS('vid-problem', 'https://stream.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01BR6zqJ3aS9u00A.m3u8');
+setupHLS('vid-roi',     'https://stream.mux.com/NcU3HlHeF7CUL86azTTzpy3Tlb00d6iF3BmCdFslMJYM.m3u8');
+setupHLS('vid-cta',     'https://stream.mux.com/8wrHPCX2dC3msyYU9ObwqNdm00u3ViXvOSHUMRYSEe5Q.m3u8');
+
+
+// ---- ACCORDION ----
+document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+  trigger.addEventListener('click', () => {
+    const content = trigger.nextElementSibling;
+    const isOpen  = content.classList.contains('open');
+
+    document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
+    document.querySelectorAll('.accordion-trigger').forEach(t => t.classList.remove('active'));
+
+    if (!isOpen) {
+      content.classList.add('open');
+      trigger.classList.add('active');
+    }
+  });
+});
+</script>
+
+</body>
+</html>
