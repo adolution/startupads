@@ -1,0 +1,33 @@
+User-agent: *
+Allow: /
+
+# KI-Suchmaschinen explizit erlauben
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Googlebot
+Allow: /
+
+# Common Crawl (Training only, kein direkter AI-Search-Nutzen)
+User-agent: CCBot
+Disallow: /
+
+Sitemap: https://www.startupads.de/sitemap.xml
