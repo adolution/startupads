@@ -574,6 +574,8 @@
     }
     .clip-reveal.visible { clip-path: inset(0 0% 0 0); }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init('CZA78YoNau3nzdYht');</script>
 </head>
 
 <body class="bg-black overflow-x-hidden font-body">
@@ -812,7 +814,7 @@
 <section id="warum" class="py-24 px-6 md:px-16 lg:px-24">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-12">
-      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">✦ Warum das funktioniert</div>
+      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Warum das funktioniert</div>
       <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">
         Der Unterschied liegt im Detail
       </h2>
@@ -933,7 +935,7 @@
 <section class="py-24 px-6 md:px-16 lg:px-24">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-12">
-      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">✦ Was sich ändert</div>
+      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Was sich ändert</div>
       <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">
         Was sich ändert — in 90 Tagen
       </h2>
@@ -1013,7 +1015,7 @@
   <div class="fade-bottom"></div>
 
   <div class="content max-w-4xl mx-auto text-center">
-    <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">✦ Rechne es selbst</div>
+    <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Rechne es selbst</div>
     <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9] mb-4">
       Wie viel kostet dich die Agentur wirklich?
     </h2>
@@ -1072,7 +1074,7 @@
 <section class="py-24 px-6 md:px-16 lg:px-24">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-12">
-      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">✦ Was andere sagen</div>
+      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Was andere sagen</div>
       <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">
         Ergebnisse, die für sich sprechen
       </h2>
@@ -1130,7 +1132,7 @@
 <section id="investition" class="py-24 px-6 md:px-16 lg:px-24">
   <div class="max-w-4xl mx-auto">
     <div class="text-center mb-12">
-      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">✦ Investition</div>
+      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Investition</div>
       <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">
         Einmal investieren. Für immer profitieren
       </h2>
@@ -1197,7 +1199,7 @@
 <section class="py-24 px-6 md:px-16 lg:px-24">
   <div class="max-w-3xl mx-auto">
     <div class="text-center mb-12">
-      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">✦ Häufige Fragen</div>
+      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Häufige Fragen</div>
       <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">
         Was Founder immer fragen
       </h2>
@@ -1308,41 +1310,18 @@
     </div>
     <p class="text-white/40 font-body text-xs mb-16">Kostenlos · Unverbindlich · 30 Minuten · Max. 3 neue Plätze pro Monat</p>
 
-    <!-- Contact Form -->
-    <div class="liquid-glass-strong rounded-2xl p-8 max-w-lg mx-auto text-left">
-      <h3 class="text-xl font-heading italic text-white mb-6">Schreib mir direkt</h3>
-      <form class="space-y-3" onsubmit="return false">
-        <input
-          type="text"
-          placeholder="Dein Name"
-          class="liquid-glass rounded-full px-4 py-3 w-full font-body font-light text-white text-sm focus:outline-none"
-          style="background:transparent;color:white;"
-        />
-        <input
-          type="email"
-          placeholder="deine@email.com"
-          class="liquid-glass rounded-full px-4 py-3 w-full font-body font-light text-white text-sm focus:outline-none"
-          style="background:transparent;color:white;"
-        />
-        <input
-          type="text"
-          placeholder="Dein Startup / Unternehmen"
-          class="liquid-glass rounded-full px-4 py-3 w-full font-body font-light text-white text-sm focus:outline-none"
-          style="background:transparent;color:white;"
-        />
-        <textarea
-          rows="4"
-          placeholder="Wo stehst du gerade — und was ist dein größtes Marketing-Problem?"
-          class="liquid-glass rounded-2xl px-4 py-3 w-full font-body font-light text-white text-sm focus:outline-none resize-none"
-          style="background:transparent;color:white;"
-        ></textarea>
-        <button type="submit" class="btn-primary bg-white text-black rounded-full w-full py-3 font-body font-medium text-sm flex items-center justify-center gap-2 cursor-pointer mt-1">
-          Nachricht senden
-          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-          </svg>
-        </button>
-      </form>
+    <!-- Multi-Step Qualification Form -->
+    <div id="msq-card" class="liquid-glass-strong rounded-2xl p-8 max-w-lg mx-auto text-left">
+
+      <!-- Progress Bar -->
+      <div id="msq-progress" class="flex gap-[3px] mb-6" aria-hidden="true"></div>
+
+      <!-- Step Container -->
+      <div id="msq-step-wrap"></div>
+
+      <!-- Back Button -->
+      <button id="msq-back" class="font-body text-xs text-white/30 hover:text-white/50 mt-5 hidden" style="transition:color 150ms ease;background:none;border:none;padding:0;cursor:pointer;">← Zurück</button>
+
     </div>
 
   </div>
@@ -1583,6 +1562,535 @@ document.querySelectorAll('.accordion-trigger').forEach(trigger => {
     }
   });
 });
+</script>
+
+<script>
+(function () {
+'use strict';
+
+// ── DATA ──────────────────────────────────────────────────────
+var STEPS = {
+  s1: {
+    question: 'Wo steht dein Unternehmen gerade?',
+    options: [
+      { id: 'A', emoji: '🌱', label: 'Gerade gegründet / Frühe Phase' },
+      { id: 'B', emoji: '🚀', label: 'Wachstum läuft, will skalieren' },
+      { id: 'C', emoji: '💰', label: 'Haben Funding — Marketing ist noch offen' },
+      { id: 'D', emoji: '🏢', label: 'Etabliert, aber Agentur übernimmt alles' }
+    ]
+  },
+  A2: { question: 'Was ist dein nächster Schritt?', options: [
+    { id: 'A2a', label: 'Ich will erstmal verstehen, wie Marketing überhaupt funktioniert' },
+    { id: 'A2b', label: 'Ich will so schnell wie möglich erste Kunden gewinnen' },
+    { id: 'A2c', label: 'Ich will testen, welcher Kanal für mich funktioniert' },
+    { id: 'A2d', label: 'Ich weiß es ehrlich gesagt noch nicht' }
+  ]},
+  A3: { question: 'Wie finanzierst du dich gerade?', options: [
+    { id: 'A3a', label: 'Bootstrapped — aus eigener Tasche' },
+    { id: 'A3b', label: 'Wir haben Investoren-Geld / Funding' },
+    { id: 'A3c', label: 'Noch gar nicht finanziert, alles offen' },
+    { id: 'A3d', label: 'Wir generieren schon erste Einnahmen' }
+  ]},
+  A4: { question: 'Was beschreibt dich am besten?', options: [
+    { id: 'A4a', label: 'Ich will alles selbst verstehen und steuern können' },
+    { id: 'A4b', label: 'Ich will wissen, was ich outsourcen kann — und was nicht' },
+    { id: 'A4c', label: 'Ich will so schnell wie möglich Ergebnisse sehen' },
+    { id: 'A4d', label: 'Ich will kein Geld verbrennen bevor ich verstehe was ich tue' }
+  ]},
+  B2: { question: 'Was bremst dich gerade beim Skalieren?', options: [
+    { id: 'B2a', label: 'Ich weiß nicht, welche Kanäle ich als nächstes angehen soll' },
+    { id: 'B2b', label: 'Die Agentur liefert nicht das, was ich mir vorstelle' },
+    { id: 'B2c', label: 'Ich habe keine Zeit, mich selbst tief genug einzuarbeiten' },
+    { id: 'B2d', label: 'Ich verstehe meine Zahlen nicht gut genug' }
+  ]},
+  B3: { question: 'Wie läuft euer Marketing gerade?', options: [
+    { id: 'B3a', label: 'Wir schalten Ads selbst, aber ohne System' },
+    { id: 'B3b', label: 'Wir haben eine Agentur — zufrieden bin ich nicht wirklich' },
+    { id: 'B3c', label: 'Mix aus beidem — Agentur und ein bisschen selbst' },
+    { id: 'B3d', label: 'Wir wachsen organisch, wollen jetzt in Paid' }
+  ]},
+  B4: { question: 'Was wäre für dich der größte Gewinn aus dieser Ausbildung?', options: [
+    { id: 'B4a', label: 'Endlich selbst verstehen, was in meinen Kampagnen passiert' },
+    { id: 'B4b', label: 'Unabhängig von der Agentur werden' },
+    { id: 'B4c', label: 'Mein Team aufbauen, das das inhouse übernimmt' },
+    { id: 'B4d', label: 'Kosten senken bei gleichem oder besserem Output' }
+  ]},
+  C2: { question: 'Was ist euer Geschäftsmodell?', options: [
+    { id: 'C2a', label: 'SaaS / Software / App' },
+    { id: 'C2b', label: 'E-Commerce / Physisches Produkt' },
+    { id: 'C2c', label: 'Dienstleistung / B2B' },
+    { id: 'C2d', label: 'Noch in Entwicklung / nicht final' }
+  ]},
+  C3: { question: 'Was ist euer größtes offenes Thema?', options: [
+    { id: 'C3a', label: 'Wir wissen noch nicht, wie wir monetarisieren wollen' },
+    { id: 'C3b', label: 'Wir wissen es theoretisch, haben es aber noch nicht getestet' },
+    { id: 'C3c', label: 'Wir haben erste Kunden, aber kein skalierbares System' },
+    { id: 'C3d', label: 'Investoren erwarten Traction — wir brauchen schnell Ergebnisse' }
+  ]},
+  C4: { question: 'Wer soll das Marketing bei euch übernehmen?', options: [
+    { id: 'C4a', label: 'Ich selbst als Founder' },
+    { id: 'C4b', label: 'Jemand aus dem Team, der das lernen soll' },
+    { id: 'C4c', label: 'Wir wollen es inhouse aufbauen, wissen aber noch nicht wer' },
+    { id: 'C4d', label: 'Erstmal ich — später jemand anderes' }
+  ]},
+  C5: { question: 'Was beschreibt euren Zeithorizont?', options: [
+    { id: 'C5a', label: 'Wir müssen in den nächsten 3 Monaten Ergebnisse zeigen' },
+    { id: 'C5b', label: 'Wir haben 6–12 Monate Zeit, das sauber aufzubauen' },
+    { id: 'C5c', label: 'Investor-Meeting kommt — wir brauchen eine klare Story' },
+    { id: 'C5d', label: 'Kein Druck, aber wir wollen es richtig machen' }
+  ]},
+  D2: { question: 'Was frustriert dich an der aktuellen Situation am meisten?', options: [
+    { id: 'D2a', label: 'Ich verstehe nicht, wofür ich zahle' },
+    { id: 'D2b', label: 'Die Ergebnisse sind okay, aber ich bin abhängig' },
+    { id: 'D2c', label: 'Die Agentur reagiert zu langsam auf Marktveränderungen' },
+    { id: 'D2d', label: 'Ich will einfach selbst die Kontrolle haben' }
+  ]},
+  D3: { question: 'Wie viel zahlst du der Agentur ungefähr pro Monat?', options: [
+    { id: 'D3a', label: 'Unter 1.500 \u20ac / Monat' },
+    { id: 'D3b', label: '1.500 \u2013 3.000 \u20ac / Monat' },
+    { id: 'D3c', label: '3.000 \u2013 5.000 \u20ac / Monat' },
+    { id: 'D3d', label: '\u00dcber 5.000 \u20ac / Monat' }
+  ]},
+  D4: { question: 'Was ist dein Ziel nach der Ausbildung?', options: [
+    { id: 'D4a', label: 'Die Agentur komplett ersetzen' },
+    { id: 'D4b', label: 'Die Agentur managen können — mit echtem Verständnis' },
+    { id: 'D4c', label: 'Einen Inhouse-Marketer einstellen und führen können' },
+    { id: 'D4d', label: 'Selbst die Strategie übernehmen, Execution vielleicht noch extern' }
+  ]}
+};
+
+var PATH_KEYS = {
+  A: ['s1', 'A2', 'A3', 'A4'],
+  B: ['s1', 'B2', 'B3', 'B4'],
+  C: ['s1', 'C2', 'C3', 'C4', 'C5'],
+  D: ['s1', 'D2', 'D3', 'D4']
+};
+
+// ── STATE ─────────────────────────────────────────────────────
+var state = {
+  path: null,
+  answers: {},
+  answerLabels: {},
+  idx: 0
+};
+
+function getKeys() {
+  return state.path ? PATH_KEYS[state.path] : ['s1', null, null, null];
+}
+function totalSteps() { return state.path ? PATH_KEYS[state.path].length : 4; }
+function currentKey() { return getKeys()[state.idx]; }
+
+// ── DOM REFS ──────────────────────────────────────────────────
+var progBar = document.getElementById('msq-progress');
+var wrap    = document.getElementById('msq-step-wrap');
+var backBtn = document.getElementById('msq-back');
+
+// ── PROGRESS BAR ──────────────────────────────────────────────
+function renderProgress() {
+  var total = totalSteps();
+  var idx   = state.idx;
+  if (progBar.children.length !== total) {
+    while (progBar.firstChild) progBar.removeChild(progBar.firstChild);
+    for (var i = 0; i < total; i++) {
+      var seg = document.createElement('div');
+      seg.style.cssText = 'flex:1;height:2px;border-radius:9999px;transition:background 300ms ease;';
+      progBar.appendChild(seg);
+    }
+  }
+  var segs = progBar.children;
+  for (var j = 0; j < segs.length; j++) {
+    segs[j].style.background = j <= idx
+      ? 'rgba(255,255,255,1)'
+      : 'rgba(255,255,255,0.12)';
+  }
+}
+
+// ── ANIMATION ─────────────────────────────────────────────────
+function animOut(el, cb) {
+  el.style.transition = 'opacity 200ms ease-in, transform 200ms ease-in';
+  el.style.opacity    = '0';
+  el.style.transform  = 'translateY(-12px)';
+  setTimeout(cb, 205);
+}
+function animIn(el) {
+  el.style.opacity   = '0';
+  el.style.transform = 'translateY(12px)';
+  el.style.transition = 'none';
+  requestAnimationFrame(function () {
+    requestAnimationFrame(function () {
+      el.style.transition = 'opacity 260ms ease-out, transform 260ms ease-out';
+      el.style.opacity    = '1';
+      el.style.transform  = 'translateY(0)';
+    });
+  });
+}
+
+// ── OPTION CARD ───────────────────────────────────────────────
+function makeOptionCard(opt, isStep1) {
+  var card = document.createElement('div');
+  card.className = 'liquid-glass rounded-2xl p-5 cursor-pointer';
+  card.style.cssText = 'position:relative;border:1px solid rgba(255,255,255,0.06);' +
+    'transition:background 150ms ease,transform 150ms ease,border-color 150ms ease;';
+  card.setAttribute('data-opt', opt.id);
+
+  if (isStep1) {
+    var em = document.createElement('span');
+    em.style.cssText = 'font-size:1.1rem;display:inline;margin-right:0.4rem;';
+    em.textContent = opt.emoji;
+    card.appendChild(em);
+  }
+
+  var lbl = document.createElement('span');
+  lbl.className = 'font-body font-medium text-white';
+  lbl.style.cssText = 'font-size:0.875rem;line-height:1.4;display:inline;';
+  lbl.textContent = opt.label;
+  card.appendChild(lbl);
+
+  var chk = document.createElement('span');
+  chk.className = 'msq-chk';
+  chk.style.cssText = 'position:absolute;top:0.75rem;right:1rem;color:white;' +
+    'font-size:0.75rem;opacity:0;transition:opacity 150ms ease;';
+  chk.textContent = '\u2713';
+  card.appendChild(chk);
+
+  card.addEventListener('mouseenter', function () {
+    if (!card.classList.contains('msq-sel')) {
+      card.style.background = 'rgba(255,255,255,0.05)';
+      card.style.transform  = 'translateY(-1px)';
+    }
+  });
+  card.addEventListener('mouseleave', function () {
+    if (!card.classList.contains('msq-sel')) {
+      card.style.background = '';
+      card.style.transform  = '';
+    }
+  });
+  return card;
+}
+
+// ── RENDER QUESTION ───────────────────────────────────────────
+function renderStep(instant) {
+  var key    = currentKey();
+  var data   = STEPS[key];
+  var stepNo = state.idx + 1;
+  var total  = totalSteps();
+  var isS1   = (key === 's1');
+
+  var frag = document.createElement('div');
+  frag.style.cssText = 'opacity:0;transform:translateY(12px);';
+
+  var ind = document.createElement('p');
+  ind.className = 'font-body font-light';
+  ind.style.cssText = 'font-size:0.7rem;color:rgba(255,255,255,0.3);letter-spacing:0.12em;' +
+    'text-transform:uppercase;margin-bottom:1rem;';
+  ind.textContent = 'Schritt ' + stepNo + ' von ' + total;
+  frag.appendChild(ind);
+
+  var q = document.createElement('p');
+  q.className = 'font-body font-medium text-white';
+  q.style.cssText = 'font-size:1rem;line-height:1.5;margin-bottom:1.25rem;';
+  q.textContent = data.question;
+  frag.appendChild(q);
+
+  var grid = document.createElement('div');
+  grid.style.cssText = 'display:grid;grid-template-columns:1fr;gap:0.625rem;';
+  var mq = window.matchMedia('(min-width:640px)');
+  function applyGrid(e) {
+    grid.style.gridTemplateColumns = e.matches ? '1fr 1fr' : '1fr';
+  }
+  applyGrid(mq);
+  mq.addEventListener('change', applyGrid);
+
+  data.options.forEach(function (opt) {
+    var c = makeOptionCard(opt, isS1);
+    c.addEventListener('click', function () { onSelect(c, opt, grid); });
+    grid.appendChild(c);
+  });
+  frag.appendChild(grid);
+
+  backBtn.classList.toggle('hidden', state.idx === 0);
+  while (wrap.firstChild) wrap.removeChild(wrap.firstChild);
+  wrap.appendChild(frag);
+  renderProgress();
+
+  if (instant) {
+    frag.style.opacity   = '1';
+    frag.style.transform = 'translateY(0)';
+  } else {
+    animIn(frag);
+  }
+}
+
+// ── SELECT OPTION ─────────────────────────────────────────────
+function onSelect(cardEl, opt, grid) {
+  var cards = grid.querySelectorAll('[data-opt]');
+  cards.forEach(function (c) {
+    c.classList.remove('msq-sel');
+    c.style.borderColor = 'rgba(255,255,255,0.06)';
+    c.style.background  = '';
+    c.style.transform   = '';
+    var ch = c.querySelector('.msq-chk');
+    if (ch) ch.style.opacity = '0';
+  });
+  cardEl.classList.add('msq-sel');
+  cardEl.style.borderColor = 'rgba(255,255,255,0.5)';
+  cardEl.style.background  = 'rgba(255,255,255,0.09)';
+  var chk = cardEl.querySelector('.msq-chk');
+  if (chk) chk.style.opacity = '1';
+
+  var labelKey = 'step' + (state.idx + 1);
+  state.answers[labelKey]      = opt.id;
+  state.answerLabels[labelKey] = opt.label;
+
+  if (state.idx === 0) {
+    state.path = opt.id;
+    renderProgress();
+  }
+
+  setTimeout(function () {
+    var keys = PATH_KEYS[state.path] || ['s1'];
+    var oldFrag = wrap.firstElementChild;
+    if (state.idx < keys.length - 1) {
+      if (oldFrag) {
+        animOut(oldFrag, function () { state.idx++; renderStep(false); });
+      } else {
+        state.idx++;
+        renderStep(false);
+      }
+    } else {
+      if (oldFrag) {
+        animOut(oldFrag, renderContact);
+      } else {
+        renderContact();
+      }
+    }
+  }, 220);
+}
+
+// ── BACK ──────────────────────────────────────────────────────
+backBtn.addEventListener('click', function () {
+  if (state.idx <= 0) return;
+  var oldFrag = wrap.firstElementChild;
+  function doBack() {
+    var labelKey = 'step' + (state.idx + 1);
+    delete state.answers[labelKey];
+    delete state.answerLabels[labelKey];
+    state.idx--;
+    if (state.idx === 0) state.path = null;
+    renderStep(false);
+    var prevKey = 'step' + (state.idx + 1);
+    var prevId  = state.answers[prevKey];
+    if (prevId) {
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          wrap.querySelectorAll('[data-opt]').forEach(function (c) {
+            if (c.getAttribute('data-opt') === prevId) {
+              c.classList.add('msq-sel');
+              c.style.borderColor = 'rgba(255,255,255,0.5)';
+              c.style.background  = 'rgba(255,255,255,0.09)';
+              var ch = c.querySelector('.msq-chk');
+              if (ch) ch.style.opacity = '1';
+            }
+          });
+        });
+      });
+    }
+  }
+  if (oldFrag) animOut(oldFrag, doBack); else doBack();
+});
+
+// ── CONTACT SCREEN ────────────────────────────────────────────
+function renderContact() {
+  backBtn.classList.add('hidden');
+
+  var segs = progBar.children;
+  for (var i = 0; i < segs.length; i++) segs[i].style.background = 'rgba(255,255,255,1)';
+
+  var frag = document.createElement('div');
+  frag.style.cssText = 'opacity:0;transform:translateY(12px);';
+
+  // Heading
+  var h = document.createElement('h3');
+  h.className = 'font-heading italic text-white';
+  h.style.cssText = 'font-size:1.375rem;margin-bottom:0.5rem;';
+  h.textContent = 'Fast geschafft.';
+  frag.appendChild(h);
+
+  // Subtext
+  var sub = document.createElement('p');
+  sub.className = 'font-body font-light';
+  sub.style.cssText = 'font-size:0.875rem;color:rgba(255,255,255,0.6);line-height:1.65;margin-bottom:1.25rem;';
+  sub.appendChild(document.createTextNode('Hinterlasse kurz deinen Namen und deine E-Mail \u2014'));
+  sub.appendChild(document.createElement('br'));
+  sub.appendChild(document.createTextNode('ich melde mich pers\u00f6nlich bei dir.'));
+  frag.appendChild(sub);
+
+  // Name field
+  var nameWrap = document.createElement('div');
+  nameWrap.style.marginBottom = '0.625rem';
+  var nameInput = makeInput('text', 'Dein Name', 'msq-inp-name');
+  var nameErr   = makeErrMsg('Bitte gib deinen Namen ein.');
+  nameWrap.appendChild(nameInput);
+  nameWrap.appendChild(nameErr);
+  frag.appendChild(nameWrap);
+
+  // Email field
+  var emailWrap = document.createElement('div');
+  emailWrap.style.marginBottom = '1rem';
+  var emailInput = makeInput('email', 'deine@email.com', 'msq-inp-email');
+  var emailErr   = makeErrMsg('Bitte gib eine g\u00fcltige E-Mail-Adresse ein.');
+  emailWrap.appendChild(emailInput);
+  emailWrap.appendChild(emailErr);
+  frag.appendChild(emailWrap);
+
+  // Summary box
+  var box = document.createElement('div');
+  box.className = 'liquid-glass rounded-xl';
+  box.style.cssText = 'padding:1rem;margin-bottom:1rem;';
+
+  var boxTitle = document.createElement('p');
+  boxTitle.className = 'font-body';
+  boxTitle.style.cssText = 'color:rgba(255,255,255,0.4);font-size:0.7rem;text-transform:uppercase;' +
+    'letter-spacing:0.12em;margin-bottom:0.5rem;';
+  boxTitle.textContent = 'Deine Angaben';
+  box.appendChild(boxTitle);
+
+  var ul = document.createElement('ul');
+  ul.className = 'font-body font-light';
+  ul.style.cssText = 'color:rgba(255,255,255,0.5);font-size:0.75rem;line-height:1.7;list-style:none;padding:0;margin:0;';
+
+  Object.keys(state.answerLabels).forEach(function (k) {
+    var li = document.createElement('li');
+    li.style.cssText = 'display:flex;align-items:flex-start;gap:0.4rem;';
+    var arrow = document.createElement('span');
+    arrow.style.cssText = 'color:rgba(255,255,255,0.2);flex-shrink:0;';
+    arrow.textContent = '\u2192';
+    var text = document.createElement('span');
+    text.textContent = state.answerLabels[k];
+    li.appendChild(arrow);
+    li.appendChild(text);
+    ul.appendChild(li);
+  });
+  box.appendChild(ul);
+  frag.appendChild(box);
+
+  // Submit
+  var btn = document.createElement('button');
+  btn.type = 'button';
+  btn.className = 'btn-primary bg-white text-black rounded-full w-full font-body font-medium text-sm cursor-pointer';
+  btn.style.cssText = 'padding:0.75rem;display:flex;align-items:center;justify-content:center;' +
+    'gap:0.5rem;border:none;';
+  btn.textContent = 'Nachricht senden \u2192';
+  btn.addEventListener('click', function () {
+    handleSubmit(nameInput, emailInput, nameErr, emailErr);
+  });
+  frag.appendChild(btn);
+
+  while (wrap.firstChild) wrap.removeChild(wrap.firstChild);
+  wrap.appendChild(frag);
+  animIn(frag);
+}
+
+// ── HELPERS ───────────────────────────────────────────────────
+function makeInput(type, placeholder, id) {
+  var inp = document.createElement('input');
+  inp.type        = type;
+  inp.placeholder = placeholder;
+  inp.id          = id;
+  inp.className   = 'liquid-glass rounded-full px-4 py-3 w-full font-body font-light text-white text-sm focus:outline-none';
+  inp.style.cssText = 'background:transparent;color:white;box-sizing:border-box;' +
+    'border:1px solid transparent;transition:border-color 150ms ease;';
+  return inp;
+}
+function makeErrMsg(msg) {
+  var p = document.createElement('p');
+  p.className = 'font-body font-light';
+  p.style.cssText = 'font-size:0.75rem;color:rgba(220,38,38,0.9);margin-top:0.3rem;display:none;';
+  p.textContent = msg;
+  return p;
+}
+
+// ── SUBMIT ────────────────────────────────────────────────────
+function handleSubmit(nameInput, emailInput, nameErr, emailErr) {
+  var name  = nameInput.value.trim();
+  var email = emailInput.value.trim();
+  var re    = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  var ok    = true;
+
+  if (!name) {
+    nameInput.style.borderColor = 'rgba(220,38,38,0.6)';
+    nameErr.style.display = 'block';
+    ok = false;
+  } else {
+    nameInput.style.borderColor = 'transparent';
+    nameErr.style.display = 'none';
+  }
+  if (!email || !re.test(email)) {
+    emailInput.style.borderColor = 'rgba(220,38,38,0.6)';
+    emailErr.style.display = 'block';
+    ok = false;
+  } else {
+    emailInput.style.borderColor = 'transparent';
+    emailErr.style.display = 'none';
+  }
+  if (!ok) return;
+
+  console.log('StartupAds Lead:', { path: state.path, answers: state.answers, answerLabels: state.answerLabels, name: name, email: email });
+
+  var answerLines = Object.keys(state.answerLabels).map(function(k, i) {
+    return (i + 1) + '. ' + state.answerLabels[k];
+  }).join('\n');
+  var now = new Date();
+  var timeStr = now.toLocaleDateString('de-DE', { day: '2-digit', month: '2-digit', year: 'numeric' }) +
+    ' · ' + now.toLocaleTimeString('de-DE', { hour: '2-digit', minute: '2-digit' }) + ' Uhr';
+
+  emailjs.send('service_94dzz6l', 'template_9xfmq6e', {
+    name: name,
+    email: email,
+    answers: answerLines,
+    time: timeStr
+  });
+
+  var oldFrag = wrap.firstElementChild;
+  function showSuccess() {
+    backBtn.classList.add('hidden');
+    while (progBar.firstChild) progBar.removeChild(progBar.firstChild);
+
+    var frag = document.createElement('div');
+    frag.style.cssText = 'opacity:0;transform:translateY(12px);text-align:center;padding:2rem 0;';
+
+    var icon = document.createElement('div');
+    icon.style.cssText = 'font-size:2.5rem;color:rgba(74,222,128,0.9);margin-bottom:1.25rem;';
+    icon.textContent = '\u2713';
+    frag.appendChild(icon);
+
+    var h = document.createElement('h3');
+    h.className = 'font-heading italic text-white';
+    h.style.cssText = 'font-size:1.375rem;margin-bottom:0.75rem;';
+    h.textContent = 'Danke. Ich melde mich bald.';
+    frag.appendChild(h);
+
+    var p = document.createElement('p');
+    p.className = 'font-body font-light';
+    p.style.cssText = 'font-size:0.875rem;color:rgba(255,255,255,0.6);line-height:1.65;' +
+      'max-width:320px;margin:0 auto;';
+    p.appendChild(document.createTextNode('Ich habe deine Angaben erhalten und'));
+    p.appendChild(document.createElement('br'));
+    p.appendChild(document.createTextNode('schaue mir alles vor unserem Gespr\u00e4ch durch.'));
+    frag.appendChild(p);
+
+    while (wrap.firstChild) wrap.removeChild(wrap.firstChild);
+    wrap.appendChild(frag);
+    animIn(frag);
+  }
+
+  if (oldFrag) animOut(oldFrag, showSuccess); else showSuccess();
+}
+
+// ── INIT ──────────────────────────────────────────────────────
+renderStep(true);
+
+}());
 </script>
 
 </body>
