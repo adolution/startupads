@@ -98,7 +98,12 @@
     /* ===== ALEX PHOTO — taller on mobile so face clears the cards ===== */
     @media (max-width: 1023px) {
       .alex-photo { aspect-ratio: 4/3 !important; }
-      .alex-photo-wrapper { margin-top: -48px; }
+      .alex-photo-wrapper { margin-top: -48px; padding-bottom: 52px !important; }
+      .alex-cards { bottom: -16px !important; gap: 6px !important; padding-left: 6px !important; padding-right: 6px !important; }
+      .alex-cards > div { padding: 6px 8px !important; }
+      .alex-cards .text-xl { font-size: 0.95rem !important; }
+      .alex-cards .text-lg { font-size: 0.85rem !important; }
+      .alex-cards .text-xs { font-size: 0.65rem !important; }
     }
 
     /* ===== BLUR TEXT ===== */
@@ -739,7 +744,7 @@
       <!-- gradient fade at bottom of image only -->
       <div class="absolute left-0 right-0 rounded-2xl bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" style="top:0; bottom: 44px;"></div>
       <!-- 2×2 card grid shifted down so bottom row is half below the image -->
-      <div class="absolute left-0 right-0 grid grid-cols-2 gap-2 px-3" style="bottom: 0;">
+      <div class="alex-cards absolute left-0 right-0 grid grid-cols-2 gap-2 px-3" style="bottom: 0;">
         <div class="reveal-scale liquid-glass-strong rounded-xl p-3 text-center relative">
           <div class="text-xl font-heading italic text-white mb-0.5">7+</div>
           <div class="text-white/60 font-body font-light text-xs">Jahre im Marketing</div>
