@@ -460,6 +460,43 @@
     }
     .btn-cta:active { transform: translateY(0) scale(0.98) !important; }
 
+    /* ===== ANIMATED GRADIENT BORDER (Form) ===== */
+    @property --form-angle {
+      syntax: '<angle>';
+      initial-value: 0deg;
+      inherits: false;
+    }
+    @keyframes form-spin {
+      to { --form-angle: 360deg; }
+    }
+    .form-border-wrap {
+      position: relative;
+      border-radius: 18px;
+    }
+    .form-border-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      padding: 1.5px;
+      background: conic-gradient(
+        from var(--form-angle),
+        rgba(255,255,255,0.04) 0%,
+        rgba(255,255,255,0.5) 25%,
+        rgba(255,255,255,0.9) 50%,
+        rgba(255,255,255,0.5) 75%,
+        rgba(255,255,255,0.04) 100%
+      );
+      -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      animation: form-spin 4s linear infinite;
+      pointer-events: none;
+      z-index: 2;
+    }
+
     /* ===== PROBLEM SECTION RED ACCENTS ===== */
     .problem-badge {
       background: rgba(220,38,38,0.12);
@@ -552,6 +589,31 @@
       background-size: 300% 100%;
       animation: shimmer 9s cubic-bezier(0.4,0,0.6,1) infinite;
       pointer-events: none;
+    }
+
+    /* ===== SPOTLIGHT CARD (feature cards) ===== */
+    /* Outer wrapper — its background IS the glowing border (visible only in the 1.5px padding gap) */
+    .glow-border-wrap {
+      padding: 1px;
+      border-radius: 1rem;
+      background: radial-gradient(
+        280px 280px at var(--mx, -400px) var(--my, -400px),
+        hsl(215 70% 65% / 0.28) 0%,
+        rgba(255,255,255,0.05) 55%,
+        rgba(255,255,255,0.02) 100%
+      );
+    }
+    .glow-card-inner {
+      background:
+        radial-gradient(
+          320px 320px at var(--mx, -400px) var(--my, -400px),
+          hsl(215 60% 55% / 0.045),
+          transparent 100%
+        ),
+        rgba(255,255,255,0.04);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      height: 100%;
     }
 
     /* ===== MOBILE ===== */
@@ -655,14 +717,13 @@
     </p>
 
     <!-- CTA -->
-    <div class="fade-in flex flex-col sm:flex-row items-center gap-4" style="transition-delay:0.75s">
+    <div class="fade-in flex items-center justify-center" style="transition-delay:0.75s">
       <a href="#kontakt" class="btn-cta btn-glass liquid-glass-strong rounded-full px-6 py-3 text-white font-body font-medium text-sm flex items-center gap-2 cursor-pointer">
         Bewerben
         <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
         </svg>
       </a>
-      <a href="#roi" class="font-body font-light text-white/50 text-sm hover:text-white/80 transition-colors cursor-pointer">▷ Rechne deinen ROI</a>
     </div>
   </div>
 
@@ -823,50 +884,58 @@
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
       <!-- Card 1 -->
-      <div class="reveal-scale liquid-glass card-shimmer rounded-2xl p-6 relative">
-        <div class="liquid-glass-strong rounded-full w-10 h-10 flex items-center justify-center mb-5">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-          </svg>
+      <div class="reveal-scale glow-border-wrap" data-glow>
+        <div class="glow-card-inner rounded-2xl p-6">
+          <div class="liquid-glass-strong rounded-full w-10 h-10 flex items-center justify-center mb-5">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-heading italic text-white mb-2">90 Tage. Nicht 9 Monate</h3>
+          <p class="text-white/60 font-body font-light text-sm leading-[1.7]">Strukturierter Lernpfad vom ersten Setup bis zur eigenständigen Optimierung.</p>
         </div>
-        <h3 class="text-lg font-heading italic text-white mb-2">90 Tage. Nicht 9 Monate</h3>
-        <p class="text-white/60 font-body font-light text-sm leading-[1.7]">Strukturierter Lernpfad vom ersten Setup bis zur eigenständigen Optimierung.</p>
       </div>
 
       <!-- Card 2 -->
-      <div class="reveal-scale liquid-glass card-shimmer rounded-2xl p-6 relative" style="transition-delay:0.1s">
-        <div class="liquid-glass-strong rounded-full w-10 h-10 flex items-center justify-center mb-5">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <circle cx="12" cy="12" r="6"/>
-            <circle cx="12" cy="12" r="2"/>
-          </svg>
+      <div class="reveal-scale glow-border-wrap" data-glow style="transition-delay:0.1s">
+        <div class="glow-card-inner rounded-2xl p-6">
+          <div class="liquid-glass-strong rounded-full w-10 h-10 flex items-center justify-center mb-5">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <circle cx="12" cy="12" r="6"/>
+              <circle cx="12" cy="12" r="2"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-heading italic text-white mb-2">Founder-Perspektive</h3>
+          <p class="text-white/60 font-body font-light text-sm leading-[1.7]">Ich bin selbst Founder. Ich weiß, was auf dem Spiel steht — und was Agentur-Bullshit ist.</p>
         </div>
-        <h3 class="text-lg font-heading italic text-white mb-2">Founder-Perspektive</h3>
-        <p class="text-white/60 font-body font-light text-sm leading-[1.7]">Ich bin selbst Founder. Ich weiß, was auf dem Spiel steht — und was Agentur-Bullshit ist.</p>
       </div>
 
       <!-- Card 3 -->
-      <div class="reveal-scale liquid-glass card-shimmer rounded-2xl p-6 relative" style="transition-delay:0.2s">
-        <div class="liquid-glass-strong rounded-full w-10 h-10 flex items-center justify-center mb-5">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-            <polyline points="17 6 23 6 23 12"/>
-          </svg>
+      <div class="reveal-scale glow-border-wrap" data-glow style="transition-delay:0.2s">
+        <div class="glow-card-inner rounded-2xl p-6">
+          <div class="liquid-glass-strong rounded-full w-10 h-10 flex items-center justify-center mb-5">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
+              <polyline points="17 6 23 6 23 12"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-heading italic text-white mb-2">Exit-Value steigern</h3>
+          <p class="text-white/60 font-body font-light text-sm leading-[1.7]">Interne Kompetenz ist ein Asset. Investoren kaufen keine Agenturabhängigkeit.</p>
         </div>
-        <h3 class="text-lg font-heading italic text-white mb-2">Exit-Value steigern</h3>
-        <p class="text-white/60 font-body font-light text-sm leading-[1.7]">Interne Kompetenz ist ein Asset. Investoren kaufen keine Agenturabhängigkeit.</p>
       </div>
 
       <!-- Card 4 -->
-      <div class="reveal-scale liquid-glass card-shimmer rounded-2xl p-6 relative" style="transition-delay:0.3s">
-        <div class="liquid-glass-strong rounded-full w-10 h-10 flex items-center justify-center mb-5">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-          </svg>
+      <div class="reveal-scale glow-border-wrap" data-glow style="transition-delay:0.3s">
+        <div class="glow-card-inner rounded-2xl p-6">
+          <div class="liquid-glass-strong rounded-full w-10 h-10 flex items-center justify-center mb-5">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            </svg>
+          </div>
+          <h3 class="text-lg font-heading italic text-white mb-2">ROI nach 5 Monaten</h3>
+          <p class="text-white/60 font-body font-light text-sm leading-[1.7]">Die Investition amortisiert sich. Danach sparst du jeden Monat — für immer.</p>
         </div>
-        <h3 class="text-lg font-heading italic text-white mb-2">ROI nach 5 Monaten</h3>
-        <p class="text-white/60 font-body font-light text-sm leading-[1.7]">Die Investition amortisiert sich. Danach sparst du jeden Monat — für immer.</p>
       </div>
 
     </div>
@@ -882,7 +951,7 @@
 
     <!-- Text Left -->
     <div class="fade-in">
-      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-6">👤 Dein Experte</div>
+      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-6">Dein Experte</div>
       <h2 class="text-4xl md:text-5xl font-heading italic text-white tracking-tight leading-[0.9] mb-8">
         Expertise, die<br>Investment-Runden entscheidet
       </h2>
@@ -1082,7 +1151,7 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 
-      <div class="reveal-up liquid-glass rounded-2xl p-8 flex flex-col relative">
+      <div class="reveal-up liquid-glass card-shimmer rounded-2xl p-8 flex flex-col relative">
         <p class="text-white/80 font-body font-light text-sm italic leading-[1.75] mb-6 flex-1">
           "Unsere Kosten pro Registrierung sind seit der Zusammenarbeit mit Alex drastisch gesunken."
         </p>
@@ -1095,7 +1164,7 @@
         </div>
       </div>
 
-      <div class="reveal-up liquid-glass rounded-2xl p-8 flex flex-col relative" style="transition-delay:0.12s">
+      <div class="reveal-up liquid-glass card-shimmer rounded-2xl p-8 flex flex-col relative" style="transition-delay:0.12s">
         <p class="text-white/80 font-body font-light text-sm italic leading-[1.75] mb-6 flex-1">
           "Alex hat uns immer wieder schnell und unkompliziert bei technischen Schwierigkeiten geholfen."
         </p>
@@ -1108,7 +1177,7 @@
         </div>
       </div>
 
-      <div class="reveal-up liquid-glass rounded-2xl p-8 flex flex-col relative" style="transition-delay:0.24s">
+      <div class="reveal-up liquid-glass card-shimmer rounded-2xl p-8 flex flex-col relative" style="transition-delay:0.24s">
         <p class="text-white/80 font-body font-light text-sm italic leading-[1.75] mb-6 flex-1">
           "Durch die Ausbildung haben wir es geschafft, unser Startup besser zu monetarisieren."
         </p>
@@ -1293,25 +1362,15 @@
     </h2>
 
     <p class="font-body font-light text-white/60 text-sm max-w-lg mx-auto mb-10 leading-[1.75]">
-      Die Frage ist nur: Wann willst du aufhören, dafür zu zahlen,
-      dass jemand anderes die Kontrolle hat?<br><br>
-      Buch dir jetzt ein kostenloses Erstgespräch. Ein ehrliches Gespräch —
-      offen, direkt — darüber, ob und wie ich wirklich helfen kann.
+      Die Frage ist nur: Möchtest du dafür zahlen, dass jemand anderes die Kontrolle hat,
+      oder dir das Wissen für immer in dein Unternehmen holen?<br><br>
+      Bewirb dich jetzt und wenn alles passt, dann sehen wir uns vielleicht bald schon zu einem
+      unverbindlichen Gespräch. Wenn ich nicht helfen kann, gebe ich aber auch kurz Bescheid und erkläre wieso.
     </p>
 
-    <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-3">
-      <a href="#kontakt" class="btn-cta btn-glass liquid-glass-strong rounded-full px-6 py-3 text-white font-body font-medium text-sm inline-flex items-center gap-2 cursor-pointer">
-        Bewerben
-        <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-        </svg>
-      </a>
-      <a href="#roi" class="btn-primary bg-white text-black rounded-full px-6 py-3 font-body font-medium text-sm cursor-pointer">ROI berechnen</a>
-    </div>
-    <p class="text-white/40 font-body text-xs mb-16">Kostenlos · Unverbindlich · 30 Minuten · Max. 3 neue Plätze pro Monat</p>
-
     <!-- Multi-Step Qualification Form -->
-    <div id="msq-card" class="liquid-glass-strong rounded-2xl p-8 max-w-lg mx-auto text-left">
+    <div class="form-border-wrap max-w-lg mx-auto">
+    <div id="msq-card" class="liquid-glass-strong rounded-2xl p-8 text-left">
 
       <!-- Progress Bar -->
       <div id="msq-progress" class="flex gap-[3px] mb-6" aria-hidden="true"></div>
@@ -1323,6 +1382,8 @@
       <button id="msq-back" class="font-body text-xs text-white/30 hover:text-white/50 mt-5 hidden" style="transition:color 150ms ease;background:none;border:none;padding:0;cursor:pointer;">← Zurück</button>
 
     </div>
+    </div>
+    <p class="text-white/40 font-body text-xs mt-5">Kostenlos · Unverbindlich · 30 Minuten · Max. 3 neue Plätze pro Monat</p>
 
   </div>
 </section>
@@ -1402,6 +1463,24 @@ window.addEventListener('load', () => {
     document.querySelectorAll('.fade-in').forEach(el => el.classList.add('visible'));
     document.querySelectorAll('.blur-word').forEach(s => s.classList.add('visible'));
   }, 200);
+});
+
+
+// ---- SPOTLIGHT CARD POINTER TRACKING ----
+document.addEventListener('pointermove', function(e) {
+  document.querySelectorAll('[data-glow]').forEach(function(el) {
+    var rect = el.getBoundingClientRect();
+    var x = e.clientX - rect.left;
+    var y = e.clientY - rect.top;
+    el.style.setProperty('--mx', x + 'px');
+    el.style.setProperty('--my', y + 'px');
+    // also update inner card so its inner glow is in the same coordinate space
+    var inner = el.querySelector('.glow-card-inner');
+    if (inner) {
+      inner.style.setProperty('--mx', (x - 1.5) + 'px');
+      inner.style.setProperty('--my', (y - 1.5) + 'px');
+    }
+  });
 });
 
 
@@ -1573,10 +1652,10 @@ var STEPS = {
   s1: {
     question: 'Wo steht dein Unternehmen gerade?',
     options: [
-      { id: 'A', emoji: '🌱', label: 'Gerade gegründet / Frühe Phase' },
-      { id: 'B', emoji: '🚀', label: 'Wachstum läuft, will skalieren' },
-      { id: 'C', emoji: '💰', label: 'Haben Funding — Marketing ist noch offen' },
-      { id: 'D', emoji: '🏢', label: 'Etabliert, aber Agentur übernimmt alles' }
+      { id: 'A', emoji: '', label: 'Gerade gegründet / Frühe Phase' },
+      { id: 'B', emoji: '', label: 'Wachstum läuft, will skalieren' },
+      { id: 'C', emoji: '', label: 'Haben Funding — Marketing ist noch offen' },
+      { id: 'D', emoji: '', label: 'Etabliert, aber Agentur übernimmt alles' }
     ]
   },
   A2: { question: 'Was ist dein nächster Schritt?', options: [
@@ -1733,7 +1812,7 @@ function makeOptionCard(opt, isStep1) {
     'transition:background 150ms ease,transform 150ms ease,border-color 150ms ease;';
   card.setAttribute('data-opt', opt.id);
 
-  if (isStep1) {
+  if (isStep1 && opt.emoji) {
     var em = document.createElement('span');
     em.style.cssText = 'font-size:1.1rem;display:inline;margin-right:0.4rem;';
     em.textContent = opt.emoji;
@@ -2035,7 +2114,9 @@ function handleSubmit(nameInput, emailInput, nameErr, emailErr) {
   }
   if (!ok) return;
 
-  console.log('StartupAds Lead:', { path: state.path, answers: state.answers, answerLabels: state.answerLabels, name: name, email: email });
+  if (window.location.hostname === 'localhost') {
+    console.log('StartupAds Lead:', { path: state.path, answers: state.answers, answerLabels: state.answerLabels, name: name, email: email });
+  }
 
   var answerLines = Object.keys(state.answerLabels).map(function(k, i) {
     return (i + 1) + '. ' + state.answerLabels[k];
