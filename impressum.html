@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Impressum — StartupAds.de</title>
+  <meta name="robots" content="noindex, nofollow" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            heading: ["'Instrument Serif'", "serif"],
+            body: ["'Barlow'", "sans-serif"],
+          }
+        }
+      }
+    }
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    :root {
+      --font-heading: 'Instrument Serif', serif;
+      --font-body: 'Barlow', sans-serif;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font-body); background: #000; color: #fff; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+  <!-- NAV -->
+  <nav class="px-6 md:px-16 lg:px-24 py-6">
+    <a href="/" class="text-white/50 text-sm font-body hover:text-white/80 transition-colors inline-flex items-center gap-2">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+      Zurück zur Startseite
+    </a>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="flex-1 px-6 md:px-16 lg:px-24 py-16 md:py-24">
+    <div class="max-w-2xl">
+
+      <p class="text-white/30 text-xs font-body uppercase tracking-widest mb-4">Rechtliches</p>
+      <h1 class="font-heading text-4xl md:text-5xl text-white mb-16" style="line-height:1.1;">Impressum</h1>
+
+      <div class="space-y-10">
+
+        <section>
+          <h2 class="text-white/40 text-xs font-body uppercase tracking-widest mb-4">Angaben gemäß § 5 TMG</h2>
+          <div class="space-y-1 text-white/80 font-body text-base leading-relaxed">
+            <p class="text-white font-semibold text-lg">AMD Media GmbH</p>
+            <p>c/o Pioneers Club</p>
+            <p>Ritterstraße 8</p>
+            <p>33602 Bielefeld</p>
+          </div>
+        </section>
+
+        <div class="border-t border-white/8"></div>
+
+        <section>
+          <h2 class="text-white/40 text-xs font-body uppercase tracking-widest mb-4">Umsatzsteuer-ID</h2>
+          <p class="text-white/80 font-body text-base">
+            Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:<br>
+            <span class="text-white font-medium">DE455571717</span>
+          </p>
+        </section>
+
+        <div class="border-t border-white/8"></div>
+
+        <section>
+          <h2 class="text-white/40 text-xs font-body uppercase tracking-widest mb-4">Kontakt</h2>
+          <p class="text-white/80 font-body text-base">
+            E-Mail:&nbsp;
+            <a href="mailto:alex@adolution.de" class="text-white hover:text-white/70 transition-colors underline underline-offset-4 decoration-white/20">alex@adolution.de</a>
+          </p>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="px-6 md:px-16 lg:px-24 pb-12">
+    <div class="max-w-6xl mx-auto pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="text-white/40 text-xs font-body">© 2026 StartupAds · startupads.de</p>
+      <div class="flex gap-6">
+        <a href="/impressum.html" class="text-white/70 text-xs font-body hover:text-white transition-colors">Impressum</a>
+        <a href="#" class="text-white/40 text-xs font-body hover:text-white/70 transition-colors">Datenschutz</a>
+        <a href="#" class="text-white/40 text-xs font-body hover:text-white/70 transition-colors">Kontakt</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
