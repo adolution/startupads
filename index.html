@@ -679,7 +679,7 @@
     </div>
 
     <!-- CTA Button -->
-    <a href="#kontakt" class="btn-cta btn-primary bg-white text-black rounded-full px-4 py-2 text-sm font-body font-medium flex items-center gap-1.5 cursor-pointer flex-shrink-0">
+    <a href="#hero" class="btn-cta btn-primary bg-white text-black rounded-full px-4 py-2 text-sm font-body font-medium flex items-center gap-1.5 cursor-pointer flex-shrink-0">
       Bewerben
       <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
@@ -692,7 +692,7 @@
 <!-- ============================================================
      SECTION 2 — HERO
      ============================================================ -->
-<section class="relative overflow-hidden bg-black" style="min-height: 100svh;">
+<section id="hero" class="relative overflow-hidden bg-black" style="min-height: 100svh;">
 
   <!-- Fallback image -->
   <img src="brand_assets/hero-section-fallback.webp" alt="" aria-hidden="true"
@@ -711,58 +711,62 @@
   <div class="absolute bottom-0 left-0 right-0 z-[2] pointer-events-none" style="height:500px;background:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,0.55) 45%,#000 100%)"></div>
 
   <!-- Content -->
-  <div class="relative z-10 flex flex-col items-center text-center px-6" style="padding-top:clamp(100px,18vh,160px); padding-bottom:120px">
+  <div class="relative z-10 px-6 md:px-12 lg:px-16 xl:px-24" style="padding-top:clamp(90px,16vh,140px); padding-bottom:clamp(60px,8vh,100px);">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[1fr_420px] xl:grid-cols-[1fr_460px] gap-12 lg:gap-16 xl:gap-20 items-center">
 
-    <!-- Badge -->
-    <div class="liquid-glass rounded-full px-4 py-1.5 mb-8 inline-flex items-center gap-2">
-      <span class="text-xs font-body font-medium text-white">Für Startups &amp; Founder</span>
-    </div>
+      <!-- LEFT: Text + Stats -->
+      <div class="text-center lg:text-left">
 
-    <!-- Heading (BlurText) -->
-    <h1 class="max-w-4xl mx-auto mb-7" style="letter-spacing:clamp(-2px,-0.05em,-4px)">
-      <span class="blur-text block font-heading italic text-white leading-[0.88]" style="font-size:clamp(2.4rem,8vw,5.5rem)">Dein Marketing gehört inhouse</span>
-    </h1>
+        <!-- Badge -->
+        <div class="liquid-glass rounded-full px-4 py-1.5 mb-8 inline-flex items-center gap-2">
+          <span class="text-xs font-body font-medium text-white">Für Startups &amp; Founder</span>
+        </div>
 
-    <!-- Subtext -->
-    <p class="fade-in font-body font-light text-white/60 text-sm md:text-base max-w-md mx-auto mb-10 leading-[1.75]" style="transition-delay:0.5s">
-      In 90 Tagen baust du dir die Marketing-Kompetenz auf,
-      für die andere Startups dauerhaft 2.500&nbsp;€ im Monat verbrennen.
-      Ich zeige dir exakt wie — weil ich selbst da war.
-    </p>
+        <!-- Heading -->
+        <h1 class="mb-6" style="letter-spacing:clamp(-2px,-0.05em,-4px)">
+          <span class="blur-text block font-heading italic text-white leading-[0.88]" style="font-size:clamp(2.6rem,6.5vw,5rem)">Dein Marketing gehört inhouse</span>
+        </h1>
 
-    <!-- CTA -->
-    <div class="fade-in flex items-center justify-center" style="transition-delay:0.75s">
-      <a href="#kontakt" class="btn-cta btn-glass liquid-glass-strong rounded-full px-6 py-3 text-white font-body font-medium text-sm flex items-center gap-2 cursor-pointer">
-        Bewerben
-        <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
-        </svg>
-      </a>
-    </div>
-  </div>
+        <!-- Subtext -->
+        <p class="fade-in font-body font-light text-white/60 text-sm md:text-base max-w-md mx-auto lg:mx-0 mb-10 leading-[1.75]" style="transition-delay:0.4s">
+          In 90 Tagen baust du dir die Marketing-Kompetenz auf,
+          für die andere Startups dauerhaft 2.500&nbsp;€ im Monat verbrennen.
+          Ich zeige dir exakt wie — weil ich selbst da war.
+        </p>
 
-  <!-- Stats Bar -->
-  <div class="absolute bottom-0 left-0 right-0 z-10 pb-8">
-    <div class="grid grid-cols-2 md:flex md:items-center md:justify-center gap-y-5 md:gap-12 px-8 md:px-6">
-      <div class="text-center">
-        <div class="text-xl md:text-3xl font-heading italic text-white">7+</div>
-        <div class="text-white/50 font-body font-light text-xs mt-0.5">Jahre Performance Marketing</div>
+        <!-- Stats -->
+        <div class="fade-in grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 gap-x-6 gap-y-5" style="transition-delay:0.6s">
+          <div class="text-center lg:text-left">
+            <div class="text-2xl font-heading italic text-white">7+</div>
+            <div class="text-white/50 font-body font-light text-xs mt-0.5">Jahre Performance Marketing</div>
+          </div>
+          <div class="text-center lg:text-left">
+            <div class="text-2xl font-heading italic text-white">150+</div>
+            <div class="text-white/50 font-body font-light text-xs mt-0.5">beratene Unternehmen</div>
+          </div>
+          <div class="text-center lg:text-left">
+            <div class="text-2xl font-heading italic text-white">Mehrere</div>
+            <div class="text-white/50 font-body font-light text-xs mt-0.5">Investment-Runden</div>
+          </div>
+          <div class="text-center lg:text-left">
+            <div class="text-2xl font-heading italic text-white">5</div>
+            <div class="text-white/50 font-body font-light text-xs mt-0.5">eigene Brands</div>
+          </div>
+        </div>
       </div>
-      <div class="hidden md:block w-px h-8 bg-white/10"></div>
-      <div class="text-center">
-        <div class="text-xl md:text-3xl font-heading italic text-white">150+</div>
-        <div class="text-white/50 font-body font-light text-xs mt-0.5">beratene Unternehmen</div>
+
+      <!-- RIGHT: Form Card -->
+      <div class="fade-in" style="transition-delay:0.25s">
+        <div class="form-border-wrap">
+          <div id="msq-card" class="liquid-glass-strong rounded-2xl p-7 text-left">
+            <div id="msq-progress" class="flex gap-[3px] mb-6" aria-hidden="true"></div>
+            <div id="msq-step-wrap"></div>
+            <button id="msq-back" class="font-body text-xs text-white/30 hover:text-white/50 mt-5 hidden" style="transition:color 150ms ease;background:none;border:none;padding:0;cursor:pointer;">← Zurück</button>
+          </div>
+        </div>
+        <p class="text-white/35 font-body text-xs mt-4 text-center">Kostenlos · Unverbindlich · 30 Min · Max. 3 neue Plätze pro Monat</p>
       </div>
-      <div class="hidden md:block w-px h-8 bg-white/10"></div>
-      <div class="text-center">
-        <div class="text-xl md:text-3xl font-heading italic text-white">Mehrere</div>
-        <div class="text-white/50 font-body font-light text-xs mt-0.5">Investment-Runden</div>
-      </div>
-      <div class="hidden md:block w-px h-8 bg-white/10"></div>
-      <div class="text-center">
-        <div class="text-xl md:text-3xl font-heading italic text-white">5</div>
-        <div class="text-white/50 font-body font-light text-xs mt-0.5">eigene Brands</div>
-      </div>
+
     </div>
   </div>
 </section>
@@ -1367,7 +1371,7 @@
   <div class="fade-top"></div>
   <div class="fade-bottom"></div>
 
-  <div class="content max-w-4xl mx-auto text-center">
+  <div class="content max-w-3xl mx-auto text-center">
 
     <!-- Heading (BlurText) -->
     <h2 class="mb-8" style="letter-spacing:-1px">
@@ -1377,27 +1381,16 @@
 
     <p class="font-body font-light text-white/60 text-sm max-w-lg mx-auto mb-10 leading-[1.75]">
       Die Frage ist nur: Möchtest du dafür zahlen, dass jemand anderes die Kontrolle hat,
-      oder dir das Wissen für immer in dein Unternehmen holen?<br><br>
-      Bewirb dich jetzt und wenn alles passt, dann sehen wir uns vielleicht bald schon zu einem
-      unverbindlichen Gespräch. Wenn ich nicht helfen kann, gebe ich aber auch kurz Bescheid und erkläre wieso.
+      oder dir das Wissen für immer in dein Unternehmen holen?
     </p>
 
-    <!-- Multi-Step Qualification Form -->
-    <div class="form-border-wrap max-w-lg mx-auto">
-    <div id="msq-card" class="liquid-glass-strong rounded-2xl p-8 text-left">
-
-      <!-- Progress Bar -->
-      <div id="msq-progress" class="flex gap-[3px] mb-6" aria-hidden="true"></div>
-
-      <!-- Step Container -->
-      <div id="msq-step-wrap"></div>
-
-      <!-- Back Button -->
-      <button id="msq-back" class="font-body text-xs text-white/30 hover:text-white/50 mt-5 hidden" style="transition:color 150ms ease;background:none;border:none;padding:0;cursor:pointer;">← Zurück</button>
-
-    </div>
-    </div>
-    <p class="text-white/40 font-body text-xs mt-5">Kostenlos · Unverbindlich · 30 Minuten · Max. 3 neue Plätze pro Monat</p>
+    <a href="#hero" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;"
+       class="btn-cta btn-glass liquid-glass-strong rounded-full px-8 py-3.5 text-white font-body font-medium text-sm inline-flex items-center gap-2 cursor-pointer">
+      Jetzt oben bewerben
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:15px;height:15px;transform:rotate(-90deg)">
+        <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
+      </svg>
+    </a>
 
   </div>
 </section>
