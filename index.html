@@ -2391,6 +2391,9 @@ renderStep(true);
   function loadMetaPixel() {
     if (window._fbpLoaded) return;
     window._fbpLoaded = true;
+    /* Clear the stub so the real pixel IIFE doesn't bail on if(f.fbq)return */
+    window.fbq = null;
+    window._fbq = null;
     !function(f,b,e,v,n,t,s){
       if(f.fbq)return;
       n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
