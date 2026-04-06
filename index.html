@@ -628,7 +628,7 @@
     }
 
     /* ===== CONTACT FORM STABLE HEIGHT ===== */
-    #msq-card { min-height: 400px; }
+    #msq-card { min-height: 480px; }
 
     /* ===== SCROLL REVEAL ===== */
     .reveal-up {
@@ -1871,9 +1871,21 @@ function totalSteps() { return state.path ? PATH_KEYS[state.path].length : 4; }
 function currentKey() { return getKeys()[state.idx]; }
 
 // ── DOM REFS ──────────────────────────────────────────────────
-var progBar = document.getElementById('msq-progress');
-var wrap    = document.getElementById('msq-step-wrap');
-var backBtn = document.getElementById('msq-back');
+var progBar  = document.getElementById('msq-progress');
+var wrap     = document.getElementById('msq-step-wrap');
+var backBtn  = document.getElementById('msq-back');
+var msqCard  = document.getElementById('msq-card');
+
+// ── HEIGHT LOCK ───────────────────────────────────────────────
+// Prevents the card from ever shrinking between steps.
+var _lockedCardH = 0;
+function lockCardHeight() {
+  var h = msqCard.offsetHeight;
+  if (h > _lockedCardH) {
+    _lockedCardH = h;
+    msqCard.style.minHeight = h + 'px';
+  }
+}
 
 // ── PROGRESS BAR ──────────────────────────────────────────────
 function renderProgress() {
@@ -2002,6 +2014,7 @@ function renderStep(instant) {
   while (wrap.firstChild) wrap.removeChild(wrap.firstChild);
   wrap.appendChild(frag);
   renderProgress();
+  lockCardHeight();
 
   if (instant) {
     frag.style.opacity   = '1';
@@ -2126,12 +2139,25 @@ function renderContact() {
 
   // Email field
   var emailWrap = document.createElement('div');
-  emailWrap.style.marginBottom = '1rem';
+  emailWrap.style.marginBottom = '0.625rem';
   var emailInput = makeInput('email', 'deine@email.com', 'msq-inp-email');
   var emailErr   = makeErrMsg('Bitte gib eine g\u00fcltige E-Mail-Adresse ein.');
   emailWrap.appendChild(emailInput);
   emailWrap.appendChild(emailErr);
   frag.appendChild(emailWrap);
+
+  // Optional note field
+  var noteWrap = document.createElement('div');
+  noteWrap.style.marginBottom = '1rem';
+  var noteInput = document.createElement('textarea');
+  noteInput.placeholder = 'Weitere Informationen / Anmerkungen (optional)';
+  noteInput.id = 'msq-inp-note';
+  noteInput.rows = 3;
+  noteInput.className = 'liquid-glass rounded-2xl px-4 py-3 w-full font-body font-light text-white text-sm focus:outline-none';
+  noteInput.style.cssText = 'background:transparent;color:white;box-sizing:border-box;resize:none;' +
+    'border:1px solid transparent;transition:border-color 150ms ease;line-height:1.5;';
+  noteWrap.appendChild(noteInput);
+  frag.appendChild(noteWrap);
 
   // Summary box
   var box = document.createElement('div');
@@ -2172,12 +2198,13 @@ function renderContact() {
     'gap:0.5rem;border:none;';
   btn.textContent = 'Nachricht senden \u2192';
   btn.addEventListener('click', function () {
-    handleSubmit(nameInput, emailInput, nameErr, emailErr);
+    handleSubmit(nameInput, emailInput, noteInput, nameErr, emailErr);
   });
   frag.appendChild(btn);
 
   while (wrap.firstChild) wrap.removeChild(wrap.firstChild);
   wrap.appendChild(frag);
+  lockCardHeight();
   animIn(frag);
 }
 
@@ -2201,9 +2228,10 @@ function makeErrMsg(msg) {
 }
 
 // ── SUBMIT ────────────────────────────────────────────────────
-function handleSubmit(nameInput, emailInput, nameErr, emailErr) {
+function handleSubmit(nameInput, emailInput, noteInput, nameErr, emailErr) {
   var name  = nameInput.value.trim();
   var email = emailInput.value.trim();
+  var note  = noteInput ? noteInput.value.trim() : '';
   var re    = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   var ok    = true;
 
@@ -2269,7 +2297,7 @@ function handleSubmit(nameInput, emailInput, nameErr, emailErr) {
   })();
 
   if (window.location.hostname === 'localhost') {
-    console.log('StartupAds Lead:', { path: state.path, answers: state.answers, answerLabels: state.answerLabels, name: name, email: email });
+    console.log('StartupAds Lead:', { path: state.path, answers: state.answers, answerLabels: state.answerLabels, name: name, email: email, note: note });
   }
 
   var answerLines = Object.keys(state.answerLabels).map(function(k, i) {
@@ -2282,7 +2310,7 @@ function handleSubmit(nameInput, emailInput, nameErr, emailErr) {
   emailjs.send('service_94dzz6l', 'template_9xfmq6e', {
     name: name,
     email: email,
-    answers: answerLines,
+    answers: answerLines + (note ? '\n\nAnmerkung: ' + note : ''),
     time: timeStr
   });
 
