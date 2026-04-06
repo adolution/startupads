@@ -638,6 +638,20 @@
   </style>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
   <script>emailjs.init('CZA78YoNau3nzdYht');</script>
+
+  <!-- ===== META PIXEL ===== -->
+  <script>
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+  (window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init','5808257675949121');
+  fbq('track','PageView');
+  </script>
+  <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=5808257675949121&ev=PageView&noscript=1"/></noscript>
+  <!-- ===== END META PIXEL ===== -->
 </head>
 
 <body class="bg-black overflow-x-hidden font-body">
@@ -2132,6 +2146,8 @@ function handleSubmit(nameInput, emailInput, nameErr, emailErr) {
     time: timeStr
   });
 
+  sendLeadEvent(email);
+
   var oldFrag = wrap.firstElementChild;
   function showSuccess() {
     backBtn.classList.add('hidden');
@@ -2166,6 +2182,54 @@ function handleSubmit(nameInput, emailInput, nameErr, emailErr) {
   }
 
   if (oldFrag) animOut(oldFrag, showSuccess); else showSuccess();
+}
+
+// ── META LEAD EVENT ───────────────────────────────────────────
+function sendLeadEvent(email) {
+  // 1. Browser pixel
+  if (typeof fbq === 'function') {
+    fbq('track', 'Lead');
+  }
+
+  // 2. Conversions API (server-side event)
+  var pixelId = '5808257675949121';
+  var capiToken = 'EAAIjyZCpZCHkkBRHC9pueZACKuw3EbwtphanRToohYkaZAQuZAZCrPGtnyOPuQ1rsW2JQIve9YQTvotdpED7OCEjBfuZAwy4cerxxcivUQj8l63rhYcMSc2WVgINa3psDcBw6uTGZCySDtbvZCpY7FHFECZCCobJKYaQpoZBENd9LdhVFE3tp30Ijo5426890K4SPGezgZDZD';
+
+  // SHA-256 hash the email for CAPI (required by Meta)
+  async function sha256(str) {
+    var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str.trim().toLowerCase()));
+    return Array.from(new Uint8Array(buf)).map(function(b){ return b.toString(16).padStart(2,'0'); }).join('');
+  }
+
+  sha256(email || '').then(function(hashedEmail) {
+    var fbp  = (document.cookie.match(/_fbp=([^;]+)/) || [])[1] || '';
+    var fbc  = (document.cookie.match(/_fbc=([^;]+)/) || [])[1] || '';
+    var payload = {
+      data: [{
+        event_name: 'Lead',
+        event_time: Math.floor(Date.now() / 1000),
+        event_source_url: window.location.href,
+        action_source: 'website',
+        user_data: {
+          em: [hashedEmail],
+          client_user_agent: navigator.userAgent,
+          fbp: fbp || undefined,
+          fbc: fbc || undefined
+        }
+      }],
+      test_event_code: undefined
+    };
+    // remove undefined keys
+    if (!payload.data[0].user_data.fbp) delete payload.data[0].user_data.fbp;
+    if (!payload.data[0].user_data.fbc) delete payload.data[0].user_data.fbc;
+    delete payload.test_event_code;
+
+    fetch('https://graph.facebook.com/v19.0/' + pixelId + '/events?access_token=' + capiToken, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(function(){});
+  });
 }
 
 // ── INIT ──────────────────────────────────────────────────────
