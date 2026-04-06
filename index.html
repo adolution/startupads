@@ -183,22 +183,17 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
-  <!-- ===== META PIXEL ===== -->
+  <!-- ===== META PIXEL (consent-gated — loaded by cookie-consent.js) ===== -->
   <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '5808257675949121');
-    fbq('track', 'PageView');
+    /* fbq stub — queues calls until fbevents.js loads after consent */
+    window._fbq_consent_granted = false;
+    if (!window.fbq) {
+      var _fbq_stub = function() {
+        (_fbq_stub.queue = _fbq_stub.queue || []).push(arguments);
+      };
+      window.fbq = _fbq_stub;
+    }
   </script>
-  <noscript><img height="1" width="1" style="display:none"
-    src="https://www.facebook.com/tr?id=5808257675949121&ev=PageView&noscript=1"
-  /></noscript>
   <!-- ===== END META PIXEL ===== -->
 
   <style>
@@ -454,6 +449,88 @@
     ::-webkit-scrollbar { width: 3px; }
     ::-webkit-scrollbar-track { background: #000; }
     ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 9999px; }
+
+    /* ===== COOKIE BANNER ===== */
+    #cookie-banner {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 9999;
+      padding: 0 16px 16px;
+      display: flex;
+      justify-content: center;
+      pointer-events: none;
+      transform: translateY(110%);
+      opacity: 0;
+      transition: transform 0.55s cubic-bezier(0.16,1,0.3,1), opacity 0.45s ease;
+    }
+    #cookie-banner.cb-visible {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    #cookie-banner-inner {
+      width: 100%;
+      max-width: 780px;
+      background: rgba(12,12,12,0.88);
+      backdrop-filter: blur(40px);
+      -webkit-backdrop-filter: blur(40px);
+      border-radius: 18px;
+      padding: 24px 28px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 -2px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.09), inset 0 1px 0 rgba(255,255,255,0.13);
+    }
+    #cookie-banner-inner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      padding: 1px;
+      background: linear-gradient(160deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.1) 100%);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      pointer-events: none;
+    }
+    .cb-toggle {
+      position: relative;
+      width: 40px;
+      height: 22px;
+      flex-shrink: 0;
+    }
+    .cb-toggle input { opacity: 0; width: 0; height: 0; position: absolute; }
+    .cb-toggle-track {
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.12);
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.22s ease;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+    .cb-toggle input:checked + .cb-toggle-track { background: rgba(255,255,255,0.85); }
+    .cb-toggle input:disabled + .cb-toggle-track { opacity: 0.4; cursor: not-allowed; }
+    .cb-toggle-thumb {
+      position: absolute;
+      top: 3px; left: 3px;
+      width: 14px; height: 14px;
+      background: #fff;
+      border-radius: 50%;
+      transition: transform 0.22s cubic-bezier(0.16,1,0.3,1), background 0.22s ease;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.4);
+      pointer-events: none;
+    }
+    .cb-toggle input:checked ~ .cb-toggle-thumb { transform: translateX(18px); background: #111; }
+    .cb-details-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .cb-details-panel.open { max-height: 300px; }
+    @media (min-width: 640px) {
+      #cookie-banner { padding: 0 24px 24px; }
+      #cookie-banner-inner { padding: 28px 36px; }
+    }
 
     /* ===== ARROW ICON ===== */
     .icon-arrow {
@@ -1416,6 +1493,7 @@
     <div class="flex gap-6">
       <a href="/impressum.html" class="text-white/40 text-xs font-body hover:text-white/70 transition-colors">Impressum</a>
       <a href="/datenschutz.html" class="text-white/40 text-xs font-body hover:text-white/70 transition-colors">Datenschutz</a>
+      <button id="cb-reopen" onclick="window.__cbReopen && window.__cbReopen()" class="text-white/40 text-xs font-body hover:text-white/70 transition-colors bg-transparent border-none cursor-pointer p-0">Cookie-Einstellungen</button>
       <a href="#" class="text-white/40 text-xs font-body hover:text-white/70 transition-colors">Kontakt</a>
     </div>
   </div>
@@ -2234,6 +2312,177 @@ renderStep(true);
 
 }());
 </script>
+
+<!-- ===== COOKIE BANNER ===== -->
+<div id="cookie-banner" role="dialog" aria-modal="true" aria-label="Cookie-Einstellungen">
+  <div id="cookie-banner-inner">
+
+    <!-- Standard view -->
+    <div id="cb-standard">
+      <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">
+        <div style="flex:1;min-width:200px;">
+          <p style="font-family:'Instrument Serif',serif;font-size:1.05rem;color:#fff;margin:0 0 6px;line-height:1.4;">
+            Wir nutzen Cookies &amp; Pixel
+          </p>
+          <p style="font-family:'Barlow',sans-serif;font-size:0.8rem;color:rgba(255,255,255,0.52);line-height:1.6;margin:0;">
+            Notwendige Cookies sind immer aktiv. Marketing-Cookies (Meta Pixel) helfen uns, Werbung gezielt auszuspielen.
+            Mehr in der <a href="/datenschutz.html" style="color:rgba(255,255,255,0.7);text-decoration:underline;text-underline-offset:2px;">Datenschutzerklärung</a>.
+          </p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;flex-shrink:0;min-width:160px;align-self:center;">
+          <button id="cb-accept-all" style="font-family:'Barlow',sans-serif;font-weight:600;font-size:0.8rem;letter-spacing:0.02em;color:#000;background:#fff;border:none;border-radius:9999px;padding:9px 22px;cursor:pointer;transition:transform 0.18s cubic-bezier(0.16,1,0.3,1),box-shadow 0.18s ease;white-space:nowrap;" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 18px rgba(255,255,255,0.22)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+            Alle akzeptieren
+          </button>
+          <button id="cb-reject-all" style="font-family:'Barlow',sans-serif;font-weight:400;font-size:0.8rem;letter-spacing:0.02em;color:rgba(255,255,255,0.65);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:9999px;padding:9px 22px;cursor:pointer;transition:transform 0.18s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">
+            Nur notwendige
+          </button>
+          <button id="cb-toggle-details" style="font-family:'Barlow',sans-serif;font-weight:400;font-size:0.75rem;color:rgba(255,255,255,0.38);background:none;border:none;padding:2px 0;cursor:pointer;text-align:center;transition:color 0.18s ease;" onmouseover="this.style.color='rgba(255,255,255,0.65)'" onmouseout="this.style.color='rgba(255,255,255,0.38)'">
+            Details ↓
+          </button>
+        </div>
+      </div>
+
+      <!-- Details panel -->
+      <div id="cb-details-panel" class="cb-details-panel" style="margin-top:0;">
+        <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:18px;padding-top:18px;display:flex;flex-direction:column;gap:14px;">
+
+          <!-- Notwendig -->
+          <div style="display:flex;align-items:center;gap:16px;justify-content:space-between;">
+            <div>
+              <p style="font-family:'Barlow',sans-serif;font-size:0.82rem;font-weight:500;color:rgba(255,255,255,0.85);margin:0 0 2px;">Notwendig</p>
+              <p style="font-family:'Barlow',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.38);margin:0;line-height:1.5;">Session-Funktionalität, keine Tracking-Daten</p>
+            </div>
+            <label class="cb-toggle">
+              <input type="checkbox" id="cb-chk-essential" checked disabled>
+              <span class="cb-toggle-track"></span>
+              <span class="cb-toggle-thumb"></span>
+            </label>
+          </div>
+
+          <!-- Marketing -->
+          <div style="display:flex;align-items:center;gap:16px;justify-content:space-between;">
+            <div>
+              <p style="font-family:'Barlow',sans-serif;font-size:0.82rem;font-weight:500;color:rgba(255,255,255,0.85);margin:0 0 2px;">Marketing</p>
+              <p style="font-family:'Barlow',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.38);margin:0;line-height:1.5;">Meta Pixel &amp; Conversions API (Facebook)</p>
+            </div>
+            <label class="cb-toggle">
+              <input type="checkbox" id="cb-chk-marketing">
+              <span class="cb-toggle-track"></span>
+              <span class="cb-toggle-thumb"></span>
+            </label>
+          </div>
+
+          <button id="cb-save-custom" style="font-family:'Barlow',sans-serif;font-weight:500;font-size:0.8rem;align-self:flex-end;color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.14);border-radius:9999px;padding:8px 20px;cursor:pointer;transition:transform 0.18s cubic-bezier(0.16,1,0.3,1);" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">
+            Auswahl speichern
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+(function() {
+  var STORAGE_KEY = 'sads_cookie_consent';
+  var PIXEL_ID    = '5808257675949121';
+
+  /* ── Load Meta Pixel ─────────────────────────────────────── */
+  function loadMetaPixel() {
+    if (window._fbpLoaded) return;
+    window._fbpLoaded = true;
+    !function(f,b,e,v,n,t,s){
+      if(f.fbq)return;
+      n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)
+    }(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+    fbq('consent', 'grant');
+    fbq('init', PIXEL_ID);
+    fbq('track', 'PageView');
+  }
+
+  /* ── Save consent & act on it ───────────────────────────── */
+  function applyConsent(marketing) {
+    var obj = { v: 1, ts: Date.now(), marketing: marketing };
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(obj)); } catch(e) {}
+    if (marketing) loadMetaPixel();
+    hideBanner();
+  }
+
+  /* ── Banner visibility ───────────────────────────────────── */
+  var banner = document.getElementById('cookie-banner');
+
+  function showBanner() {
+    banner.classList.add('cb-visible');
+    banner.removeAttribute('aria-hidden');
+  }
+  function hideBanner() {
+    banner.classList.remove('cb-visible');
+    banner.setAttribute('aria-hidden', 'true');
+  }
+
+  /* Expose reopen for footer link */
+  window.__cbReopen = function() {
+    try { localStorage.removeItem(STORAGE_KEY); } catch(e) {}
+    var chkMarketing = document.getElementById('cb-chk-marketing');
+    if (chkMarketing) chkMarketing.checked = false;
+    if (detailsOpen) {
+      detailsPanel.classList.remove('open');
+      detailsBtn.textContent = 'Details ↓';
+      detailsOpen = false;
+    }
+    showBanner();
+  };
+
+  /* ── Toggle details panel ────────────────────────────────── */
+  var detailsPanel = document.getElementById('cb-details-panel');
+  var detailsBtn   = document.getElementById('cb-toggle-details');
+  var detailsOpen  = false;
+
+  detailsBtn.addEventListener('click', function() {
+    detailsOpen = !detailsOpen;
+    if (detailsOpen) {
+      detailsPanel.classList.add('open');
+      detailsPanel.style.marginTop = '0';
+      detailsBtn.textContent = 'Details ↑';
+    } else {
+      detailsPanel.classList.remove('open');
+      detailsBtn.textContent = 'Details ↓';
+    }
+  });
+
+  /* ── Button handlers ─────────────────────────────────────── */
+  document.getElementById('cb-accept-all').addEventListener('click', function() {
+    document.getElementById('cb-chk-marketing').checked = true;
+    applyConsent(true);
+  });
+
+  document.getElementById('cb-reject-all').addEventListener('click', function() {
+    document.getElementById('cb-chk-marketing').checked = false;
+    applyConsent(false);
+  });
+
+  document.getElementById('cb-save-custom').addEventListener('click', function() {
+    applyConsent(document.getElementById('cb-chk-marketing').checked);
+  });
+
+  /* ── On load: check existing consent ────────────────────── */
+  var stored = null;
+  try { stored = JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch(e) {}
+
+  if (stored && stored.v === 1) {
+    /* Consent already given — act silently */
+    if (stored.marketing) loadMetaPixel();
+  } else {
+    /* No consent yet — show banner after a short delay */
+    setTimeout(showBanner, 600);
+  }
+})();
+</script>
+<!-- ===== END COOKIE BANNER ===== -->
 
 </body>
 </html>
