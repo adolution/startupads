@@ -2753,29 +2753,19 @@ function handleSubmit(nameInput, emailInput, noteInput, nameErr, emailErr) {
         var m = document.cookie.match('(^|;)\\s*' + name + '\\s*=\\s*([^;]+)');
         return m ? m.pop() : undefined;
       }
-      var userData = {
-        em: [hashedEmail],
-        client_user_agent: navigator.userAgent
-      };
-      var fbp = getCookie('_fbp'); if (fbp) userData.fbp = fbp;
-      var fbc = getCookie('_fbc'); if (fbc) userData.fbc = fbc;
-      await fetch(
-        'https://graph.facebook.com/v19.0/5808257675949121/events?access_token=EAAIjyZCpZCHkkBRHC9pueZACKuw3EbwtphanRToohYkaZAQuZAZCrPGtnyOPuQ1rsW2JQIve9YQTvotdpED7OCEjBfuZAwy4cerxxcivUQj8l63rhYcMSc2WVgINa3psDcBw6uTGZCySDtbvZCpY7FHFECZCCobJKYaQpoZBENd9LdhVFE3tp30Ijo5426890K4SPGezgZDZD',
-        {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            data: [{
-              event_name: 'Lead',
-              event_time: Math.floor(Date.now() / 1000),
-              event_id: eventId,
-              action_source: 'website',
-              event_source_url: window.location.href,
-              user_data: userData
-            }]
-          })
-        }
-      );
+      await fetch('/api/meta-capi', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          hashed_email: hashedEmail,
+          event_name: 'Lead',
+          event_id: eventId,
+          event_source_url: window.location.href,
+          fbp: getCookie('_fbp'),
+          fbc: getCookie('_fbc'),
+          client_user_agent: navigator.userAgent
+        })
+      });
     } catch (e) { /* silent — never block the UX */ }
   })();
 
