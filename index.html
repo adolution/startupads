@@ -202,6 +202,43 @@
       --radius: 9999px;
       --font-heading: 'Instrument Serif', serif;
       --font-body: 'Barlow', sans-serif;
+
+      /* Surfaces */
+      --color-bg: #000;
+      --color-surface-1: rgba(255,255,255,0.035);
+      --color-surface-2: rgba(255,255,255,0.07);
+      --color-surface-hover: rgba(255,255,255,0.05);
+
+      /* Borders */
+      --color-border-subtle: rgba(255,255,255,0.06);
+      --color-border-medium: rgba(255,255,255,0.10);
+      --color-border-strong: rgba(255,255,255,0.15);
+
+      /* Text */
+      --color-text-primary: #fff;
+      --color-text-secondary: rgba(255,255,255,0.75);
+      --color-text-tertiary: rgba(255,255,255,0.50);
+      --color-text-muted: rgba(255,255,255,0.40);
+
+      /* Semantic: Problem */
+      --color-problem: rgba(255,120,120,1);
+      --color-problem-bg: rgba(220,38,38,0.12);
+      --color-problem-border: rgba(220,38,38,0.25);
+      --color-problem-glow: rgba(180,0,0,0.08);
+
+      /* Semantic: Solution */
+      --color-solution: rgba(74,222,128,1);
+      --color-solution-bg: rgba(22,163,74,0.12);
+      --color-solution-border: rgba(22,163,74,0.28);
+      --color-solution-glow: rgba(0,160,60,0.08);
+
+      /* Glass effects */
+      --glass-inner-glow: inset 0 1px 1px rgba(255,255,255,0.12);
+      --glass-inner-glow-strong: inset 0 1px 1px rgba(255,255,255,0.18);
+
+      /* Spotlight (monochrome — NOT blue) */
+      --spotlight-border: rgba(255,255,255,0.18);
+      --spotlight-inner: rgba(255,255,255,0.04);
     }
 
     html { scroll-behavior: smooth; }
@@ -209,12 +246,12 @@
 
     /* ===== LIQUID GLASS ===== */
     .liquid-glass {
-      background: rgba(255,255,255,0.035);
+      background: var(--color-surface-1);
       background-blend-mode: luminosity;
       backdrop-filter: blur(4px);
       -webkit-backdrop-filter: blur(4px);
       border: none;
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.12);
+      box-shadow: var(--glass-inner-glow);
       position: relative;
       overflow: hidden;
     }
@@ -239,12 +276,12 @@
     }
 
     .liquid-glass-strong {
-      background: rgba(255,255,255,0.07);
+      background: var(--color-surface-2);
       background-blend-mode: luminosity;
       backdrop-filter: blur(50px);
       -webkit-backdrop-filter: blur(50px);
       border: none;
-      box-shadow: 4px 4px 4px rgba(0,0,0,0.05), inset 0 1px 1px rgba(255,255,255,0.18);
+      box-shadow: 4px 4px 4px rgba(0,0,0,0.05), var(--glass-inner-glow-strong);
       position: relative;
       overflow: hidden;
     }
@@ -607,25 +644,25 @@
 
     /* ===== PROBLEM SECTION RED ACCENTS ===== */
     .problem-badge {
-      background: rgba(220,38,38,0.12);
-      border: 1px solid rgba(220,38,38,0.25);
-      color: rgba(255,120,120,1);
+      background: var(--color-problem-bg);
+      border: 1px solid var(--color-problem-border);
+      color: var(--color-problem);
     }
     .problem-badge::before { display: none; }
     .problem-glow {
-      box-shadow: 0 0 60px rgba(180,0,0,0.08), inset 0 1px 1px rgba(255,100,100,0.08);
+      box-shadow: 0 0 60px var(--color-problem-glow), var(--glass-inner-glow);
     }
     .problem-x { color: rgba(220,80,80,0.85) !important; }
 
     /* ===== GREEN SECTION ACCENTS ===== */
     .solution-badge {
-      background: rgba(22,163,74,0.12);
-      border: 1px solid rgba(22,163,74,0.28);
-      color: rgba(74,222,128,1);
+      background: var(--color-solution-bg);
+      border: 1px solid var(--color-solution-border);
+      color: var(--color-solution);
     }
     .solution-badge::before { display: none; }
     .solution-glow {
-      box-shadow: 0 0 60px rgba(0,160,60,0.08), inset 0 1px 1px rgba(80,220,120,0.08);
+      box-shadow: 0 0 60px var(--color-solution-glow), var(--glass-inner-glow);
     }
     .solution-check { color: rgba(74,222,128,0.9) !important; }
 
@@ -719,7 +756,7 @@
       border-radius: 1rem;
       background: radial-gradient(
         280px 280px at var(--mx, -400px) var(--my, -400px),
-        hsl(215 70% 65% / 0.28) 0%,
+        var(--spotlight-border) 0%,
         rgba(255,255,255,0.05) 55%,
         rgba(255,255,255,0.02) 100%
       );
@@ -728,10 +765,10 @@
       background:
         radial-gradient(
           320px 320px at var(--mx, -400px) var(--my, -400px),
-          hsl(215 60% 55% / 0.045),
+          var(--spotlight-inner),
           transparent 100%
         ),
-        rgba(255,255,255,0.04);
+        var(--color-surface-1);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       height: 100%;
@@ -995,7 +1032,7 @@
         </a>
       </div>
       <div class="flex-1 w-full lg:max-w-sm reveal-right" style="transition-delay:0.15s">
-        <div class="liquid-glass glow-animate float-anim rounded-2xl aspect-video flex items-center justify-center relative" style="box-shadow: 0 0 40px rgba(74,222,128,0.06), inset 0 1px 1px rgba(255,255,255,0.12)">
+        <div class="liquid-glass glow-animate float-anim rounded-2xl aspect-video flex items-center justify-center relative" style="box-shadow: 0 0 40px var(--color-solution-glow), var(--glass-inner-glow)">
           <div class="text-center p-8">
             <div class="liquid-glass-strong rounded-full w-14 h-14 flex items-center justify-center mx-auto mb-4">
               <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
@@ -1025,7 +1062,7 @@
         </a>
       </div>
       <div class="flex-1 w-full lg:max-w-sm reveal-left" style="transition-delay:0.15s">
-        <div class="liquid-glass glow-animate float-anim-2 rounded-2xl overflow-hidden relative" style="box-shadow: 0 0 40px rgba(74,222,128,0.06), inset 0 1px 1px rgba(255,255,255,0.12)">
+        <div class="liquid-glass glow-animate float-anim-2 rounded-2xl overflow-hidden relative" style="box-shadow: 0 0 40px var(--color-solution-glow), var(--glass-inner-glow)">
           <video class="w-full h-full object-cover rounded-2xl" autoplay muted loop playsinline preload="none">
             <source src="brand_assets/Videobibliothek-marketing-startups.mp4" type="video/mp4">
           </video>
@@ -1181,8 +1218,8 @@
     <div class="grid md:grid-cols-2 gap-6">
 
       <!-- Vorher -->
-      <div class="fade-in liquid-glass rounded-2xl p-8 vorher-card" style="box-shadow: 0 0 40px rgba(180,0,0,0.07), inset 0 1px 1px rgba(255,80,80,0.06); border: 1px solid rgba(255,255,255,0.06); transition: border-color 300ms ease, box-shadow 300ms ease;">
-        <p class="font-body text-xs uppercase tracking-widest mb-6" style="color: rgba(220,80,80,0.7)">VORHER</p>
+      <div class="fade-in liquid-glass rounded-2xl p-8 vorher-card" style="box-shadow: 0 0 40px var(--color-problem-glow), var(--glass-inner-glow); border: 1px solid var(--color-border-subtle); transition: border-color 300ms ease, box-shadow 300ms ease;">
+        <p class="font-body text-xs uppercase tracking-widest mb-6" style="color: var(--color-problem)">VORHER</p>
         <div class="divide-y divide-white/5">
           <div class="flex items-start gap-3 py-3.5">
             <span class="problem-x mt-0.5 flex-shrink-0">✗</span>
@@ -1208,7 +1245,7 @@
       </div>
 
       <!-- Nachher -->
-      <div class="fade-in liquid-glass-strong rounded-2xl p-8 nachher-card" style="transition-delay:0.1s; box-shadow: 0 0 40px rgba(0,160,60,0.08), inset 0 1px 1px rgba(80,220,120,0.08); border: 1px solid rgba(255,255,255,0.06); transition: border-color 300ms ease, box-shadow 300ms ease;">
+      <div class="fade-in liquid-glass-strong rounded-2xl p-8 nachher-card" style="transition-delay:0.1s; box-shadow: 0 0 40px var(--color-solution-glow), var(--glass-inner-glow); border: 1px solid var(--color-border-subtle); transition: border-color 300ms ease, box-shadow 300ms ease;">
         <p class="font-body text-xs uppercase tracking-widest mb-6 solution-check">NACHHER</p>
         <div class="divide-y divide-white/5">
           <div class="flex items-start gap-3 py-3.5">
@@ -1278,7 +1315,7 @@
       <div class="grid grid-cols-2 gap-4 md:gap-8 mb-8">
         <div>
           <p class="text-white/70 font-body text-xs uppercase tracking-widest mb-2">Agentur-Modell</p>
-          <p id="roi-agency-val" class="text-2xl md:text-4xl lg:text-5xl font-heading italic" style="color: rgba(239,68,68,0.9); white-space: nowrap">50.000&nbsp;€</p>
+          <p id="roi-agency-val" class="text-2xl md:text-4xl lg:text-5xl font-heading italic" style="color: var(--color-problem); white-space: nowrap">50.000&nbsp;€</p>
           <p id="roi-agency-sub" class="text-white/70 font-body text-xs mt-1">20 × 2.500 €/Monat</p>
         </div>
         <div>
@@ -1292,7 +1329,7 @@
       <div class="grid grid-cols-2 gap-4 md:gap-8 pt-8 border-t border-white/10">
         <div>
           <p class="text-white/75 font-body text-xs md:text-sm mb-2">Deine Ersparnis nach <span id="roi-savings-months">20</span> Monaten</p>
-          <p id="roi-savings-val" class="text-2xl md:text-4xl lg:text-5xl font-heading italic" style="color: rgba(74,222,128,0.9); white-space: nowrap; text-shadow: 0 0 22px rgba(74,222,128,0.45), 0 0 44px rgba(74,222,128,0.18)">+38.000&nbsp;€</p>
+          <p id="roi-savings-val" class="text-2xl md:text-4xl lg:text-5xl font-heading italic" style="color: var(--color-solution); white-space: nowrap; text-shadow: 0 0 22px rgba(74,222,128,0.45), 0 0 44px rgba(74,222,128,0.18)">+38.000&nbsp;€</p>
         </div>
         <div>
           <p class="text-white/75 font-body text-xs md:text-sm mb-2">Break-Even</p>
@@ -1378,9 +1415,9 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
 
       <!-- Card 1: Agentur -->
-      <div class="fade-in liquid-glass rounded-2xl p-8" style="box-shadow: 0 0 50px rgba(180,0,0,0.08), inset 0 1px 1px rgba(255,80,80,0.06);">
-        <p class="font-body text-xs uppercase tracking-widest mb-5" style="color: rgba(220,80,80,0.7)">Agentur-Modell</p>
-        <p class="text-3xl md:text-4xl lg:text-5xl font-heading italic mb-1" style="color: rgba(239,68,68,0.9); white-space: nowrap">2.500&nbsp;€&nbsp;/ Monat</p>
+      <div class="fade-in liquid-glass rounded-2xl p-8" style="box-shadow: 0 0 50px var(--color-problem-glow), var(--glass-inner-glow);">
+        <p class="font-body text-xs uppercase tracking-widest mb-5" style="color: var(--color-problem)">Agentur-Modell</p>
+        <p class="text-3xl md:text-4xl lg:text-5xl font-heading italic mb-1" style="color: var(--color-problem); white-space: nowrap">2.500&nbsp;€&nbsp;/ Monat</p>
         <p class="text-white/70 font-body text-xs mb-8">Dauerhaft · Ohne Ende</p>
         <ul class="space-y-3 mb-8">
           <li class="flex items-start gap-2.5 text-white/75 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Abhängigkeit von Dritten</li>
@@ -1389,17 +1426,17 @@
           <li class="flex items-start gap-2.5 text-white/75 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Reduziert deinen Exit-Value</li>
           <li class="flex items-start gap-2.5 text-white/75 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Null Ownership, null Transparenz</li>
         </ul>
-        <div class="rounded-xl p-4" style="background: rgba(220,38,38,0.07); border: 1px solid rgba(220,38,38,0.15);">
+        <div class="rounded-xl p-4" style="background: var(--color-problem-bg); border: 1px solid var(--color-problem-border);">
           <p class="text-white/70 font-body text-xs mb-1.5">Kosten nach 12 Monaten</p>
-          <p class="text-2xl font-heading italic" style="color: rgba(239,68,68,0.9)">30.000 €</p>
+          <p class="text-2xl font-heading italic" style="color: var(--color-problem)">30.000 €</p>
         </div>
       </div>
 
       <!-- Card 2: StartupAds -->
-      <div class="fade-in liquid-glass-strong rounded-2xl p-8" style="transition-delay:0.1s; box-shadow: 0 0 50px rgba(0,160,60,0.1), inset 0 1px 1px rgba(80,220,120,0.1);">
+      <div class="fade-in liquid-glass-strong rounded-2xl p-8" style="transition-delay:0.1s; box-shadow: 0 0 50px var(--color-solution-glow), var(--glass-inner-glow);">
         <div class="flex items-center gap-3 mb-5">
           <p class="text-white/70 font-body text-xs uppercase tracking-widest">StartupAds Ausbildung</p>
-          <span class="rounded-full px-2 py-0.5 text-xs font-body font-semibold leading-none" style="background: rgba(22,163,74,0.15); border: 1px solid rgba(22,163,74,0.3); color: rgba(74,222,128,1)">Empfohlen</span>
+          <span class="rounded-full px-2 py-0.5 text-xs font-body font-semibold leading-none" style="background: var(--color-solution-bg); border: 1px solid var(--color-solution-border); color: var(--color-solution)">Empfohlen</span>
         </div>
         <p class="text-3xl md:text-4xl lg:text-5xl font-heading italic text-white mb-1" style="white-space: nowrap">12.000&nbsp;€</p>
         <p class="text-white/70 font-body text-xs mb-8">Einmalig · Für immer</p>
@@ -1418,9 +1455,9 @@
             <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
           </svg>
         </a>
-        <div class="rounded-xl p-4" style="background: rgba(22,163,74,0.07); border: 1px solid rgba(22,163,74,0.18);">
+        <div class="rounded-xl p-4" style="background: var(--color-solution-bg); border: 1px solid var(--color-solution-border);">
           <p class="text-white/70 font-body text-xs mb-1.5">Deine Ersparnis nach 12 Monaten</p>
-          <p class="text-2xl font-heading italic" style="color: rgba(74,222,128,0.9)">+18.000 €</p>
+          <p class="text-2xl font-heading italic" style="color: var(--color-solution)">+18.000 €</p>
           <p class="text-white/70 text-xs font-body mt-1">+Unbezahlbare Skills inhouse</p>
         </div>
       </div>
@@ -2052,8 +2089,8 @@ function renderProgress() {
   var segs = progBar.children;
   for (var j = 0; j < segs.length; j++) {
     segs[j].style.background = j <= idx
-      ? 'rgba(255,255,255,1)'
-      : 'rgba(255,255,255,0.12)';
+      ? 'var(--color-text-primary)'
+      : 'var(--color-border-medium)';
   }
 }
 
@@ -2081,7 +2118,7 @@ function animIn(el) {
 function makeOptionCard(opt, isStep1) {
   var card = document.createElement('div');
   card.className = 'liquid-glass rounded-2xl p-5 cursor-pointer';
-  card.style.cssText = 'position:relative;border:1px solid rgba(255,255,255,0.06);' +
+  card.style.cssText = 'position:relative;border:1px solid var(--color-border-subtle);' +
     'transition:background 150ms ease,transform 150ms ease,border-color 150ms ease;';
   card.setAttribute('data-opt', opt.id);
 
@@ -2107,7 +2144,7 @@ function makeOptionCard(opt, isStep1) {
 
   card.addEventListener('mouseenter', function () {
     if (!card.classList.contains('msq-sel')) {
-      card.style.background = 'rgba(255,255,255,0.05)';
+      card.style.background = 'var(--color-surface-hover)';
       card.style.transform  = 'translateY(-1px)';
     }
   });
@@ -2133,7 +2170,7 @@ function renderStep(instant) {
 
   var ind = document.createElement('p');
   ind.className = 'font-body font-light';
-  ind.style.cssText = 'font-size:0.7rem;color:rgba(255,255,255,0.5);letter-spacing:0.12em;' +
+  ind.style.cssText = 'font-size:0.7rem;color:var(--color-text-tertiary);letter-spacing:0.12em;' +
     'text-transform:uppercase;margin-bottom:1rem;';
   ind.textContent = 'Schritt ' + stepNo + ' von ' + total;
   frag.appendChild(ind);
@@ -2179,15 +2216,15 @@ function onSelect(cardEl, opt, grid) {
   var cards = grid.querySelectorAll('[data-opt]');
   cards.forEach(function (c) {
     c.classList.remove('msq-sel');
-    c.style.borderColor = 'rgba(255,255,255,0.06)';
+    c.style.borderColor = 'var(--color-border-subtle)';
     c.style.background  = '';
     c.style.transform   = '';
     var ch = c.querySelector('.msq-chk');
     if (ch) ch.style.opacity = '0';
   });
   cardEl.classList.add('msq-sel');
-  cardEl.style.borderColor = 'rgba(255,255,255,0.5)';
-  cardEl.style.background  = 'rgba(255,255,255,0.09)';
+  cardEl.style.borderColor = 'var(--color-border-strong)';
+  cardEl.style.background  = 'var(--color-surface-2)';
   var chk = cardEl.querySelector('.msq-chk');
   if (chk) chk.style.opacity = '1';
 
@@ -2239,8 +2276,8 @@ backBtn.addEventListener('click', function () {
           wrap.querySelectorAll('[data-opt]').forEach(function (c) {
             if (c.getAttribute('data-opt') === prevId) {
               c.classList.add('msq-sel');
-              c.style.borderColor = 'rgba(255,255,255,0.5)';
-              c.style.background  = 'rgba(255,255,255,0.09)';
+              c.style.borderColor = 'var(--color-border-strong)';
+              c.style.background  = 'var(--color-surface-2)';
               var ch = c.querySelector('.msq-chk');
               if (ch) ch.style.opacity = '1';
             }
@@ -2257,7 +2294,7 @@ function renderContact() {
   backBtn.classList.add('hidden');
 
   var segs = progBar.children;
-  for (var i = 0; i < segs.length; i++) segs[i].style.background = 'rgba(255,255,255,1)';
+  for (var i = 0; i < segs.length; i++) segs[i].style.background = 'var(--color-text-primary)';
 
   var frag = document.createElement('div');
   frag.style.cssText = 'opacity:0;transform:translateY(12px);';
@@ -2272,7 +2309,7 @@ function renderContact() {
   // Subtext
   var sub = document.createElement('p');
   sub.className = 'font-body font-light';
-  sub.style.cssText = 'font-size:0.875rem;color:rgba(255,255,255,0.6);line-height:1.65;margin-bottom:1.25rem;';
+  sub.style.cssText = 'font-size:0.875rem;color:var(--color-text-tertiary);line-height:1.65;margin-bottom:1.25rem;';
   sub.appendChild(document.createTextNode('Hinterlasse kurz deinen Namen und deine E-Mail \u2014'));
   sub.appendChild(document.createElement('br'));
   sub.appendChild(document.createTextNode('ich melde mich pers\u00f6nlich bei dir.'));
@@ -2317,20 +2354,20 @@ function renderContact() {
 
   var boxTitle = document.createElement('p');
   boxTitle.className = 'font-body';
-  boxTitle.style.cssText = 'color:rgba(255,255,255,0.4);font-size:0.7rem;text-transform:uppercase;' +
+  boxTitle.style.cssText = 'color:var(--color-text-muted);font-size:0.7rem;text-transform:uppercase;' +
     'letter-spacing:0.12em;margin-bottom:0.5rem;';
   boxTitle.textContent = 'Deine Angaben';
   box.appendChild(boxTitle);
 
   var ul = document.createElement('ul');
   ul.className = 'font-body font-light';
-  ul.style.cssText = 'color:rgba(255,255,255,0.5);font-size:0.75rem;line-height:1.7;list-style:none;padding:0;margin:0;';
+  ul.style.cssText = 'color:var(--color-text-tertiary);font-size:0.75rem;line-height:1.7;list-style:none;padding:0;margin:0;';
 
   Object.keys(state.answerLabels).forEach(function (k) {
     var li = document.createElement('li');
     li.style.cssText = 'display:flex;align-items:flex-start;gap:0.4rem;';
     var arrow = document.createElement('span');
-    arrow.style.cssText = 'color:rgba(255,255,255,0.2);flex-shrink:0;';
+    arrow.style.cssText = 'color:var(--color-text-muted);flex-shrink:0;';
     arrow.textContent = '\u2192';
     var text = document.createElement('span');
     text.textContent = state.answerLabels[k];
@@ -2374,7 +2411,7 @@ function makeInput(type, placeholder, id) {
 function makeErrMsg(msg) {
   var p = document.createElement('p');
   p.className = 'font-body font-light';
-  p.style.cssText = 'font-size:0.75rem;color:rgba(220,38,38,0.9);margin-top:0.3rem;display:none;';
+  p.style.cssText = 'font-size:0.75rem;color:var(--color-problem);margin-top:0.3rem;display:none;';
   p.textContent = msg;
   return p;
 }
@@ -2388,7 +2425,7 @@ function handleSubmit(nameInput, emailInput, noteInput, nameErr, emailErr) {
   var ok    = true;
 
   if (!name) {
-    nameInput.style.borderColor = 'rgba(220,38,38,0.6)';
+    nameInput.style.borderColor = 'var(--color-problem-border)';
     nameErr.style.display = 'block';
     ok = false;
   } else {
@@ -2396,7 +2433,7 @@ function handleSubmit(nameInput, emailInput, noteInput, nameErr, emailErr) {
     nameErr.style.display = 'none';
   }
   if (!email || !re.test(email)) {
-    emailInput.style.borderColor = 'rgba(220,38,38,0.6)';
+    emailInput.style.borderColor = 'var(--color-problem-border)';
     emailErr.style.display = 'block';
     ok = false;
   } else {
@@ -2475,7 +2512,7 @@ function handleSubmit(nameInput, emailInput, noteInput, nameErr, emailErr) {
     frag.style.cssText = 'opacity:0;transform:translateY(12px);text-align:center;padding:2rem 0;';
 
     var icon = document.createElement('div');
-    icon.style.cssText = 'font-size:2.5rem;color:rgba(74,222,128,0.9);margin-bottom:1.25rem;';
+    icon.style.cssText = 'font-size:2.5rem;color:var(--color-solution);margin-bottom:1.25rem;';
     icon.textContent = '\u2713';
     frag.appendChild(icon);
 
@@ -2487,7 +2524,7 @@ function handleSubmit(nameInput, emailInput, noteInput, nameErr, emailErr) {
 
     var p = document.createElement('p');
     p.className = 'font-body font-light';
-    p.style.cssText = 'font-size:0.875rem;color:rgba(255,255,255,0.6);line-height:1.65;' +
+    p.style.cssText = 'font-size:0.875rem;color:var(--color-text-tertiary);line-height:1.65;' +
       'max-width:320px;margin:0 auto;';
     p.appendChild(document.createTextNode('Ich habe deine Angaben erhalten und'));
     p.appendChild(document.createElement('br'));
