@@ -354,6 +354,15 @@
     .accordion-trigger.active .accordion-chevron {
       transform: rotate(180deg);
     }
+    .accordion-trigger:focus-visible {
+      outline: 2px solid rgba(255,255,255,0.5);
+      outline-offset: -2px;
+      border-radius: 0.25rem;
+    }
+    input:focus-visible, textarea:focus-visible {
+      outline: none;
+      border-color: rgba(255,255,255,0.4) !important;
+    }
 
     /* ===== VIDEO BG ===== */
     .video-section {
@@ -603,7 +612,7 @@
     .problem-glow {
       box-shadow: 0 0 60px rgba(180,0,0,0.08), inset 0 1px 1px rgba(255,100,100,0.08);
     }
-    .problem-x { color: rgba(220,80,80,0.7) !important; }
+    .problem-x { color: rgba(220,80,80,0.85) !important; }
 
     /* ===== GREEN SECTION ACCENTS ===== */
     .solution-badge {
@@ -725,6 +734,16 @@
       height: 100%;
     }
 
+    /* ===== MOBILE NAV ===== */
+    .mobile-nav-link:hover, .mobile-nav-link:focus-visible {
+      background: rgba(255,255,255,0.07);
+      color: white;
+    }
+    .mobile-nav-link:focus-visible {
+      outline: 2px solid rgba(255,255,255,0.4);
+      outline-offset: -2px;
+    }
+
     /* ===== MOBILE ===== */
     @media (max-width: 640px) {
       nav { top: 0.5rem; padding-left: 1rem; padding-right: 1rem; }
@@ -736,6 +755,10 @@
       section.py-32 { padding-top: 5rem; padding-bottom: 5rem; }
       /* ROI card inner padding */
       .rounded-3xl { border-radius: 1.25rem; }
+      /* Prevent ROI numbers from overflowing */
+      #roi-agency-val, #roi-savings-val {
+        font-size: clamp(1.25rem, 5vw, 1.5rem) !important;
+      }
     }
 
     /* ===== CLIP REVEAL ===== */
@@ -751,6 +774,10 @@
 </head>
 
 <body class="bg-black overflow-x-hidden font-body">
+
+<a href="#hero" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[9999] focus:bg-white focus:text-black focus:rounded-full focus:px-4 focus:py-2 focus:text-sm focus:font-medium">
+  Zum Inhalt springen
+</a>
 
 <!-- ============================================================
      SECTION 1 — NAVBAR
@@ -768,11 +795,24 @@
 
     <!-- Center Nav Pill -->
     <div class="hidden lg:flex liquid-glass rounded-full px-2 py-1.5 items-center gap-0.5">
-      <a href="#warum"      class="nav-link px-3.5 py-1.5 text-sm font-body font-medium text-white/70">Warum das funktioniert</a>
-      <a href="#angebot"    class="nav-link px-3.5 py-1.5 text-sm font-body font-medium text-white/70">Was drin ist</a>
-      <a href="#roi"        class="nav-link px-3.5 py-1.5 text-sm font-body font-medium text-white/70">Dein ROI</a>
-      <a href="#investition" class="nav-link px-3.5 py-1.5 text-sm font-body font-medium text-white/70">Investition</a>
+      <a href="#warum"      class="nav-link px-4 py-2.5 text-sm font-body font-medium text-white/70">Warum das funktioniert</a>
+      <a href="#angebot"    class="nav-link px-4 py-2.5 text-sm font-body font-medium text-white/70">Was drin ist</a>
+      <a href="#roi"        class="nav-link px-4 py-2.5 text-sm font-body font-medium text-white/70">Dein ROI</a>
+      <a href="#investition" class="nav-link px-4 py-2.5 text-sm font-body font-medium text-white/70">Investition</a>
     </div>
+
+    <!-- Mobile Menu Toggle -->
+    <button id="mobile-menu-toggle" class="lg:hidden flex items-center justify-center w-10 h-10 rounded-full liquid-glass cursor-pointer" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-menu">
+      <svg id="hamburger-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+        <line x1="4" y1="7" x2="20" y2="7"/>
+        <line x1="4" y1="12" x2="20" y2="12"/>
+        <line x1="4" y1="17" x2="20" y2="17"/>
+      </svg>
+      <svg id="close-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" style="display:none">
+        <line x1="6" y1="6" x2="18" y2="18"/>
+        <line x1="6" y1="18" x2="18" y2="6"/>
+      </svg>
+    </button>
 
     <!-- CTA Button -->
     <a href="#kontakt" class="btn-cta btn-primary bg-white text-black rounded-full px-4 py-2 text-sm font-body font-medium flex items-center gap-1.5 cursor-pointer flex-shrink-0">
@@ -784,11 +824,27 @@
   </div>
 </nav>
 
+<!-- Mobile Menu Overlay -->
+<div id="mobile-menu" class="fixed inset-x-0 top-0 z-40 lg:hidden" style="display:none;" role="dialog" aria-modal="true" aria-label="Navigation">
+  <div class="min-h-screen bg-black/95 backdrop-blur-xl pt-24 px-6 pb-8 flex flex-col items-center gap-2">
+    <a href="#warum" class="mobile-nav-link font-body font-medium text-white/70 text-lg py-3 px-6 rounded-full w-full max-w-xs text-center" style="transition: background 0.2s ease;">Warum das funktioniert</a>
+    <a href="#angebot" class="mobile-nav-link font-body font-medium text-white/70 text-lg py-3 px-6 rounded-full w-full max-w-xs text-center" style="transition: background 0.2s ease;">Was drin ist</a>
+    <a href="#roi" class="mobile-nav-link font-body font-medium text-white/70 text-lg py-3 px-6 rounded-full w-full max-w-xs text-center" style="transition: background 0.2s ease;">Dein ROI</a>
+    <a href="#investition" class="mobile-nav-link font-body font-medium text-white/70 text-lg py-3 px-6 rounded-full w-full max-w-xs text-center" style="transition: background 0.2s ease;">Investition</a>
+    <div class="mt-4">
+      <a href="#kontakt" class="btn-cta btn-primary bg-white text-black rounded-full px-6 py-3 text-base font-body font-medium flex items-center gap-2 cursor-pointer">
+        Bewerben
+        <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
+      </a>
+    </div>
+  </div>
+</div>
+
 
 <!-- ============================================================
      SECTION 2 — HERO
      ============================================================ -->
-<section class="relative overflow-hidden bg-black" style="min-height: 100svh;">
+<section id="hero" class="relative overflow-hidden bg-black" style="min-height: 100svh;">
 
   <!-- Fallback image -->
   <img src="brand_assets/hero-section-fallback.webp" alt="" aria-hidden="true" fetchpriority="high"
@@ -820,7 +876,7 @@
     </h1>
 
     <!-- Subtext -->
-    <p class="fade-in font-body font-light text-white/60 text-sm md:text-base max-w-md mx-auto mb-10 leading-[1.75]" style="transition-delay:0.5s">
+    <p class="fade-in font-body font-light text-white/75 text-sm md:text-base max-w-md mx-auto mb-10 leading-[1.75]" style="transition-delay:0.5s">
       In 90 Tagen baust du dir die Marketing-Kompetenz auf,
       für die andere Startups dauerhaft 2.500&nbsp;€ im Monat verbrennen.
       Ich zeige dir exakt wie — weil ich selbst da war.
@@ -842,22 +898,22 @@
     <div class="grid grid-cols-2 md:flex md:items-center md:justify-center gap-y-5 md:gap-12 px-8 md:px-6">
       <div class="text-center">
         <div class="text-xl md:text-3xl font-heading italic text-white">7+</div>
-        <div class="text-white/50 font-body font-light text-xs mt-0.5">Jahre Performance Marketing</div>
+        <div class="text-white/70 font-body font-light text-xs mt-0.5">Jahre Performance Marketing</div>
       </div>
       <div class="hidden md:block w-px h-8 bg-white/10"></div>
       <div class="text-center">
         <div class="text-xl md:text-3xl font-heading italic text-white">150+</div>
-        <div class="text-white/50 font-body font-light text-xs mt-0.5">beratene Unternehmen</div>
+        <div class="text-white/70 font-body font-light text-xs mt-0.5">beratene Unternehmen</div>
       </div>
       <div class="hidden md:block w-px h-8 bg-white/10"></div>
       <div class="text-center">
         <div class="text-xl md:text-3xl font-heading italic text-white">Mehrere</div>
-        <div class="text-white/50 font-body font-light text-xs mt-0.5">Investment-Runden</div>
+        <div class="text-white/70 font-body font-light text-xs mt-0.5">Investment-Runden</div>
       </div>
       <div class="hidden md:block w-px h-8 bg-white/10"></div>
       <div class="text-center">
         <div class="text-xl md:text-3xl font-heading italic text-white">5</div>
-        <div class="text-white/50 font-body font-light text-xs mt-0.5">eigene Brands</div>
+        <div class="text-white/70 font-body font-light text-xs mt-0.5">eigene Brands</div>
       </div>
     </div>
   </div>
@@ -885,7 +941,7 @@
         <h2 class="text-3xl md:text-4xl font-heading italic text-white tracking-tight leading-[0.9] mb-5">
           Agenturen kosten dich mehr als nur Geld
         </h2>
-        <p class="font-body font-light text-white/55 text-sm leading-[1.75]">
+        <p class="font-body font-light text-white/75 text-sm leading-[1.75]">
           Das klassische Modell ist designed, dich abhängig zu halten.<br>
           Das ist Absicht. Das ist Kalkül.
         </p>
@@ -897,7 +953,7 @@
         <h2 class="text-3xl md:text-4xl font-heading italic text-white tracking-tight leading-[0.9] mb-5">
           Du zahlst — und baust nichts auf
         </h2>
-        <p class="font-body font-light text-white/55 text-sm leading-[1.75]">
+        <p class="font-body font-light text-white/75 text-sm leading-[1.75]">
           2.500&nbsp;€ im Monat, jeden Monat. Keine Skills inhouse.<br>
           Keine Kontrolle. Kein Asset. Und falls die Agentur kündigt?<br>
           Startest du von null.
@@ -929,7 +985,7 @@
         <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-4 leading-tight">
           Wöchentliche 1:1 Live-Calls — direkt mit mir
         </h3>
-        <p class="font-body font-light text-white/60 text-sm leading-[1.75] mb-8 max-w-sm">
+        <p class="font-body font-light text-white/75 text-sm leading-[1.75] mb-8 max-w-sm">
           Du bringst deine Kampagnen, ich gebe dir Feedback in Echtzeit. Direkt. Persönlich. Das ist der Unterschied zwischen Lernen und Umsetzen.
         </p>
         <a href="#kontakt" class="btn-glass liquid-glass-strong rounded-full px-6 py-3 text-white font-body font-medium text-sm inline-flex items-center gap-2 cursor-pointer">
@@ -947,7 +1003,7 @@
                 <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
               </svg>
             </div>
-            <p class="font-body text-white/30 text-xs uppercase tracking-widest">1:1 Live Sessions</p>
+            <p class="font-body text-white/70 text-xs uppercase tracking-widest">1:1 Live Sessions</p>
           </div>
         </div>
       </div>
@@ -959,7 +1015,7 @@
         <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-4 leading-tight">
           Komplette Videobibliothek für alle Plattformen
         </h3>
-        <p class="font-body font-light text-white/60 text-sm leading-[1.75] mb-8 max-w-sm">
+        <p class="font-body font-light text-white/75 text-sm leading-[1.75] mb-8 max-w-sm">
           Meta, Google & TikTok Ads. Schritt-für-Schritt, nicht theoretisch. Jede Taktik habe ich selbst in mindestens einer Branche getestet und optimiert.
         </p>
         <a href="#kontakt" class="btn-glass liquid-glass-strong rounded-full px-6 py-3 text-white font-body font-medium text-sm inline-flex items-center gap-2 cursor-pointer">
@@ -1002,7 +1058,7 @@
             </svg>
           </div>
           <h3 class="text-lg font-heading italic text-white mb-2">90 Tage. Nicht 9 Monate</h3>
-          <p class="text-white/60 font-body font-light text-sm leading-[1.7]">Strukturierter Lernpfad vom ersten Setup bis zur eigenständigen Optimierung.</p>
+          <p class="text-white/75 font-body font-light text-sm leading-[1.7]">Strukturierter Lernpfad vom ersten Setup bis zur eigenständigen Optimierung.</p>
         </div>
       </div>
 
@@ -1017,7 +1073,7 @@
             </svg>
           </div>
           <h3 class="text-lg font-heading italic text-white mb-2">Founder-Perspektive</h3>
-          <p class="text-white/60 font-body font-light text-sm leading-[1.7]">Ich bin selbst Founder. Ich weiß, was auf dem Spiel steht — und was Agentur-Bullshit ist.</p>
+          <p class="text-white/75 font-body font-light text-sm leading-[1.7]">Ich bin selbst Founder. Ich weiß, was auf dem Spiel steht — und was Agentur-Bullshit ist.</p>
         </div>
       </div>
 
@@ -1031,7 +1087,7 @@
             </svg>
           </div>
           <h3 class="text-lg font-heading italic text-white mb-2">Exit-Value steigern</h3>
-          <p class="text-white/60 font-body font-light text-sm leading-[1.7]">Interne Kompetenz ist ein Asset. Investoren kaufen keine Agenturabhängigkeit.</p>
+          <p class="text-white/75 font-body font-light text-sm leading-[1.7]">Interne Kompetenz ist ein Asset. Investoren kaufen keine Agenturabhängigkeit.</p>
         </div>
       </div>
 
@@ -1044,7 +1100,7 @@
             </svg>
           </div>
           <h3 class="text-lg font-heading italic text-white mb-2">ROI nach 5 Monaten</h3>
-          <p class="text-white/60 font-body font-light text-sm leading-[1.7]">Die Investition amortisiert sich. Danach sparst du jeden Monat — für immer.</p>
+          <p class="text-white/75 font-body font-light text-sm leading-[1.7]">Die Investition amortisiert sich. Danach sparst du jeden Monat — für immer.</p>
         </div>
       </div>
 
@@ -1066,13 +1122,13 @@
         Expertise, die<br>Investment-Runden entscheidet
       </h2>
       <div class="space-y-5">
-        <p class="font-body font-light text-white/60 text-sm leading-[1.75]">
+        <p class="font-body font-light text-white/75 text-sm leading-[1.75]">
           Ich bin selbst Founder. Ich habe Shops von Null aufgebaut, eigene Internationale Marken Skaliert, digitale Produkte entwickelt und über 7 Jahre lang erfolgreich verkauft — und dabei alles selbst bezahlt, getestet und optimiert.
         </p>
-        <p class="font-body font-light text-white/60 text-sm leading-[1.75]">
+        <p class="font-body font-light text-white/75 text-sm leading-[1.75]">
           Über 150 Unternehmen habe ich seitdem beraten. Aus fast jeder Branche. Das gibt mir einen Vorteil, den eine klassische Fließband-Agentur nie hat: Ich erkenne Muster. Ich sehe in zehn Minuten, wo Geld verbrennt — weil ich diesen Fehler schon bei zwanzig anderen Startups gesehen habe.
         </p>
-        <p class="font-body font-light text-white/60 text-sm leading-[1.75]">
+        <p class="font-body font-light text-white/75 text-sm leading-[1.75]">
           Sieben Jahre echte Performance-Praxis. Aus eigener Tasche bezahlt, getestet, optimiert — plus das, was man nur lernt, wenn man selbst im Risiko sitzt.
         </p>
       </div>
@@ -1087,19 +1143,19 @@
       <div class="alex-cards absolute left-0 right-0 grid grid-cols-2 gap-2 px-3" style="bottom: 0;">
         <div class="reveal-scale liquid-glass-strong rounded-xl p-3 text-center relative">
           <div class="text-xl font-heading italic text-white mb-0.5">7+</div>
-          <div class="text-white/60 font-body font-light text-xs">Jahre im Marketing</div>
+          <div class="text-white/75 font-body font-light text-xs">Jahre im Marketing</div>
         </div>
         <div class="reveal-scale liquid-glass-strong rounded-xl p-3 text-center relative" style="transition-delay:0.12s">
           <div class="text-xl font-heading italic text-white mb-0.5">150+</div>
-          <div class="text-white/60 font-body font-light text-xs">Projekte abgeschlossen</div>
+          <div class="text-white/75 font-body font-light text-xs">Projekte abgeschlossen</div>
         </div>
         <div class="reveal-scale liquid-glass-strong rounded-xl p-3 text-center relative" style="transition-delay:0.24s">
           <div class="text-lg font-heading italic text-white mb-0.5">Mehrere</div>
-          <div class="text-white/60 font-body font-light text-xs">Investment-Runden entschieden</div>
+          <div class="text-white/75 font-body font-light text-xs">Investment-Runden entschieden</div>
         </div>
         <div class="reveal-scale liquid-glass-strong rounded-xl p-3 text-center relative" style="transition-delay:0.36s">
           <div class="text-xl font-heading italic text-white mb-0.5">7-stellig</div>
-          <div class="text-white/60 font-body font-light text-xs">Adspend betreut</div>
+          <div class="text-white/75 font-body font-light text-xs">Adspend betreut</div>
         </div>
       </div>
     </div>
@@ -1128,23 +1184,23 @@
         <div class="divide-y divide-white/5">
           <div class="flex items-start gap-3 py-3.5">
             <span class="problem-x mt-0.5 flex-shrink-0">✗</span>
-            <span class="font-body font-light text-white/60 text-sm">Du weißt nicht, ob die Agentur wirklich liefert</span>
+            <span class="font-body font-light text-white/75 text-sm">Du weißt nicht, ob die Agentur wirklich liefert</span>
           </div>
           <div class="flex items-start gap-3 py-3.5">
             <span class="problem-x mt-0.5 flex-shrink-0">✗</span>
-            <span class="font-body font-light text-white/60 text-sm">2.500&nbsp;€/Monat, ohne Lerneffekt</span>
+            <span class="font-body font-light text-white/75 text-sm">2.500&nbsp;€/Monat, ohne Lerneffekt</span>
           </div>
           <div class="flex items-start gap-3 py-3.5">
             <span class="problem-x mt-0.5 flex-shrink-0">✗</span>
-            <span class="font-body font-light text-white/60 text-sm">Reaktionszeit: Tage bis Wochen</span>
+            <span class="font-body font-light text-white/75 text-sm">Reaktionszeit: Tage bis Wochen</span>
           </div>
           <div class="flex items-start gap-3 py-3.5">
             <span class="problem-x mt-0.5 flex-shrink-0">✗</span>
-            <span class="font-body font-light text-white/60 text-sm">Investoren sehen externe Abhängigkeit</span>
+            <span class="font-body font-light text-white/75 text-sm">Investoren sehen externe Abhängigkeit</span>
           </div>
           <div class="flex items-start gap-3 py-3.5">
             <span class="problem-x mt-0.5 flex-shrink-0">✗</span>
-            <span class="font-body font-light text-white/60 text-sm">Du hoffst, dass andere liefern</span>
+            <span class="font-body font-light text-white/75 text-sm">Du hoffst, dass andere liefern</span>
           </div>
         </div>
       </div>
@@ -1198,7 +1254,7 @@
     <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9] mb-4">
       Wie viel kostet dich die Agentur wirklich?
     </h2>
-    <p class="font-body font-light text-white/60 text-sm mb-14 leading-[1.75]">
+    <p class="font-body font-light text-white/75 text-sm mb-14 leading-[1.75]">
       Stell ein, wie lange du Ads schalten willst.
     </p>
 
@@ -1211,33 +1267,33 @@
           <span class="font-body font-medium text-white text-sm">
             Zeitraum: <span id="roi-months-label">20</span> Monate
           </span>
-          <span class="font-body text-white/40 text-xs">6 – 36 Monate</span>
+          <span class="font-body text-white/70 text-xs">6 – 36 Monate</span>
         </div>
-        <input type="range" id="roi-slider" min="6" max="36" value="20" />
+        <input type="range" id="roi-slider" min="6" max="36" value="20" aria-label="Zeitraum in Monaten" aria-valuetext="20 Monate" />
       </div>
 
       <!-- Numbers Row -->
       <div class="grid grid-cols-2 gap-4 md:gap-8 mb-8">
         <div>
-          <p class="text-white/40 font-body text-xs uppercase tracking-widest mb-2">Agentur-Modell</p>
+          <p class="text-white/70 font-body text-xs uppercase tracking-widest mb-2">Agentur-Modell</p>
           <p id="roi-agency-val" class="text-2xl md:text-4xl lg:text-5xl font-heading italic" style="color: rgba(239,68,68,0.9); white-space: nowrap">50.000&nbsp;€</p>
-          <p id="roi-agency-sub" class="text-white/40 font-body text-xs mt-1">20 × 2.500 €/Monat</p>
+          <p id="roi-agency-sub" class="text-white/70 font-body text-xs mt-1">20 × 2.500 €/Monat</p>
         </div>
         <div>
-          <p class="text-white/40 font-body text-xs uppercase tracking-widest mb-2">StartupAds Ausbildung</p>
+          <p class="text-white/70 font-body text-xs uppercase tracking-widest mb-2">StartupAds Ausbildung</p>
           <p class="text-2xl md:text-4xl lg:text-5xl font-heading italic text-white" style="white-space: nowrap">12.000&nbsp;€</p>
-          <p class="text-white/40 font-body text-xs mt-1">Einmalige Investition</p>
+          <p class="text-white/70 font-body text-xs mt-1">Einmalige Investition</p>
         </div>
       </div>
 
       <!-- Result Row -->
       <div class="grid grid-cols-2 gap-4 md:gap-8 pt-8 border-t border-white/10">
         <div>
-          <p class="text-white/60 font-body text-xs md:text-sm mb-2">Deine Ersparnis nach <span id="roi-savings-months">20</span> Monaten</p>
+          <p class="text-white/75 font-body text-xs md:text-sm mb-2">Deine Ersparnis nach <span id="roi-savings-months">20</span> Monaten</p>
           <p id="roi-savings-val" class="text-2xl md:text-4xl lg:text-5xl font-heading italic" style="color: rgba(74,222,128,0.9); white-space: nowrap; text-shadow: 0 0 22px rgba(74,222,128,0.45), 0 0 44px rgba(74,222,128,0.18)">+38.000&nbsp;€</p>
         </div>
         <div>
-          <p class="text-white/60 font-body text-xs md:text-sm mb-2">Break-Even</p>
+          <p class="text-white/75 font-body text-xs md:text-sm mb-2">Break-Even</p>
           <p class="text-2xl md:text-4xl lg:text-5xl font-heading italic text-white">5 Monate</p>
         </div>
       </div>
@@ -1269,7 +1325,7 @@
           <img src="https://framerusercontent.com/images/v3eSqxxhMdN5FavSzj6RcndPjE.png?width=100" alt="Sebastian" loading="lazy" class="w-9 h-9 rounded-full object-cover flex-shrink-0" style="object-position:47.9% 38.9%" />
           <div>
             <p class="text-white font-body font-medium text-sm">Sebastian</p>
-            <p class="text-white/50 font-body font-light text-xs">Founder, Vansite</p>
+            <p class="text-white/70 font-body font-light text-xs">Founder, Vansite</p>
           </div>
         </div>
       </div>
@@ -1282,7 +1338,7 @@
           <img src="https://framerusercontent.com/images/S1Eq5hpeHn9xlsyAZ73oflJAKc.webp?width=100" alt="Leo & Carla" loading="lazy" class="w-9 h-9 rounded-full object-cover flex-shrink-0" />
           <div>
             <p class="text-white font-body font-medium text-sm">Leo &amp; Carla</p>
-            <p class="text-white/50 font-body font-light text-xs">Founder, PURE U</p>
+            <p class="text-white/70 font-body font-light text-xs">Founder, PURE U</p>
           </div>
         </div>
       </div>
@@ -1295,7 +1351,7 @@
           <img src="https://framerusercontent.com/images/xENDxFCGW2pL9yflPAVXmZEmOMY.webp?width=100" alt="Felix" loading="lazy" class="w-9 h-9 rounded-full object-cover flex-shrink-0" />
           <div>
             <p class="text-white font-body font-medium text-sm">Felix</p>
-            <p class="text-white/50 font-body font-light text-xs">Founder, Curawork</p>
+            <p class="text-white/70 font-body font-light text-xs">Founder, Curawork</p>
           </div>
         </div>
       </div>
@@ -1323,16 +1379,16 @@
       <div class="fade-in liquid-glass rounded-2xl p-8" style="box-shadow: 0 0 50px rgba(180,0,0,0.08), inset 0 1px 1px rgba(255,80,80,0.06);">
         <p class="font-body text-xs uppercase tracking-widest mb-5" style="color: rgba(220,80,80,0.7)">Agentur-Modell</p>
         <p class="text-3xl md:text-4xl lg:text-5xl font-heading italic mb-1" style="color: rgba(239,68,68,0.9); white-space: nowrap">2.500&nbsp;€&nbsp;/ Monat</p>
-        <p class="text-white/40 font-body text-xs mb-8">Dauerhaft · Ohne Ende</p>
+        <p class="text-white/70 font-body text-xs mb-8">Dauerhaft · Ohne Ende</p>
         <ul class="space-y-3 mb-8">
-          <li class="flex items-start gap-2.5 text-white/60 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Abhängigkeit von Dritten</li>
-          <li class="flex items-start gap-2.5 text-white/60 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Kein interner Know-how-Aufbau</li>
-          <li class="flex items-start gap-2.5 text-white/60 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Laufende Kosten ohne Ende</li>
-          <li class="flex items-start gap-2.5 text-white/60 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Reduziert deinen Exit-Value</li>
-          <li class="flex items-start gap-2.5 text-white/60 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Null Ownership, null Transparenz</li>
+          <li class="flex items-start gap-2.5 text-white/75 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Abhängigkeit von Dritten</li>
+          <li class="flex items-start gap-2.5 text-white/75 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Kein interner Know-how-Aufbau</li>
+          <li class="flex items-start gap-2.5 text-white/75 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Laufende Kosten ohne Ende</li>
+          <li class="flex items-start gap-2.5 text-white/75 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Reduziert deinen Exit-Value</li>
+          <li class="flex items-start gap-2.5 text-white/75 font-body font-light text-sm"><span class="problem-x mt-0.5 flex-shrink-0">✗</span>Null Ownership, null Transparenz</li>
         </ul>
         <div class="rounded-xl p-4" style="background: rgba(220,38,38,0.07); border: 1px solid rgba(220,38,38,0.15);">
-          <p class="text-white/40 font-body text-xs mb-1.5">Kosten nach 12 Monaten</p>
+          <p class="text-white/70 font-body text-xs mb-1.5">Kosten nach 12 Monaten</p>
           <p class="text-2xl font-heading italic" style="color: rgba(239,68,68,0.9)">30.000 €</p>
         </div>
       </div>
@@ -1344,7 +1400,7 @@
           <span class="rounded-full px-2 py-0.5 text-xs font-body font-semibold leading-none" style="background: rgba(22,163,74,0.15); border: 1px solid rgba(22,163,74,0.3); color: rgba(74,222,128,1)">Empfohlen</span>
         </div>
         <p class="text-3xl md:text-4xl lg:text-5xl font-heading italic text-white mb-1" style="white-space: nowrap">12.000&nbsp;€</p>
-        <p class="text-white/40 font-body text-xs mb-8">Einmalig · Für immer</p>
+        <p class="text-white/70 font-body text-xs mb-8">Einmalig · Für immer</p>
         <ul class="space-y-3 mb-6">
           <li class="flex items-start gap-2.5 text-white font-body font-light text-sm"><span class="solution-check mt-0.5 flex-shrink-0">✓</span>Komplette Videobibliothek (Meta, Google, TikTok)</li>
           <li class="flex items-start gap-2.5 text-white font-body font-light text-sm"><span class="solution-check mt-0.5 flex-shrink-0">✓</span>Wöchentliche Live 1:1 Sessions — direkt mit mir</li>
@@ -1361,9 +1417,9 @@
           </svg>
         </a>
         <div class="rounded-xl p-4" style="background: rgba(22,163,74,0.07); border: 1px solid rgba(22,163,74,0.18);">
-          <p class="text-white/40 font-body text-xs mb-1.5">Deine Ersparnis nach 12 Monaten</p>
+          <p class="text-white/70 font-body text-xs mb-1.5">Deine Ersparnis nach 12 Monaten</p>
           <p class="text-2xl font-heading italic" style="color: rgba(74,222,128,0.9)">+18.000 €</p>
-          <p class="text-white/40 text-xs font-body mt-1">+Unbezahlbare Skills inhouse</p>
+          <p class="text-white/70 text-xs font-body mt-1">+Unbezahlbare Skills inhouse</p>
         </div>
       </div>
 
@@ -1387,62 +1443,62 @@
     <div class="liquid-glass rounded-2xl overflow-hidden">
 
       <div class="border-b border-white/5">
-        <button class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+        <button id="faq-trigger-1" class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left" aria-expanded="false" aria-controls="faq-content-1">
           <span class="font-body font-medium text-white text-sm pr-4">Kann ich als Startup Founder Performance Marketing wirklich selbst lernen?</span>
-          <svg class="accordion-chevron w-4 h-4 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="accordion-content">
-          <p class="px-6 pb-5 font-body font-light text-white/60 text-sm leading-[1.75]">Ja — und du solltest es. Founder, die ihr eigenes Performance Marketing verstehen, treffen bessere Entscheidungen, sparen langfristig Agenturkosten und bauen einen Wettbewerbsvorteil auf, der im Unternehmen bleibt. Das Programm ist auf genau diesen Founder zugeschnitten: zeitsparend, praxisnah, ohne unnötiges Theorie-Aufblähen.</p>
+        <div id="faq-content-1" class="accordion-content" role="region" aria-labelledby="faq-trigger-1">
+          <p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Ja — und du solltest es. Founder, die ihr eigenes Performance Marketing verstehen, treffen bessere Entscheidungen, sparen langfristig Agenturkosten und bauen einen Wettbewerbsvorteil auf, der im Unternehmen bleibt. Das Programm ist auf genau diesen Founder zugeschnitten: zeitsparend, praxisnah, ohne unnötiges Theorie-Aufblähen.</p>
         </div>
       </div>
 
       <div class="border-b border-white/5">
-        <button class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+        <button id="faq-trigger-2" class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left" aria-expanded="false" aria-controls="faq-content-2">
           <span class="font-body font-medium text-white text-sm pr-4">Ist die Marketing Ausbildung auch für Einsteiger ohne Vorkenntnisse geeignet?</span>
-          <svg class="accordion-chevron w-4 h-4 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="accordion-content">
-          <p class="px-6 pb-5 font-body font-light text-white/60 text-sm leading-[1.75]">Ja, vollständig. Die Ausbildung ist so aufgebaut, dass Einsteiger ohne Vorkenntnisse sofort starten können. Wer bereits Grundlagen hat, skaliert schneller — aber beide kommen ans Ziel. Es geht nicht darum, wie viel du weißt, sondern was du damit anfängst.</p>
+        <div id="faq-content-2" class="accordion-content" role="region" aria-labelledby="faq-trigger-2">
+          <p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Ja, vollständig. Die Ausbildung ist so aufgebaut, dass Einsteiger ohne Vorkenntnisse sofort starten können. Wer bereits Grundlagen hat, skaliert schneller — aber beide kommen ans Ziel. Es geht nicht darum, wie viel du weißt, sondern was du damit anfängst.</p>
         </div>
       </div>
 
       <div class="border-b border-white/5">
-        <button class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+        <button id="faq-trigger-3" class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left" aria-expanded="false" aria-controls="faq-content-3">
           <span class="font-body font-medium text-white text-sm pr-4">Was unterscheidet StartupAds von anderen Performance Marketing Kursen?</span>
-          <svg class="accordion-chevron w-4 h-4 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="accordion-content">
-          <p class="px-6 pb-5 font-body font-light text-white/60 text-sm leading-[1.75]">Der Hauptunterschied: wöchentliches 1:1-Feedback auf deine echten Kampagnen — nicht auf Beispiele aus einem Kurs. Der Trainer ist selbst aktiver Founder, der das Wissen täglich in eigenen Projekten einsetzt. Kein veraltetes Kurswissen, kein generisches Framework — sondern Feedback auf das, was bei dir gerade live läuft.</p>
+        <div id="faq-content-3" class="accordion-content" role="region" aria-labelledby="faq-trigger-3">
+          <p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Der Hauptunterschied: wöchentliches 1:1-Feedback auf deine echten Kampagnen — nicht auf Beispiele aus einem Kurs. Der Trainer ist selbst aktiver Founder, der das Wissen täglich in eigenen Projekten einsetzt. Kein veraltetes Kurswissen, kein generisches Framework — sondern Feedback auf das, was bei dir gerade live läuft.</p>
         </div>
       </div>
 
       <div class="border-b border-white/5">
-        <button class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+        <button id="faq-trigger-4" class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left" aria-expanded="false" aria-controls="faq-content-4">
           <span class="font-body font-medium text-white text-sm pr-4">Wie stelle ich sicher, dass die Ausbildung zu meinem Startup passt?</span>
-          <svg class="accordion-chevron w-4 h-4 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="accordion-content">
-          <p class="px-6 pb-5 font-body font-light text-white/60 text-sm leading-[1.75]">Dafür gibt es das kostenlose Erstgespräch. Es werden mehr Anfragen abgelehnt als angenommen — nicht weil die Hürde hoch ist, sondern weil die Plätze begrenzt sind und eine Zusammenarbeit nur Sinn macht, wenn ein echter Mehrwert entsteht. Das Gespräch klärt das offen und ehrlich.</p>
+        <div id="faq-content-4" class="accordion-content" role="region" aria-labelledby="faq-trigger-4">
+          <p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Dafür gibt es das kostenlose Erstgespräch. Es werden mehr Anfragen abgelehnt als angenommen — nicht weil die Hürde hoch ist, sondern weil die Plätze begrenzt sind und eine Zusammenarbeit nur Sinn macht, wenn ein echter Mehrwert entsteht. Das Gespräch klärt das offen und ehrlich.</p>
         </div>
       </div>
 
       <div class="border-b border-white/5">
-        <button class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+        <button id="faq-trigger-5" class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left" aria-expanded="false" aria-controls="faq-content-5">
           <span class="font-body font-medium text-white text-sm pr-4">Was kostet die Performance Marketing Ausbildung — und gibt es Ratenzahlung?</span>
-          <svg class="accordion-chevron w-4 h-4 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="accordion-content">
-          <p class="px-6 pb-5 font-body font-light text-white/60 text-sm leading-[1.75]">Die Investition liegt bei 12.000 € — einmalig, kein Abo. Im Vergleich: eine durchschnittliche Marketing-Agentur kostet 2.500 € pro Monat, also 30.000 € pro Jahr — ohne Wissenstransfer. Ratenzahlung ist möglich und wird im Erstgespräch besprochen.</p>
+        <div id="faq-content-5" class="accordion-content" role="region" aria-labelledby="faq-trigger-5">
+          <p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Die Investition liegt bei 12.000 € — einmalig, kein Abo. Im Vergleich: eine durchschnittliche Marketing-Agentur kostet 2.500 € pro Monat, also 30.000 € pro Jahr — ohne Wissenstransfer. Ratenzahlung ist möglich und wird im Erstgespräch besprochen.</p>
         </div>
       </div>
 
       <div>
-        <button class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left focus:outline-none">
+        <button id="faq-trigger-6" class="accordion-trigger w-full flex items-center justify-between px-6 py-5 text-left" aria-expanded="false" aria-controls="faq-content-6">
           <span class="font-body font-medium text-white text-sm pr-4">Für welche Branchen ist die Startup Marketing Ausbildung geeignet?</span>
-          <svg class="accordion-chevron w-4 h-4 text-white/40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
-        <div class="accordion-content">
-          <p class="px-6 pb-5 font-body font-light text-white/60 text-sm leading-[1.75]">Für alle. Die Ausbildung hat Startups aus SaaS, E-Commerce, Physical Products, B2B, Fintech und Healthtech erfolgreich begleitet. Das Grundprinzip — Daten verstehen, Kampagnen testen, skalieren was funktioniert — gilt branchenübergreifend. Was sich ändert, sind die Taktiken. Die werden individuell für dein Modell erarbeitet.</p>
+        <div id="faq-content-6" class="accordion-content" role="region" aria-labelledby="faq-trigger-6">
+          <p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Für alle. Die Ausbildung hat Startups aus SaaS, E-Commerce, Physical Products, B2B, Fintech und Healthtech erfolgreich begleitet. Das Grundprinzip — Daten verstehen, Kampagnen testen, skalieren was funktioniert — gilt branchenübergreifend. Was sich ändert, sind die Taktiken. Die werden individuell für dein Modell erarbeitet.</p>
         </div>
       </div>
 
@@ -1471,7 +1527,7 @@
       <span class="blur-text block text-4xl md:text-6xl lg:text-7xl font-heading italic text-white tracking-tight leading-[0.9]">etwas ändern muss</span>
     </h2>
 
-    <p class="font-body font-light text-white/60 text-sm max-w-lg mx-auto mb-10 leading-[1.75]">
+    <p class="font-body font-light text-white/75 text-sm max-w-lg mx-auto mb-10 leading-[1.75]">
       Die Frage ist nur: Möchtest du dafür zahlen, dass jemand anderes die Kontrolle hat,
       oder dir das Wissen für immer in dein Unternehmen holen?<br><br>
       Bewirb dich jetzt und wenn alles passt, dann sehen wir uns vielleicht bald schon zu einem
@@ -1489,11 +1545,11 @@
       <div id="msq-step-wrap"></div>
 
       <!-- Back Button -->
-      <button id="msq-back" class="font-body text-xs text-white/30 hover:text-white/50 mt-5 hidden" style="transition:color 150ms ease;background:none;border:none;padding:0;cursor:pointer;">← Zurück</button>
+      <button id="msq-back" class="font-body text-xs text-white/70 hover:text-white/70 mt-5 hidden" style="transition:color 150ms ease;background:none;border:none;padding:0;cursor:pointer;">← Zurück</button>
 
     </div>
     </div>
-    <p class="text-white/40 font-body text-xs mt-5">Kostenlos · Unverbindlich · 30 Minuten · Max. 3 neue Plätze pro Monat</p>
+    <p class="text-white/70 font-body text-xs mt-5">Kostenlos · Unverbindlich · 30 Minuten · Max. 3 neue Plätze pro Monat</p>
 
   </div>
 </section>
@@ -1504,12 +1560,12 @@
      ============================================================ -->
 <footer class="px-6 md:px-16 lg:px-24 pb-12">
   <div class="max-w-6xl mx-auto pt-8 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4">
-    <p class="text-white/40 text-xs font-body">© 2026 StartupAds · startupads.de</p>
+    <p class="text-white/70 text-xs font-body">© 2026 StartupAds · startupads.de</p>
     <div class="flex gap-6">
-      <a href="/impressum.html" class="text-white/40 text-xs font-body hover:text-white/70 transition-colors">Impressum</a>
-      <a href="/datenschutz.html" class="text-white/40 text-xs font-body hover:text-white/70 transition-colors">Datenschutz</a>
-      <button id="cb-reopen" onclick="window.__cbReopen && window.__cbReopen()" class="text-white/40 text-xs font-body hover:text-white/70 transition-colors bg-transparent border-none cursor-pointer p-0">Cookie-Einstellungen</button>
-      <a href="/impressum.html" class="text-white/40 text-xs font-body hover:text-white/70 transition-colors">Kontakt</a>
+      <a href="/impressum.html" class="text-white/70 text-xs font-body hover:text-white/70 transition-colors">Impressum</a>
+      <a href="/datenschutz.html" class="text-white/70 text-xs font-body hover:text-white/70 transition-colors">Datenschutz</a>
+      <button id="cb-reopen" onclick="window.__cbReopen && window.__cbReopen()" class="text-white/70 text-xs font-body hover:text-white/70 transition-colors bg-transparent border-none cursor-pointer p-0">Cookie-Einstellungen</button>
+      <a href="/impressum.html" class="text-white/70 text-xs font-body hover:text-white/70 transition-colors">Kontakt</a>
     </div>
   </div>
 </footer>
@@ -1626,6 +1682,7 @@ function updateROI() {
 
   mLabel.textContent  = m;
   sMLabel.textContent = m;
+  slider.setAttribute('aria-valuetext', m + ' Monate');
   agencySubEl.textContent = m + ' × 2.500 €/Monat';
 
   animNum(agencyEl,  prevAgency,  agency,  '', ' €', 350);
@@ -1744,14 +1801,63 @@ document.querySelectorAll('.accordion-trigger').forEach(trigger => {
     const isOpen  = content.classList.contains('open');
 
     document.querySelectorAll('.accordion-content').forEach(c => c.classList.remove('open'));
-    document.querySelectorAll('.accordion-trigger').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.accordion-trigger').forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-expanded', 'false');
+    });
 
     if (!isOpen) {
       content.classList.add('open');
       trigger.classList.add('active');
+      trigger.setAttribute('aria-expanded', 'true');
     }
   });
 });
+
+// ---- MOBILE MENU ----
+(function() {
+  var toggle = document.getElementById('mobile-menu-toggle');
+  var menu = document.getElementById('mobile-menu');
+  var hamburger = document.getElementById('hamburger-icon');
+  var closeIcon = document.getElementById('close-icon');
+  var isOpen = false;
+
+  function openMenu() {
+    isOpen = true;
+    menu.style.display = '';
+    toggle.setAttribute('aria-expanded', 'true');
+    toggle.setAttribute('aria-label', 'Menü schließen');
+    hamburger.style.display = 'none';
+    closeIcon.style.display = '';
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeMenu() {
+    isOpen = false;
+    menu.style.display = 'none';
+    toggle.setAttribute('aria-expanded', 'false');
+    toggle.setAttribute('aria-label', 'Menü öffnen');
+    hamburger.style.display = '';
+    closeIcon.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+
+  toggle.addEventListener('click', function() {
+    if (isOpen) closeMenu(); else openMenu();
+  });
+
+  menu.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && isOpen) closeMenu();
+  });
+
+  window.addEventListener('resize', function() {
+    if (window.innerWidth >= 1024 && isOpen) closeMenu();
+  });
+})();
 </script>
 
 <script>
@@ -1983,7 +2089,7 @@ function renderStep(instant) {
 
   var ind = document.createElement('p');
   ind.className = 'font-body font-light';
-  ind.style.cssText = 'font-size:0.7rem;color:rgba(255,255,255,0.3);letter-spacing:0.12em;' +
+  ind.style.cssText = 'font-size:0.7rem;color:rgba(255,255,255,0.5);letter-spacing:0.12em;' +
     'text-transform:uppercase;margin-bottom:1rem;';
   ind.textContent = 'Schritt ' + stepNo + ' von ' + total;
   frag.appendChild(ind);
@@ -2152,8 +2258,9 @@ function renderContact() {
   var noteInput = document.createElement('textarea');
   noteInput.placeholder = 'Weitere Informationen / Anmerkungen (optional)';
   noteInput.id = 'msq-inp-note';
+  noteInput.setAttribute('aria-label', 'Weitere Informationen oder Anmerkungen (optional)');
   noteInput.rows = 3;
-  noteInput.className = 'liquid-glass rounded-2xl px-4 py-3 w-full font-body font-light text-white text-sm focus:outline-none';
+  noteInput.className = 'liquid-glass rounded-2xl px-4 py-3 w-full font-body font-light text-white text-sm';
   noteInput.style.cssText = 'background:transparent;color:white;box-sizing:border-box;resize:none;' +
     'border:1px solid transparent;transition:border-color 150ms ease;line-height:1.5;';
   noteWrap.appendChild(noteInput);
@@ -2214,7 +2321,8 @@ function makeInput(type, placeholder, id) {
   inp.type        = type;
   inp.placeholder = placeholder;
   inp.id          = id;
-  inp.className   = 'liquid-glass rounded-full px-4 py-3 w-full font-body font-light text-white text-sm focus:outline-none';
+  inp.setAttribute('aria-label', placeholder);
+  inp.className   = 'liquid-glass rounded-full px-4 py-3 w-full font-body font-light text-white text-sm';
   inp.style.cssText = 'background:transparent;color:white;box-sizing:border-box;' +
     'border:1px solid transparent;transition:border-color 150ms ease;';
   return inp;
@@ -2379,7 +2487,7 @@ renderStep(true);
           <button id="cb-reject-all" style="font-family:'Barlow',sans-serif;font-weight:400;font-size:0.8rem;letter-spacing:0.02em;color:rgba(255,255,255,0.65);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:9999px;padding:9px 22px;cursor:pointer;transition:transform 0.18s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">
             Nur notwendige
           </button>
-          <button id="cb-toggle-details" style="font-family:'Barlow',sans-serif;font-weight:400;font-size:0.75rem;color:rgba(255,255,255,0.38);background:none;border:none;padding:2px 0;cursor:pointer;text-align:center;transition:color 0.18s ease;" onmouseover="this.style.color='rgba(255,255,255,0.65)'" onmouseout="this.style.color='rgba(255,255,255,0.38)'">
+          <button id="cb-toggle-details" style="font-family:'Barlow',sans-serif;font-weight:400;font-size:0.75rem;color:rgba(255,255,255,0.55);background:none;border:none;padding:2px 0;cursor:pointer;text-align:center;transition:color 0.18s ease;" onmouseover="this.style.color='rgba(255,255,255,0.65)'" onmouseout="this.style.color='rgba(255,255,255,0.38)'">
             Details ↓
           </button>
         </div>
@@ -2393,10 +2501,10 @@ renderStep(true);
           <div style="display:flex;align-items:center;gap:16px;justify-content:space-between;">
             <div>
               <p style="font-family:'Barlow',sans-serif;font-size:0.82rem;font-weight:500;color:rgba(255,255,255,0.85);margin:0 0 2px;">Notwendig</p>
-              <p style="font-family:'Barlow',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.38);margin:0;line-height:1.5;">Session-Funktionalität, keine Tracking-Daten</p>
+              <p style="font-family:'Barlow',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.55);margin:0;line-height:1.5;">Session-Funktionalität, keine Tracking-Daten</p>
             </div>
             <label class="cb-toggle">
-              <input type="checkbox" id="cb-chk-essential" checked disabled>
+              <input type="checkbox" id="cb-chk-essential" checked disabled aria-label="Notwendige Cookies (immer aktiv)">
               <span class="cb-toggle-track"></span>
               <span class="cb-toggle-thumb"></span>
             </label>
@@ -2406,10 +2514,10 @@ renderStep(true);
           <div style="display:flex;align-items:center;gap:16px;justify-content:space-between;">
             <div>
               <p style="font-family:'Barlow',sans-serif;font-size:0.82rem;font-weight:500;color:rgba(255,255,255,0.85);margin:0 0 2px;">Marketing</p>
-              <p style="font-family:'Barlow',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.38);margin:0;line-height:1.5;">Meta Pixel &amp; Conversions API (Facebook)</p>
+              <p style="font-family:'Barlow',sans-serif;font-size:0.75rem;color:rgba(255,255,255,0.55);margin:0;line-height:1.5;">Meta Pixel &amp; Conversions API (Facebook)</p>
             </div>
             <label class="cb-toggle">
-              <input type="checkbox" id="cb-chk-marketing">
+              <input type="checkbox" id="cb-chk-marketing" aria-label="Marketing-Cookies aktivieren">
               <span class="cb-toggle-track"></span>
               <span class="cb-toggle-thumb"></span>
             </label>
@@ -2529,6 +2637,35 @@ renderStep(true);
 })();
 </script>
 <!-- ===== END COOKIE BANNER ===== -->
+
+<!-- ===== VIDEO PAUSE TOGGLE (WCAG 2.2.2) ===== -->
+<button id="pause-videos" aria-label="Videos pausieren" class="fixed bottom-4 left-4 z-50 liquid-glass rounded-full w-10 h-10 flex items-center justify-center cursor-pointer" style="transition: transform 0.18s cubic-bezier(0.16,1,0.3,1);">
+  <svg id="pause-icon" width="14" height="14" viewBox="0 0 24 24" fill="white" stroke="none">
+    <rect x="6" y="4" width="4" height="16" rx="1"/>
+    <rect x="14" y="4" width="4" height="16" rx="1"/>
+  </svg>
+  <svg id="play-icon" width="14" height="14" viewBox="0 0 24 24" fill="white" stroke="none" style="display:none">
+    <polygon points="6,4 20,12 6,20"/>
+  </svg>
+</button>
+<script>
+(function() {
+  var btn = document.getElementById('pause-videos');
+  var pauseIcon = document.getElementById('pause-icon');
+  var playIcon = document.getElementById('play-icon');
+  var paused = false;
+
+  btn.addEventListener('click', function() {
+    paused = !paused;
+    document.querySelectorAll('video').forEach(function(v) {
+      if (paused) v.pause(); else v.play().catch(function(){});
+    });
+    pauseIcon.style.display = paused ? 'none' : '';
+    playIcon.style.display = paused ? '' : 'none';
+    btn.setAttribute('aria-label', paused ? 'Videos abspielen' : 'Videos pausieren');
+  });
+})();
+</script>
 
 </body>
 </html>
