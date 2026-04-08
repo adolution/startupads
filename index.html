@@ -169,6 +169,7 @@
   }
   </script>
 
+  <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -181,7 +182,6 @@
       }
     }
   </script>
-  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest" defer></script>
 
   <!-- ===== META PIXEL (consent-gated — loaded by cookie-consent.js) ===== -->
@@ -239,10 +239,26 @@
       /* Spotlight (monochrome — NOT blue) */
       --spotlight-border: rgba(255,255,255,0.18);
       --spotlight-inner: rgba(255,255,255,0.04);
+
+      /* Type Scale */
+      --fs-display:  clamp(3.5rem, 9.5vw, 7rem);
+      --fs-h2:       clamp(2.75rem, 6.5vw, 5.5rem);
+      --fs-h2-md:    clamp(2.1rem, 4.8vw, 3.75rem);
+      --ls-heading:  -0.05em;
     }
 
     html { scroll-behavior: smooth; }
     body { font-family: var(--font-body); background: #000; }
+
+    /* ===== BOLD TYPE HELPERS ===== */
+    .t-h2 {
+      font-size: var(--fs-h2) !important;
+      letter-spacing: var(--ls-heading) !important;
+    }
+    .t-h2-md {
+      font-size: var(--fs-h2-md) !important;
+      letter-spacing: var(--ls-heading) !important;
+    }
 
     /* ===== LIQUID GLASS ===== */
     .liquid-glass {
@@ -311,6 +327,7 @@
       .alex-photo-wrapper { margin-top: -48px; padding-bottom: 52px !important; }
       .alex-cards { bottom: -16px !important; gap: 6px !important; padding-left: 6px !important; padding-right: 6px !important; }
       .alex-cards > div { padding: 6px 8px !important; }
+      .alex-cards .text-2xl { font-size: 1.05rem !important; }
       .alex-cards .text-xl { font-size: 0.95rem !important; }
       .alex-cards .text-lg { font-size: 0.85rem !important; }
       .alex-cards .text-xs { font-size: 0.65rem !important; }
@@ -505,7 +522,7 @@
       position: fixed;
       bottom: 0; left: 0; right: 0;
       z-index: 9999;
-      padding: 0 16px 16px;
+      padding: 0 12px 12px;
       display: flex;
       justify-content: center;
       pointer-events: none;
@@ -520,12 +537,12 @@
     }
     #cookie-banner-inner {
       width: 100%;
-      max-width: 780px;
-      background: rgba(12,12,12,0.88);
+      max-width: 900px;
+      background: rgba(12,12,12,0.92);
       backdrop-filter: blur(40px);
       -webkit-backdrop-filter: blur(40px);
-      border-radius: 18px;
-      padding: 24px 28px;
+      border-radius: 12px;
+      padding: 12px 20px;
       position: relative;
       overflow: hidden;
       box-shadow: 0 -2px 40px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.09), inset 0 1px 0 rgba(255,255,255,0.13);
@@ -534,7 +551,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      border-radius: 18px;
+      border-radius: 12px;
       padding: 1px;
       background: linear-gradient(160deg, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.04) 50%, rgba(255,255,255,0.1) 100%);
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -578,8 +595,8 @@
     }
     .cb-details-panel.open { max-height: 300px; }
     @media (min-width: 640px) {
-      #cookie-banner { padding: 0 24px 24px; }
-      #cookie-banner-inner { padding: 28px 36px; }
+      #cookie-banner { padding: 0 16px 16px; }
+      #cookie-banner-inner { padding: 12px 24px; }
     }
 
     /* ===== ARROW ICON ===== */
@@ -894,11 +911,11 @@
     id="vid-hero"
     src="brand_assets/1774160847209081.MP4"
     autoplay loop muted playsinline preload="metadata"
-    style="filter: brightness(0.65); object-position: center 30%;"
+    style="filter: brightness(0.45); object-position: center 30%;"
   ></video>
 
   <!-- Overlays -->
-  <div class="absolute inset-0 bg-black/10 z-[2] pointer-events-none"></div>
+  <div class="absolute inset-0 bg-black/30 z-[2] pointer-events-none"></div>
   <div class="absolute bottom-0 left-0 right-0 z-[2] pointer-events-none" style="height:500px;background:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,0.55) 45%,#000 100%)"></div>
 
   <!-- Content -->
@@ -911,11 +928,11 @@
 
     <!-- Heading (BlurText) -->
     <h1 class="max-w-4xl mx-auto mb-7" style="letter-spacing:clamp(-2px,-0.05em,-4px)">
-      <span class="blur-text block font-heading italic text-white leading-[0.88]" style="font-size:clamp(2.4rem,8vw,5.5rem)">Dein Marketing gehört inhouse</span>
+      <span class="blur-text block font-heading italic text-white leading-[0.88]" style="font-size:var(--fs-display)">Dein Marketing gehört inhouse</span>
     </h1>
 
     <!-- Subtext -->
-    <p class="fade-in font-body font-light text-white/75 text-sm md:text-base max-w-md mx-auto mb-10 leading-[1.75]" style="transition-delay:0.5s">
+    <p class="fade-in font-body font-light text-white/75 text-base max-w-md mx-auto mb-10 leading-[1.75]" style="transition-delay:0.5s">
       In 90 Tagen baust du dir die Marketing-Kompetenz auf,
       für die andere Startups dauerhaft 2.500&nbsp;€ im Monat verbrennen.
       Ich zeige dir exakt wie — weil ich selbst da war.
@@ -933,31 +950,41 @@
   </div>
 
   <!-- Stats Bar -->
-  <div class="absolute bottom-0 left-0 right-0 z-10 pb-8">
-    <div class="grid grid-cols-2 md:flex md:items-center md:justify-center gap-y-5 md:gap-12 px-8 md:px-6">
-      <div class="text-center">
-        <div class="text-xl md:text-3xl font-heading italic text-white">7+</div>
-        <div class="text-white/70 font-body font-light text-xs mt-0.5">Jahre Performance Marketing</div>
-      </div>
-      <div class="hidden md:block w-px h-8 bg-white/10"></div>
-      <div class="text-center">
-        <div class="text-xl md:text-3xl font-heading italic text-white">150+</div>
-        <div class="text-white/70 font-body font-light text-xs mt-0.5">beratene Unternehmen</div>
-      </div>
-      <div class="hidden md:block w-px h-8 bg-white/10"></div>
-      <div class="text-center">
-        <div class="text-xl md:text-3xl font-heading italic text-white">Mehrere</div>
-        <div class="text-white/70 font-body font-light text-xs mt-0.5">Investment-Runden</div>
-      </div>
-      <div class="hidden md:block w-px h-8 bg-white/10"></div>
-      <div class="text-center">
-        <div class="text-xl md:text-3xl font-heading italic text-white">5</div>
-        <div class="text-white/70 font-body font-light text-xs mt-0.5">eigene Brands</div>
-      </div>
-    </div>
+  <div class="absolute bottom-0 left-0 right-0 z-10 pb-10 px-6">
+    <p class="text-center font-body font-light text-white/50 text-xs md:text-sm tracking-wide max-w-xl mx-auto leading-relaxed">
+      <span class="text-white/80 font-medium">7+ Jahre</span> Performance Marketing ·
+      <span class="text-white/80 font-medium">150+ Unternehmen</span> beraten ·
+      <span class="text-white/80 font-medium">Mehrere Investment-Runden</span> entschieden ·
+      <span class="text-white/80 font-medium">5 eigene Brands</span> aufgebaut
+    </p>
   </div>
 </section>
 
+
+<!-- ============================================================
+     SOCIAL PROOF STRIP — After Hero
+     ============================================================ -->
+<section class="relative py-10 md:py-14 px-6 md:px-16 lg:px-24" style="background:#000;">
+  <div class="max-w-3xl mx-auto">
+    <div class="fade-in flex flex-col sm:flex-row items-center gap-5 sm:gap-8">
+      <!-- Photo -->
+      <img src="brand_assets/robin profile.jpeg" alt="Robin — 404 & Atlas" loading="lazy"
+           class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover flex-shrink-0"
+           style="border: 1.5px solid rgba(255,255,255,0.12);" />
+      <!-- Quote -->
+      <div class="text-center sm:text-left">
+        <p class="font-heading italic text-white text-lg sm:text-xl leading-snug mb-2" style="letter-spacing:-0.03em;">
+          „Alex erledigt den Job nicht nur sehr gut, sondern du selbst nach 3 Monaten auch auf top Niveau. Die Learnings sind zehnmal mehr wert als jede Agentur."
+        </p>
+        <p class="font-body font-light text-white/45 text-sm">
+          Robin — 404 &amp; Atlas <span class="text-white/30 mx-1">·</span> Google Cloud Partner
+        </p>
+      </div>
+    </div>
+    <!-- Divider -->
+    <div class="mt-10 md:mt-14 h-px w-full" style="background:rgba(255,255,255,0.06);"></div>
+  </div>
+</section>
 
 <!-- ============================================================
      SECTION 3+4 — PROBLEM (Combined, HLS Video BG)
@@ -977,10 +1004,10 @@
       <!-- Problem 1 -->
       <div class="fade-in text-center md:text-left">
         <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-5">Problem 1</div>
-        <h2 class="text-3xl md:text-4xl font-heading italic text-white tracking-tight leading-[0.9] mb-5">
+        <h2 class="t-h2-md font-heading italic text-white leading-[0.9] mb-5">
           Agenturen kosten dich mehr als nur Geld
         </h2>
-        <p class="font-body font-light text-white/75 text-sm leading-[1.75]">
+        <p class="font-body font-light text-white/75 text-base leading-[1.75]">
           Das klassische Modell ist designed, dich abhängig zu halten.<br>
           Das ist Absicht. Das ist Kalkül.
         </p>
@@ -989,10 +1016,10 @@
       <!-- Problem 2 -->
       <div class="fade-in text-center md:text-left" style="transition-delay:0.18s">
         <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-5">Problem 2</div>
-        <h2 class="text-3xl md:text-4xl font-heading italic text-white tracking-tight leading-[0.9] mb-5">
+        <h2 class="t-h2-md font-heading italic text-white leading-[0.9] mb-5">
           Du zahlst — und baust nichts auf
         </h2>
-        <p class="font-body font-light text-white/75 text-sm leading-[1.75]">
+        <p class="font-body font-light text-white/75 text-base leading-[1.75]">
           2.500&nbsp;€ im Monat, jeden Monat. Keine Skills inhouse.<br>
           Keine Kontrolle. Kein Asset. Und falls die Agentur kündigt?<br>
           Startest du von null.
@@ -1013,7 +1040,7 @@
     <!-- Header -->
     <div class="text-center mb-20">
       <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">✓ Der bessere Weg</div>
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">
+      <h2 class="t-h2 font-heading italic text-white leading-[0.9]">
         Eine echte Ausbildung — von Founder zu Founder
       </h2>
     </div>
@@ -1024,7 +1051,7 @@
         <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-4 leading-tight">
           Wöchentliche 1:1 Live-Calls — direkt mit mir
         </h3>
-        <p class="font-body font-light text-white/75 text-sm leading-[1.75] mb-8 max-w-sm">
+        <p class="font-body font-light text-white/75 text-base leading-[1.75] mb-8 max-w-sm">
           Du bringst deine Kampagnen, ich gebe dir Feedback in Echtzeit. Direkt. Persönlich. Das ist der Unterschied zwischen Lernen und Umsetzen.
         </p>
         <a href="#kontakt" class="btn-glass liquid-glass-strong rounded-full px-6 py-3 text-white font-body font-medium text-sm inline-flex items-center gap-2 cursor-pointer">
@@ -1054,7 +1081,7 @@
         <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-4 leading-tight">
           Komplette Videobibliothek für alle Plattformen
         </h3>
-        <p class="font-body font-light text-white/75 text-sm leading-[1.75] mb-8 max-w-sm">
+        <p class="font-body font-light text-white/75 text-base leading-[1.75] mb-8 max-w-sm">
           Meta, Google & TikTok Ads. Schritt-für-Schritt, nicht theoretisch. Jede Taktik habe ich selbst in mindestens einer Branche getestet und optimiert.
         </p>
         <a href="#kontakt" class="btn-glass liquid-glass-strong rounded-full px-6 py-3 text-white font-body font-medium text-sm inline-flex items-center gap-2 cursor-pointer">
@@ -1079,67 +1106,64 @@
      ============================================================ -->
 <section id="warum" class="py-24 px-6 md:px-16 lg:px-24">
   <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-12">
-      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Warum das funktioniert</div>
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">
-        Der Unterschied liegt im Detail
-      </h2>
+
+    <!-- Left-aligned header with counter -->
+    <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-16">
+      <div class="reveal-left">
+        <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Warum das funktioniert</div>
+        <h2 class="t-h2 font-heading italic text-white leading-[0.9]">
+          Der Unterschied<br>liegt im Detail
+        </h2>
+      </div>
+      <p class="reveal-right font-body font-light text-white/50 text-base leading-[1.7] max-w-sm lg:text-right">
+        Kein generischer Online-Kurs. Keine Fließband-Agentur. Sondern ein System, das auf deiner Realität aufbaut.
+      </p>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    <!-- 2x2 grid with varied sizing -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-      <!-- Card 1 -->
+      <!-- Card 1: Featured -->
       <div class="reveal-scale glow-border-wrap" data-glow>
-        <div class="glow-card-inner rounded-2xl p-6">
-          <div class="liquid-glass-strong rounded-full w-10 h-10 flex items-center justify-center mb-5">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
-            </svg>
+        <div class="glow-card-inner rounded-2xl p-8 md:p-10 flex flex-col justify-between" style="min-height:220px;">
+          <div>
+            <p class="font-body text-xs uppercase tracking-widest text-white/40 mb-4">01</p>
+            <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-3 leading-tight">90 Tage. Nicht 9 Monate</h3>
+            <p class="text-white/60 font-body font-light text-base leading-[1.7] max-w-md">Strukturierter Lernpfad vom ersten Setup bis zur eigenständigen Optimierung. Alles, was du brauchst — nichts, was du nicht brauchst.</p>
           </div>
-          <h3 class="text-lg font-heading italic text-white mb-2">90 Tage. Nicht 9 Monate</h3>
-          <p class="text-white/75 font-body font-light text-sm leading-[1.7]">Strukturierter Lernpfad vom ersten Setup bis zur eigenständigen Optimierung.</p>
         </div>
       </div>
 
       <!-- Card 2 -->
       <div class="reveal-scale glow-border-wrap" data-glow style="transition-delay:0.1s">
-        <div class="glow-card-inner rounded-2xl p-6">
-          <div class="liquid-glass-strong rounded-full w-10 h-10 flex items-center justify-center mb-5">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="12" r="10"/>
-              <circle cx="12" cy="12" r="6"/>
-              <circle cx="12" cy="12" r="2"/>
-            </svg>
+        <div class="glow-card-inner rounded-2xl p-8 md:p-10 flex flex-col justify-between" style="min-height:220px;">
+          <div>
+            <p class="font-body text-xs uppercase tracking-widest text-white/40 mb-4">02</p>
+            <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-3 leading-tight">Founder-Perspektive</h3>
+            <p class="text-white/60 font-body font-light text-base leading-[1.7]">Ich bin selbst Founder. Ich weiß, was auf dem Spiel steht — und was Agentur-Bullshit ist.</p>
           </div>
-          <h3 class="text-lg font-heading italic text-white mb-2">Founder-Perspektive</h3>
-          <p class="text-white/75 font-body font-light text-sm leading-[1.7]">Ich bin selbst Founder. Ich weiß, was auf dem Spiel steht — und was Agentur-Bullshit ist.</p>
         </div>
       </div>
 
       <!-- Card 3 -->
       <div class="reveal-scale glow-border-wrap" data-glow style="transition-delay:0.2s">
-        <div class="glow-card-inner rounded-2xl p-6">
-          <div class="liquid-glass-strong rounded-full w-10 h-10 flex items-center justify-center mb-5">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/>
-              <polyline points="17 6 23 6 23 12"/>
-            </svg>
+        <div class="glow-card-inner rounded-2xl p-8 md:p-10 flex flex-col justify-between" style="min-height:220px;">
+          <div>
+            <p class="font-body text-xs uppercase tracking-widest text-white/40 mb-4">03</p>
+            <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-3 leading-tight">Exit-Value steigern</h3>
+            <p class="text-white/60 font-body font-light text-base leading-[1.7]">Interne Kompetenz ist ein Asset. Investoren kaufen keine Agenturabhängigkeit.</p>
           </div>
-          <h3 class="text-lg font-heading italic text-white mb-2">Exit-Value steigern</h3>
-          <p class="text-white/75 font-body font-light text-sm leading-[1.7]">Interne Kompetenz ist ein Asset. Investoren kaufen keine Agenturabhängigkeit.</p>
         </div>
       </div>
 
       <!-- Card 4 -->
       <div class="reveal-scale glow-border-wrap" data-glow style="transition-delay:0.3s">
-        <div class="glow-card-inner rounded-2xl p-6">
-          <div class="liquid-glass-strong rounded-full w-10 h-10 flex items-center justify-center mb-5">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            </svg>
+        <div class="glow-card-inner rounded-2xl p-8 md:p-10 flex flex-col justify-between" style="min-height:220px;">
+          <div>
+            <p class="font-body text-xs uppercase tracking-widest text-white/40 mb-4">04</p>
+            <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-3 leading-tight">ROI nach 5 Monaten</h3>
+            <p class="text-white/60 font-body font-light text-base leading-[1.7]">Die Investition amortisiert sich. Danach sparst du jeden Monat — für immer.</p>
           </div>
-          <h3 class="text-lg font-heading italic text-white mb-2">ROI nach 5 Monaten</h3>
-          <p class="text-white/75 font-body font-light text-sm leading-[1.7]">Die Investition amortisiert sich. Danach sparst du jeden Monat — für immer.</p>
         </div>
       </div>
 
@@ -1156,20 +1180,19 @@
 
     <!-- Text Left -->
     <div class="fade-in">
-      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-6">Dein Experte</div>
       <h2 class="text-4xl md:text-5xl font-heading italic text-white tracking-tight leading-[0.9] mb-8">
         Expertise, die<br>Investment-Runden entscheidet
       </h2>
-      <div class="space-y-5">
-        <p class="font-body font-light text-white/75 text-sm leading-[1.75]">
-          Ich bin selbst Founder. Ich habe Shops von Null aufgebaut, eigene Internationale Marken Skaliert, digitale Produkte entwickelt und über 7 Jahre lang erfolgreich verkauft — und dabei alles selbst bezahlt, getestet und optimiert.
-        </p>
-        <p class="font-body font-light text-white/75 text-sm leading-[1.75]">
-          Über 150 Unternehmen habe ich seitdem beraten. Aus fast jeder Branche. Das gibt mir einen Vorteil, den eine klassische Fließband-Agentur nie hat: Ich erkenne Muster. Ich sehe in zehn Minuten, wo Geld verbrennt — weil ich diesen Fehler schon bei zwanzig anderen Startups gesehen habe.
-        </p>
-        <p class="font-body font-light text-white/75 text-sm leading-[1.75]">
-          Sieben Jahre echte Performance-Praxis. Aus eigener Tasche bezahlt, getestet, optimiert — plus das, was man nur lernt, wenn man selbst im Risiko sitzt.
-        </p>
+      <p class="font-body font-light text-white/75 text-base leading-[1.75] mb-6">
+        Ich bin selbst Founder. Shops von Null aufgebaut, internationale Marken skaliert, über 7 Jahre lang alles selbst bezahlt, getestet und optimiert.
+      </p>
+      <p class="font-body font-light text-white/75 text-base leading-[1.75] mb-8">
+        150+ Unternehmen beraten. Aus fast jeder Branche. Das gibt mir einen Vorteil, den eine Fließband-Agentur nie hat: Ich sehe in zehn Minuten, wo Geld verbrennt — weil ich diesen Fehler schon bei zwanzig anderen Startups gesehen habe.
+      </p>
+      <!-- Pull stat -->
+      <div class="flex items-baseline gap-4 mb-0" style="border-left: 2px solid rgba(255,255,255,0.15); padding-left: 20px;">
+        <span class="font-heading italic text-white text-3xl md:text-4xl" style="letter-spacing:-0.04em">7-stellig</span>
+        <span class="font-body font-light text-white/50 text-sm">Adspend betreut</span>
       </div>
     </div>
 
@@ -1181,19 +1204,19 @@
       <!-- 2×2 card grid shifted down so bottom row is half below the image -->
       <div class="alex-cards absolute left-0 right-0 grid grid-cols-2 gap-2 px-3" style="bottom: 0;">
         <div class="reveal-scale liquid-glass-strong rounded-xl p-3 text-center relative">
-          <div class="text-xl font-heading italic text-white mb-0.5">7+</div>
+          <div class="text-2xl font-heading italic text-white mb-0.5" style="letter-spacing:-0.04em">7+</div>
           <div class="text-white/75 font-body font-light text-xs">Jahre im Marketing</div>
         </div>
         <div class="reveal-scale liquid-glass-strong rounded-xl p-3 text-center relative" style="transition-delay:0.12s">
-          <div class="text-xl font-heading italic text-white mb-0.5">150+</div>
+          <div class="text-2xl font-heading italic text-white mb-0.5" style="letter-spacing:-0.04em">150+</div>
           <div class="text-white/75 font-body font-light text-xs">Projekte abgeschlossen</div>
         </div>
         <div class="reveal-scale liquid-glass-strong rounded-xl p-3 text-center relative" style="transition-delay:0.24s">
-          <div class="text-lg font-heading italic text-white mb-0.5">Mehrere</div>
+          <div class="text-xl font-heading italic text-white mb-0.5" style="letter-spacing:-0.04em">Mehrere</div>
           <div class="text-white/75 font-body font-light text-xs">Investment-Runden entschieden</div>
         </div>
         <div class="reveal-scale liquid-glass-strong rounded-xl p-3 text-center relative" style="transition-delay:0.36s">
-          <div class="text-xl font-heading italic text-white mb-0.5">7-stellig</div>
+          <div class="text-2xl font-heading italic text-white mb-0.5" style="letter-spacing:-0.04em">7-stellig</div>
           <div class="text-white/75 font-body font-light text-xs">Adspend betreut</div>
         </div>
       </div>
@@ -1209,8 +1232,8 @@
 <section class="py-24 px-6 md:px-16 lg:px-24">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-12">
-      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Was sich ändert</div>
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">
+      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Vorher → Nachher</div>
+      <h2 class="t-h2 font-heading italic text-white leading-[0.9]">
         Was sich ändert — in 90 Tagen
       </h2>
     </div>
@@ -1290,10 +1313,10 @@
 
   <div class="content max-w-4xl mx-auto text-center">
     <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Rechne es selbst</div>
-    <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9] mb-4">
+    <h2 class="t-h2 font-heading italic text-white leading-[0.9] mb-4">
       Wie viel kostet dich die Agentur wirklich?
     </h2>
-    <p class="font-body font-light text-white/75 text-sm mb-14 leading-[1.75]">
+    <p class="font-body font-light text-white/75 text-base mb-14 leading-[1.75]">
       Stell ein, wie lange du Ads schalten willst.
     </p>
 
@@ -1347,11 +1370,9 @@
      ============================================================ -->
 <section class="py-24 px-6 md:px-16 lg:px-24">
   <div class="max-w-6xl mx-auto">
-    <div class="text-center mb-12">
-      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Was andere sagen</div>
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">
-        Ergebnisse, die für sich sprechen
-      </h2>
+    <div class="mb-12">
+      <p class="font-body text-xs uppercase tracking-widest text-white/40 mb-6 text-center">Was andere sagen</p>
+      <div class="w-12 h-px bg-white/15 mx-auto"></div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -1407,7 +1428,7 @@
   <div class="max-w-4xl mx-auto">
     <div class="text-center mb-12">
       <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Investition</div>
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">
+      <h2 class="t-h2 font-heading italic text-white leading-[0.9]">
         Einmal investieren. Für immer profitieren
       </h2>
     </div>
@@ -1472,10 +1493,9 @@
      ============================================================ -->
 <section class="py-24 px-6 md:px-16 lg:px-24">
   <div class="max-w-3xl mx-auto">
-    <div class="text-center mb-12">
-      <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Häufige Fragen</div>
-      <h2 class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white tracking-tight leading-[0.9]">
-        Was Founder immer fragen
+    <div class="mb-12">
+      <h2 class="t-h2-md font-heading italic text-white leading-[0.9]">
+        Was Founder<br>immer fragen
       </h2>
     </div>
 
@@ -1487,7 +1507,7 @@
           <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div id="faq-content-1" class="accordion-content" role="region" aria-labelledby="faq-trigger-1">
-          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Ja — und du solltest es. Founder, die ihr eigenes Performance Marketing verstehen, treffen bessere Entscheidungen, sparen langfristig Agenturkosten und bauen einen Wettbewerbsvorteil auf, der im Unternehmen bleibt. Das Programm ist auf genau diesen Founder zugeschnitten: zeitsparend, praxisnah, ohne unnötiges Theorie-Aufblähen.</p></div>
+          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-base leading-[1.75]">Ja — und du solltest es. Founder, die ihr eigenes Performance Marketing verstehen, treffen bessere Entscheidungen, sparen langfristig Agenturkosten und bauen einen Wettbewerbsvorteil auf, der im Unternehmen bleibt. Das Programm ist auf genau diesen Founder zugeschnitten: zeitsparend, praxisnah, ohne unnötiges Theorie-Aufblähen.</p></div>
         </div>
       </div>
 
@@ -1497,7 +1517,7 @@
           <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div id="faq-content-2" class="accordion-content" role="region" aria-labelledby="faq-trigger-2">
-          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Ja, vollständig. Die Ausbildung ist so aufgebaut, dass Einsteiger ohne Vorkenntnisse sofort starten können. Wer bereits Grundlagen hat, skaliert schneller — aber beide kommen ans Ziel. Es geht nicht darum, wie viel du weißt, sondern was du damit anfängst.</p></div>
+          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-base leading-[1.75]">Ja, vollständig. Die Ausbildung ist so aufgebaut, dass Einsteiger ohne Vorkenntnisse sofort starten können. Wer bereits Grundlagen hat, skaliert schneller — aber beide kommen ans Ziel. Es geht nicht darum, wie viel du weißt, sondern was du damit anfängst.</p></div>
         </div>
       </div>
 
@@ -1507,7 +1527,7 @@
           <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div id="faq-content-3" class="accordion-content" role="region" aria-labelledby="faq-trigger-3">
-          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Der Hauptunterschied: wöchentliches 1:1-Feedback auf deine echten Kampagnen — nicht auf Beispiele aus einem Kurs. Der Trainer ist selbst aktiver Founder, der das Wissen täglich in eigenen Projekten einsetzt. Kein veraltetes Kurswissen, kein generisches Framework — sondern Feedback auf das, was bei dir gerade live läuft.</p></div>
+          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-base leading-[1.75]">Der Hauptunterschied: wöchentliches 1:1-Feedback auf deine echten Kampagnen — nicht auf Beispiele aus einem Kurs. Der Trainer ist selbst aktiver Founder, der das Wissen täglich in eigenen Projekten einsetzt. Kein veraltetes Kurswissen, kein generisches Framework — sondern Feedback auf das, was bei dir gerade live läuft.</p></div>
         </div>
       </div>
 
@@ -1517,7 +1537,7 @@
           <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div id="faq-content-4" class="accordion-content" role="region" aria-labelledby="faq-trigger-4">
-          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Dafür gibt es das kostenlose Erstgespräch. Es werden mehr Anfragen abgelehnt als angenommen — nicht weil die Hürde hoch ist, sondern weil die Plätze begrenzt sind und eine Zusammenarbeit nur Sinn macht, wenn ein echter Mehrwert entsteht. Das Gespräch klärt das offen und ehrlich.</p></div>
+          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-base leading-[1.75]">Dafür gibt es das kostenlose Erstgespräch. Es werden mehr Anfragen abgelehnt als angenommen — nicht weil die Hürde hoch ist, sondern weil die Plätze begrenzt sind und eine Zusammenarbeit nur Sinn macht, wenn ein echter Mehrwert entsteht. Das Gespräch klärt das offen und ehrlich.</p></div>
         </div>
       </div>
 
@@ -1527,7 +1547,7 @@
           <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div id="faq-content-5" class="accordion-content" role="region" aria-labelledby="faq-trigger-5">
-          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Die Investition liegt bei 12.000 € — einmalig, kein Abo. Im Vergleich: eine durchschnittliche Marketing-Agentur kostet 2.500 € pro Monat, also 30.000 € pro Jahr — ohne Wissenstransfer. Ratenzahlung ist möglich und wird im Erstgespräch besprochen.</p></div>
+          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-base leading-[1.75]">Die Investition liegt bei 12.000 € — einmalig, kein Abo. Im Vergleich: eine durchschnittliche Marketing-Agentur kostet 2.500 € pro Monat, also 30.000 € pro Jahr — ohne Wissenstransfer. Ratenzahlung ist möglich und wird im Erstgespräch besprochen.</p></div>
         </div>
       </div>
 
@@ -1537,7 +1557,7 @@
           <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div id="faq-content-6" class="accordion-content" role="region" aria-labelledby="faq-trigger-6">
-          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Für alle. Die Ausbildung hat Startups aus SaaS, E-Commerce, Physical Products, B2B, Fintech und Healthtech erfolgreich begleitet. Das Grundprinzip — Daten verstehen, Kampagnen testen, skalieren was funktioniert — gilt branchenübergreifend. Was sich ändert, sind die Taktiken. Die werden individuell für dein Modell erarbeitet.</p></div>
+          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-base leading-[1.75]">Für alle. Die Ausbildung hat Startups aus SaaS, E-Commerce, Physical Products, B2B, Fintech und Healthtech erfolgreich begleitet. Das Grundprinzip — Daten verstehen, Kampagnen testen, skalieren was funktioniert — gilt branchenübergreifend. Was sich ändert, sind die Taktiken. Die werden individuell für dein Modell erarbeitet.</p></div>
         </div>
       </div>
 
@@ -1562,11 +1582,11 @@
 
     <!-- Heading (BlurText) -->
     <h2 class="mb-8" style="letter-spacing:-1px">
-      <span class="blur-text block text-4xl md:text-6xl lg:text-7xl font-heading italic text-white tracking-tight leading-[0.9]">Du weißt schon, dass sich</span>
-      <span class="blur-text block text-4xl md:text-6xl lg:text-7xl font-heading italic text-white tracking-tight leading-[0.9]">etwas ändern muss</span>
+      <span class="blur-text block font-heading italic text-white leading-[0.9]" style="font-size:clamp(3rem,8.5vw,6.5rem);letter-spacing:-0.05em">Du weißt schon, dass sich</span>
+      <span class="blur-text block font-heading italic text-white leading-[0.9]" style="font-size:clamp(3rem,8.5vw,6.5rem);letter-spacing:-0.05em">etwas ändern muss</span>
     </h2>
 
-    <p class="font-body font-light text-white/75 text-sm max-w-lg mx-auto mb-10 leading-[1.75]">
+    <p class="font-body font-light text-white/75 text-base max-w-lg mx-auto mb-10 leading-[1.75]">
       Die Frage ist nur: Möchtest du dafür zahlen, dass jemand anderes die Kontrolle hat,
       oder dir das Wissen für immer in dein Unternehmen holen?<br><br>
       Bewirb dich jetzt und wenn alles passt, dann sehen wir uns vielleicht bald schon zu einem
@@ -2551,32 +2571,27 @@ renderStep(true);
 
     <!-- Standard view -->
     <div id="cb-standard">
-      <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap;">
-        <div style="flex:1;min-width:200px;">
-          <p style="font-family:'Instrument Serif',serif;font-size:1.05rem;color:#fff;margin:0 0 6px;line-height:1.4;">
-            Wir nutzen Cookies &amp; Pixel
-          </p>
-          <p style="font-family:'Barlow',sans-serif;font-size:0.8rem;color:rgba(255,255,255,0.52);line-height:1.6;margin:0;">
-            Notwendige Cookies sind immer aktiv. Marketing-Cookies (Meta Pixel) helfen uns, Werbung gezielt auszuspielen.
-            Mehr in der <a href="/datenschutz.html" style="color:rgba(255,255,255,0.7);text-decoration:underline;text-underline-offset:2px;">Datenschutzerklärung</a>.
-          </p>
-        </div>
-        <div style="display:flex;flex-direction:column;gap:8px;flex-shrink:0;min-width:160px;align-self:center;">
-          <button id="cb-accept-all" style="font-family:'Barlow',sans-serif;font-weight:600;font-size:0.8rem;letter-spacing:0.02em;color:#000;background:#fff;border:none;border-radius:9999px;padding:9px 22px;cursor:pointer;transition:transform 0.18s cubic-bezier(0.16,1,0.3,1),box-shadow 0.18s ease;white-space:nowrap;" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 18px rgba(255,255,255,0.22)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-            Alle akzeptieren
+      <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+        <p style="font-family:'Barlow',sans-serif;font-size:0.78rem;color:rgba(255,255,255,0.55);line-height:1.5;margin:0;flex:1;min-width:180px;">
+          Wir nutzen Cookies &amp; Meta Pixel.
+          <a href="/datenschutz.html" style="color:rgba(255,255,255,0.7);text-decoration:underline;text-underline-offset:2px;">Mehr erfahren</a>
+        </p>
+        <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
+          <button id="cb-toggle-details" style="font-family:'Barlow',sans-serif;font-weight:400;font-size:0.75rem;color:rgba(255,255,255,0.45);background:none;border:none;padding:4px 0;cursor:pointer;transition:color 0.18s ease;white-space:nowrap;" onmouseover="this.style.color='rgba(255,255,255,0.65)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
+            Details
           </button>
-          <button id="cb-reject-all" style="font-family:'Barlow',sans-serif;font-weight:400;font-size:0.8rem;letter-spacing:0.02em;color:rgba(255,255,255,0.65);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:9999px;padding:9px 22px;cursor:pointer;transition:transform 0.18s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">
-            Nur notwendige
+          <button id="cb-reject-all" style="font-family:'Barlow',sans-serif;font-weight:400;font-size:0.78rem;letter-spacing:0.02em;color:rgba(255,255,255,0.65);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:9999px;padding:7px 16px;cursor:pointer;transition:transform 0.18s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">
+            Ablehnen
           </button>
-          <button id="cb-toggle-details" style="font-family:'Barlow',sans-serif;font-weight:400;font-size:0.75rem;color:rgba(255,255,255,0.55);background:none;border:none;padding:2px 0;cursor:pointer;text-align:center;transition:color 0.18s ease;" onmouseover="this.style.color='rgba(255,255,255,0.65)'" onmouseout="this.style.color='rgba(255,255,255,0.38)'">
-            Details ↓
+          <button id="cb-accept-all" style="font-family:'Barlow',sans-serif;font-weight:600;font-size:0.78rem;letter-spacing:0.02em;color:#000;background:#fff;border:none;border-radius:9999px;padding:7px 16px;cursor:pointer;transition:transform 0.18s cubic-bezier(0.16,1,0.3,1),box-shadow 0.18s ease;white-space:nowrap;" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 18px rgba(255,255,255,0.22)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+            Akzeptieren
           </button>
         </div>
       </div>
 
       <!-- Details panel -->
       <div id="cb-details-panel" class="cb-details-panel" style="margin-top:0;">
-        <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:18px;padding-top:18px;display:flex;flex-direction:column;gap:14px;">
+        <div style="border-top:1px solid rgba(255,255,255,0.08);margin-top:10px;padding-top:10px;display:flex;flex-direction:column;gap:10px;">
 
           <!-- Notwendig -->
           <div style="display:flex;align-items:center;gap:16px;justify-content:space-between;">
