@@ -695,13 +695,25 @@
     .solution-check { color: rgba(74,222,128,0.9) !important; }
 
     /* ===== VORHER / NACHHER HOVER ===== */
-    .vorher-card:hover {
-      border-color: rgba(220,38,38,0.6) !important;
-      box-shadow: 0 0 40px rgba(220,38,38,0.18), inset 0 1px 1px rgba(255,80,80,0.1) !important;
+    .vorher-card,
+    .nachher-card {
+      transition: transform 0s, box-shadow 0s, border-color 0s;
     }
-    .nachher-card:hover {
+    .vorher-card.visible,
+    .nachher-card.visible {
+      transition: transform 0.45s cubic-bezier(0.16,1,0.3,1),
+                  box-shadow 0.45s cubic-bezier(0.16,1,0.3,1),
+                  border-color 0.3s ease;
+    }
+    .vorher-card.visible:hover {
+      transform: translateY(-4px);
+      border-color: rgba(220,38,38,0.6) !important;
+      box-shadow: 0 0 50px rgba(220,38,38,0.22), 0 0 100px rgba(220,38,38,0.08), inset 0 1px 1px rgba(255,80,80,0.1) !important;
+    }
+    .nachher-card.visible:hover {
+      transform: translateY(-4px);
       border-color: rgba(22,163,74,0.6) !important;
-      box-shadow: 0 0 40px rgba(0,160,60,0.2), inset 0 1px 1px rgba(80,220,120,0.12) !important;
+      box-shadow: 0 0 50px rgba(0,160,60,0.25), 0 0 100px rgba(0,160,60,0.1), inset 0 1px 1px rgba(80,220,120,0.12) !important;
     }
 
     /* ===== CONTACT FORM STABLE HEIGHT ===== */
@@ -812,12 +824,24 @@
       outline-offset: -2px;
     }
 
+    /* ===== TABLET (768–1023px) ===== */
+    @media (min-width: 768px) and (max-width: 1023px) {
+      /* Problem section: give columns more breathing room */
+      .video-section .grid.md\:grid-cols-2 { gap: 3rem; }
+      /* About section: stack on narrow tablets */
+      section .grid.lg\:grid-cols-2 { gap: 2.5rem; }
+      /* ROI numbers: prevent overflow */
+      #roi-agency-val, #roi-savings-val {
+        font-size: clamp(1.5rem, 4vw, 2.5rem) !important;
+      }
+    }
+
     /* ===== MOBILE ===== */
     @media (max-width: 640px) {
       nav { top: 0.5rem; padding-left: 1rem; padding-right: 1rem; }
       /* Ensure section headings don't overflow */
       h2, h3 { overflow-wrap: break-word; word-break: break-word; }
-      /* Tighten section padding */
+      /* Consistent section rhythm: 5rem mobile, not mixed */
       section.py-24 { padding-top: 4rem; padding-bottom: 4rem; }
       section.py-32 { padding-top: 5rem; padding-bottom: 5rem; }
       /* ROI card inner padding */
@@ -826,9 +850,12 @@
       #roi-agency-val, #roi-savings-val {
         font-size: clamp(1.25rem, 5vw, 1.5rem) !important;
       }
-      /* Cookie banner: compact on mobile */
+      /* Cookie banner: compact but touchable */
       #cookie-banner-inner { padding: 10px 14px !important; }
       #cookie-banner { padding: 0 8px 8px !important; }
+      /* Footer: larger touch targets */
+      footer a, footer button { min-height: 44px; display: inline-flex; align-items: center; }
+      footer .flex-wrap { gap: 0.5rem 1.5rem; }
     }
 
     /* ===== CLIP REVEAL ===== */
@@ -837,9 +864,18 @@
       transition: clip-path 0.9s cubic-bezier(0.16,1,0.3,1);
     }
     .clip-reveal.visible { clip-path: inset(0 0% 0 0); }
+
+    /* ===== PERF: pause pseudo-element animations when off-screen ===== */
+    .anim-paused::before,
+    .anim-paused::after { animation-play-state: paused !important; }
+
+    /* ===== PERF: content-visibility for below-fold sections ===== */
+    .cv-auto {
+      content-visibility: auto;
+      contain-intrinsic-size: auto 800px;
+    }
   </style>
-  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-  <script>emailjs.init('CZA78YoNau3nzdYht');</script>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js" defer onload="emailjs.init('CZA78YoNau3nzdYht')"></script>
   <script src="https://t.contentsquare.net/uxa/eb6d6fc3d4ebd.js" async></script>
 </head>
 
@@ -984,12 +1020,13 @@
     <div class="fade-in flex flex-col sm:flex-row items-center gap-5 sm:gap-8">
       <!-- Photo -->
       <img src="brand_assets/robin profile.jpeg" alt="Robin — 404 & Atlas" loading="lazy"
+           width="64" height="64"
            class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover flex-shrink-0"
            style="border: 1.5px solid rgba(255,255,255,0.12);" />
       <!-- Quote -->
       <div class="text-center sm:text-left">
-        <p class="font-heading italic text-white text-lg sm:text-xl leading-snug mb-2" style="letter-spacing:-0.03em;">
-          „Alex erledigt den Job nicht nur sehr gut, sondern du selbst nach 3 Monaten auch auf top Niveau. Die Learnings sind zehnmal mehr wert als jede Agentur."
+        <p class="font-body italic text-white text-lg sm:text-xl leading-snug mb-2">
+          „Alex erledigt den Job nicht nur sehr gut, sondern du selbst auch nach 3 Monaten. Die Learnings sind zehnmal mehr wert als jede Agentur."
         </p>
         <p class="font-body font-light text-white/45 text-sm">
           Robin — 404 &amp; Atlas <span class="text-white/30 mx-1">·</span> Google Cloud Partner
@@ -1005,7 +1042,7 @@
      SECTION 3+4 — PROBLEM (Combined, HLS Video BG)
      ============================================================ -->
 <section class="video-section" style="min-height:clamp(600px,100svh,900px);">
-  <img src="brand_assets/problem-section-fallback.webp" alt="" aria-hidden="true" loading="lazy" class="vid-fallback" style="filter: brightness(0.4);">
+  <img src="brand_assets/problem-section-fallback.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" class="vid-fallback" style="filter: brightness(0.4);">
   <video id="vid-problem" autoplay loop muted playsinline preload="metadata"
     style="filter: brightness(0.45)"
     class="absolute inset-0 w-full h-full object-cover">
@@ -1049,7 +1086,7 @@
 <!-- ============================================================
      SECTION 5 — FEATURES CHESS — ANGEBOT
      ============================================================ -->
-<section id="angebot" class="py-24 px-6 md:px-16 lg:px-24">
+<section id="angebot" class="cv-auto py-24 px-6 md:px-16 lg:px-24">
   <div class="max-w-6xl mx-auto">
 
     <!-- Header -->
@@ -1069,8 +1106,9 @@
         <p class="font-body font-light text-white/75 text-base leading-[1.75] mb-8 max-w-sm">
           Du bringst deine Kampagnen, ich gebe dir Feedback in Echtzeit. Direkt. Persönlich. Das ist der Unterschied zwischen Lernen und Umsetzen.
         </p>
-        <a href="#kontakt" class="btn-glass liquid-glass-strong rounded-full px-6 py-3 text-white font-body font-medium text-sm inline-flex items-center gap-2 cursor-pointer">
-          Mehr erfahren
+        <a href="#warum" class="btn-glass liquid-glass-strong rounded-full px-6 py-3 text-white font-body font-medium text-sm inline-flex items-center gap-2 cursor-pointer">
+          Warum das funktioniert
+          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
       <div class="flex-1 w-full lg:max-w-sm reveal-right" style="transition-delay:0.15s">
@@ -1100,12 +1138,13 @@
           Meta, Google & TikTok Ads. Schritt-für-Schritt, nicht theoretisch. Jede Taktik habe ich selbst in mindestens einer Branche getestet und optimiert.
         </p>
         <a href="#kontakt" class="btn-glass liquid-glass-strong rounded-full px-6 py-3 text-white font-body font-medium text-sm inline-flex items-center gap-2 cursor-pointer">
-          Mehr erfahren
+          Bibliothek anfragen
+          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
         </a>
       </div>
       <div class="flex-1 w-full lg:max-w-sm reveal-left" style="transition-delay:0.15s">
         <div class="liquid-glass glow-animate float-anim-2 rounded-2xl overflow-hidden relative" style="box-shadow: 0 0 40px var(--color-solution-glow), var(--glass-inner-glow)">
-          <video class="w-full h-full object-cover rounded-2xl" autoplay muted loop playsinline preload="none">
+          <video class="w-full h-full object-cover rounded-2xl" autoplay muted loop playsinline preload="none" style="aspect-ratio:16/9">
             <source src="brand_assets/Videobibliothek-marketing-startups.mp4" type="video/mp4">
           </video>
         </div>
@@ -1119,7 +1158,7 @@
 <!-- ============================================================
      SECTION 6 — FEATURES GRID — WARUM DAS FUNKTIONIERT
      ============================================================ -->
-<section id="warum" class="py-24 px-6 md:px-16 lg:px-24">
+<section id="warum" class="cv-auto py-24 px-6 md:px-16 lg:px-24">
   <div class="max-w-6xl mx-auto">
 
     <!-- Left-aligned header with counter -->
@@ -1190,12 +1229,12 @@
 <!-- ============================================================
      CREDIBILITY — ÜBER MICH
      ============================================================ -->
-<section class="py-32 px-6 md:px-16 lg:px-24">
+<section class="cv-auto py-32 px-6 md:px-16 lg:px-24">
   <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
     <!-- Text Left -->
     <div class="fade-in">
-      <h2 class="text-4xl md:text-5xl font-heading italic text-white tracking-tight leading-[0.9] mb-8">
+      <h2 class="t-h2-md font-heading italic text-white leading-[0.9] mb-8">
         Expertise, die<br>Investment-Runden entscheidet
       </h2>
       <p class="font-body font-light text-white/75 text-base leading-[1.75] mb-6">
@@ -1244,7 +1283,7 @@
 <!-- ============================================================
      VORHER / NACHHER
      ============================================================ -->
-<section class="py-24 px-6 md:px-16 lg:px-24">
+<section class="cv-auto py-24 px-6 md:px-16 lg:px-24">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-12">
       <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-flex items-center gap-1.5 mb-4">Vorher <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg> Nachher</div>
@@ -1317,8 +1356,8 @@
 <!-- ============================================================
      SECTION 7 — ROI RECHNER (HLS Video BG)
      ============================================================ -->
-<section id="roi" class="video-section py-32 px-6 md:px-16 lg:px-24">
-  <img src="brand_assets/roi-section-fallback.webp" alt="" aria-hidden="true" loading="lazy" class="vid-fallback" style="filter: brightness(0.4);">
+<section id="roi" class="cv-auto video-section py-32 px-6 md:px-16 lg:px-24">
+  <img src="brand_assets/roi-section-fallback.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" class="vid-fallback" style="filter: brightness(0.4);">
   <video id="vid-roi" autoplay loop muted playsinline preload="metadata"
     style="filter: saturate(0) brightness(0.5)"
     class="absolute inset-0 w-full h-full object-cover">
@@ -1383,7 +1422,7 @@
 <!-- ============================================================
      SECTION 8 — TESTIMONIALS
      ============================================================ -->
-<section class="py-24 px-6 md:px-16 lg:px-24">
+<section class="cv-auto py-24 px-6 md:px-16 lg:px-24">
   <div class="max-w-6xl mx-auto">
     <div class="text-center mb-12">
       <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Was andere sagen</div>
@@ -1394,6 +1433,7 @@
     <div class="reveal-up liquid-glass-strong card-shimmer rounded-2xl p-8 md:p-10 mb-6 relative">
       <div class="flex flex-col md:flex-row items-start gap-6 md:gap-10">
         <img src="brand_assets/lukas.jpeg" alt="Lukas — Paddy AI" loading="lazy"
+             width="80" height="80"
              class="w-16 h-16 md:w-20 md:h-20 rounded-full object-cover flex-shrink-0"
              style="border: 1.5px solid rgba(255,255,255,0.12); object-position: center 20%;" />
         <div class="flex-1">
@@ -1416,7 +1456,7 @@
           "Unsere Kosten pro Registrierung sind seit der Zusammenarbeit mit Alex drastisch gesunken."
         </p>
         <div class="flex items-center gap-3">
-          <img src="https://framerusercontent.com/images/v3eSqxxhMdN5FavSzj6RcndPjE.png?width=100" alt="Sebastian" loading="lazy" class="w-9 h-9 rounded-full object-cover flex-shrink-0" style="object-position:47.9% 38.9%" />
+          <img src="https://framerusercontent.com/images/v3eSqxxhMdN5FavSzj6RcndPjE.png?width=100" alt="Sebastian" loading="lazy" width="36" height="36" class="w-9 h-9 rounded-full object-cover flex-shrink-0" style="object-position:47.9% 38.9%" />
           <div>
             <p class="text-white font-body font-medium text-sm">Sebastian</p>
             <p class="text-white/50 font-body font-light text-xs">Founder, Vansite</p>
@@ -1429,7 +1469,7 @@
           "Alex hat uns immer wieder schnell und unkompliziert bei technischen Schwierigkeiten geholfen."
         </p>
         <div class="flex items-center gap-3">
-          <img src="https://framerusercontent.com/images/S1Eq5hpeHn9xlsyAZ73oflJAKc.webp?width=100" alt="Leo & Carla" loading="lazy" class="w-9 h-9 rounded-full object-cover flex-shrink-0" />
+          <img src="https://framerusercontent.com/images/S1Eq5hpeHn9xlsyAZ73oflJAKc.webp?width=100" alt="Leo & Carla" loading="lazy" width="36" height="36" class="w-9 h-9 rounded-full object-cover flex-shrink-0" />
           <div>
             <p class="text-white font-body font-medium text-sm">Leo &amp; Carla</p>
             <p class="text-white/50 font-body font-light text-xs">Founder, PURE U</p>
@@ -1442,7 +1482,7 @@
           "Durch die Ausbildung haben wir es geschafft, unser Startup besser zu monetarisieren."
         </p>
         <div class="flex items-center gap-3">
-          <img src="https://framerusercontent.com/images/xENDxFCGW2pL9yflPAVXmZEmOMY.webp?width=100" alt="Felix" loading="lazy" class="w-9 h-9 rounded-full object-cover flex-shrink-0" />
+          <img src="https://framerusercontent.com/images/xENDxFCGW2pL9yflPAVXmZEmOMY.webp?width=100" alt="Felix" loading="lazy" width="36" height="36" class="w-9 h-9 rounded-full object-cover flex-shrink-0" />
           <div>
             <p class="text-white font-body font-medium text-sm">Felix</p>
             <p class="text-white/50 font-body font-light text-xs">Founder, Curawork</p>
@@ -1458,7 +1498,7 @@
 <!-- ============================================================
      SECTION 9 — PRICING
      ============================================================ -->
-<section id="investition" class="py-24 px-6 md:px-16 lg:px-24">
+<section id="investition" class="cv-auto py-24 px-6 md:px-16 lg:px-24">
   <div class="max-w-4xl mx-auto">
     <div class="text-center mb-12">
       <div class="liquid-glass rounded-full px-3.5 py-1 text-xs font-medium text-white font-body inline-block mb-4">Investition</div>
@@ -1525,7 +1565,7 @@
 <!-- ============================================================
      SECTION 10 — FAQ
      ============================================================ -->
-<section class="py-24 px-6 md:px-16 lg:px-24">
+<section class="cv-auto py-24 px-6 md:px-16 lg:px-24">
   <div class="max-w-3xl mx-auto">
     <div class="mb-12">
       <h2 class="t-h2-md font-heading italic text-white leading-[0.9]">
@@ -1603,8 +1643,8 @@
 <!-- ============================================================
      SECTION 11 — FINAL CTA + FORM (HLS Video BG)
      ============================================================ -->
-<section id="kontakt" class="video-section py-32 px-6 md:px-16 lg:px-24">
-  <img src="brand_assets/CTA-section-fallback.webp" alt="" aria-hidden="true" loading="lazy" class="vid-fallback" style="object-position: center 40%; filter: brightness(0.4);">
+<section id="kontakt" class="cv-auto video-section py-32 px-6 md:px-16 lg:px-24">
+  <img src="brand_assets/CTA-section-fallback.webp" alt="" aria-hidden="true" loading="lazy" decoding="async" class="vid-fallback" style="object-position: center 40%; filter: brightness(0.4);">
   <video id="vid-cta" autoplay loop muted playsinline preload="metadata"
     style="filter: brightness(0.45); object-position: center 35%;"
     class="absolute inset-0 w-full h-full object-cover">
@@ -1644,7 +1684,7 @@
 
     </div>
     </div>
-    <p class="text-white/70 font-body text-xs mt-5">Kostenlos · Unverbindlich · 30 Minuten · Max. 3 neue Plätze pro Monat</p>
+    <p class="text-white/70 font-body text-xs mt-5">Kostenloses Erstgespräch · 30 Minuten · Unverbindlich</p>
 
   </div>
 </section>
@@ -1660,11 +1700,10 @@
         <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M13 2L3.5 13.5H10.5L9.5 22L21 10.5H14L13 2Z"/></svg>
         <span class="font-heading italic text-white text-base leading-none">startupads</span>
       </a>
-      <div class="flex flex-wrap justify-center gap-6">
-        <a href="/impressum.html" class="text-white/40 text-xs font-body hover:text-white transition-colors duration-200">Impressum</a>
-        <a href="/datenschutz.html" class="text-white/40 text-xs font-body hover:text-white transition-colors duration-200">Datenschutz</a>
-        <button id="cb-reopen" onclick="window.__cbReopen && window.__cbReopen()" class="text-white/40 text-xs font-body hover:text-white transition-colors duration-200 bg-transparent border-none cursor-pointer p-0">Cookie-Einstellungen</button>
-        <a href="#kontakt" class="text-white/40 text-xs font-body hover:text-white transition-colors duration-200">Kontakt</a>
+      <div class="flex flex-wrap justify-center gap-x-6 gap-y-2">
+        <a href="/impressum.html" class="text-white/40 text-xs font-body hover:text-white transition-colors duration-200 py-2">Impressum</a>
+        <a href="/datenschutz.html" class="text-white/40 text-xs font-body hover:text-white transition-colors duration-200 py-2">Datenschutz</a>
+        <button id="cb-reopen" onclick="window.__cbReopen && window.__cbReopen()" class="text-white/40 text-xs font-body hover:text-white transition-colors duration-200 bg-transparent border-none cursor-pointer py-2 px-0">Cookie-Einstellungen</button>
       </div>
     </div>
     <p class="text-white/25 text-xs font-body text-center md:text-left mt-6">© 2026 StartupAds.de</p>
@@ -1898,6 +1937,52 @@ const lineObs = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.5 });
 document.querySelectorAll('.section-line').forEach(el => lineObs.observe(el));
+
+// ---- PAUSE ANIMATIONS WHEN OFF-SCREEN (perf) ----
+(function() {
+  var animEls = document.querySelectorAll('.glow-animate, .float-anim, .float-anim-2, .card-shimmer, .btn-cta, .form-border-wrap');
+  if (!animEls.length) return;
+  var animObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      e.target.style.animationPlayState = e.isIntersecting ? 'running' : 'paused';
+      // Also pause pseudo-element animations via a class
+      if (e.isIntersecting) e.target.classList.remove('anim-paused');
+      else e.target.classList.add('anim-paused');
+    });
+  }, { rootMargin: '100px' });
+  animEls.forEach(function(el) {
+    el.style.animationPlayState = 'paused'; // start paused
+    el.classList.add('anim-paused');
+    animObs.observe(el);
+  });
+})();
+
+// ---- LAZY-LOAD BELOW-FOLD VIDEOS (perf) ----
+(function() {
+  var vids = document.querySelectorAll('video[preload="metadata"]');
+  if (!vids.length) return;
+  var vidObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.preload = 'auto';
+        vidObs.unobserve(e.target);
+      } else {
+        // Pause off-screen videos to save CPU
+        if (!e.target.paused) e.target.pause();
+      }
+    });
+  }, { rootMargin: '200px' });
+  vids.forEach(function(v) { vidObs.observe(v); });
+
+  // Also pause/play videos based on visibility
+  var playObs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) e.target.play().catch(function(){});
+      else if (!e.target.paused) e.target.pause();
+    });
+  }, { rootMargin: '50px' });
+  document.querySelectorAll('video[autoplay]').forEach(function(v) { playObs.observe(v); });
+})();
 
 // ---- VIDEO FALLBACK SYSTEM ----
 // Videos start at opacity:0 (set in CSS). <img> fallbacks sit underneath at z-index:0.
@@ -2658,13 +2743,13 @@ renderStep(true);
           <a href="/datenschutz.html" style="color:rgba(255,255,255,0.7);text-decoration:underline;text-underline-offset:2px;">Mehr erfahren</a>
         </p>
         <div style="display:flex;align-items:center;gap:8px;flex-shrink:0;">
-          <button id="cb-toggle-details" style="font-family:'Barlow',sans-serif;font-weight:400;font-size:0.75rem;color:rgba(255,255,255,0.45);background:none;border:none;padding:4px 0;cursor:pointer;transition:color 0.18s ease;white-space:nowrap;" onmouseover="this.style.color='rgba(255,255,255,0.65)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
-            Details
+          <button id="cb-toggle-details" style="font-family:'Barlow',sans-serif;font-weight:400;font-size:0.75rem;color:rgba(255,255,255,0.45);background:none;border:none;padding:8px 4px;cursor:pointer;transition:color 0.18s ease;white-space:nowrap;min-height:44px;display:inline-flex;align-items:center;" onmouseover="this.style.color='rgba(255,255,255,0.65)'" onmouseout="this.style.color='rgba(255,255,255,0.45)'">
+            Anpassen
           </button>
-          <button id="cb-reject-all" style="font-family:'Barlow',sans-serif;font-weight:400;font-size:0.78rem;letter-spacing:0.02em;color:rgba(255,255,255,0.65);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:9999px;padding:7px 16px;cursor:pointer;transition:transform 0.18s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">
+          <button id="cb-reject-all" style="font-family:'Barlow',sans-serif;font-weight:400;font-size:0.78rem;letter-spacing:0.02em;color:rgba(255,255,255,0.65);background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);border-radius:9999px;padding:9px 18px;cursor:pointer;transition:transform 0.18s cubic-bezier(0.16,1,0.3,1);white-space:nowrap;min-height:44px;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform=''">
             Ablehnen
           </button>
-          <button id="cb-accept-all" style="font-family:'Barlow',sans-serif;font-weight:600;font-size:0.78rem;letter-spacing:0.02em;color:#000;background:#fff;border:none;border-radius:9999px;padding:7px 16px;cursor:pointer;transition:transform 0.18s cubic-bezier(0.16,1,0.3,1),box-shadow 0.18s ease;white-space:nowrap;" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 18px rgba(255,255,255,0.22)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+          <button id="cb-accept-all" style="font-family:'Barlow',sans-serif;font-weight:600;font-size:0.78rem;letter-spacing:0.02em;color:#000;background:#fff;border:none;border-radius:9999px;padding:9px 18px;cursor:pointer;transition:transform 0.18s cubic-bezier(0.16,1,0.3,1),box-shadow 0.18s ease;white-space:nowrap;min-height:44px;" onmouseover="this.style.transform='translateY(-1px)';this.style.boxShadow='0 4px 18px rgba(255,255,255,0.22)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
             Akzeptieren
           </button>
         </div>
