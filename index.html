@@ -340,12 +340,15 @@
 
     /* ===== ACCORDION ===== */
     .accordion-content {
-      max-height: 0;
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.38s cubic-bezier(0.16,1,0.3,1);
+    }
+    .accordion-content > * {
       overflow: hidden;
-      transition: max-height 0.38s cubic-bezier(0.16,1,0.3,1);
     }
     .accordion-content.open {
-      max-height: 400px;
+      grid-template-rows: 1fr;
     }
     .accordion-chevron {
       transition: transform 0.35s cubic-bezier(0.16,1,0.3,1);
@@ -747,7 +750,6 @@
     /* ===== MOBILE ===== */
     @media (max-width: 640px) {
       nav { top: 0.5rem; padding-left: 1rem; padding-right: 1rem; }
-      .accordion-content.open { max-height: 600px; }
       /* Ensure section headings don't overflow */
       h2, h3 { overflow-wrap: break-word; word-break: break-word; }
       /* Tighten section padding */
@@ -1024,7 +1026,7 @@
       </div>
       <div class="flex-1 w-full lg:max-w-sm reveal-left" style="transition-delay:0.15s">
         <div class="liquid-glass glow-animate float-anim-2 rounded-2xl overflow-hidden relative" style="box-shadow: 0 0 40px rgba(74,222,128,0.06), inset 0 1px 1px rgba(255,255,255,0.12)">
-          <video class="w-full h-full object-cover rounded-2xl" autoplay muted loop playsinline preload="auto">
+          <video class="w-full h-full object-cover rounded-2xl" autoplay muted loop playsinline preload="none">
             <source src="brand_assets/Videobibliothek-marketing-startups.mp4" type="video/mp4">
           </video>
         </div>
@@ -1448,7 +1450,7 @@
           <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div id="faq-content-1" class="accordion-content" role="region" aria-labelledby="faq-trigger-1">
-          <p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Ja — und du solltest es. Founder, die ihr eigenes Performance Marketing verstehen, treffen bessere Entscheidungen, sparen langfristig Agenturkosten und bauen einen Wettbewerbsvorteil auf, der im Unternehmen bleibt. Das Programm ist auf genau diesen Founder zugeschnitten: zeitsparend, praxisnah, ohne unnötiges Theorie-Aufblähen.</p>
+          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Ja — und du solltest es. Founder, die ihr eigenes Performance Marketing verstehen, treffen bessere Entscheidungen, sparen langfristig Agenturkosten und bauen einen Wettbewerbsvorteil auf, der im Unternehmen bleibt. Das Programm ist auf genau diesen Founder zugeschnitten: zeitsparend, praxisnah, ohne unnötiges Theorie-Aufblähen.</p></div>
         </div>
       </div>
 
@@ -1458,7 +1460,7 @@
           <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div id="faq-content-2" class="accordion-content" role="region" aria-labelledby="faq-trigger-2">
-          <p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Ja, vollständig. Die Ausbildung ist so aufgebaut, dass Einsteiger ohne Vorkenntnisse sofort starten können. Wer bereits Grundlagen hat, skaliert schneller — aber beide kommen ans Ziel. Es geht nicht darum, wie viel du weißt, sondern was du damit anfängst.</p>
+          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Ja, vollständig. Die Ausbildung ist so aufgebaut, dass Einsteiger ohne Vorkenntnisse sofort starten können. Wer bereits Grundlagen hat, skaliert schneller — aber beide kommen ans Ziel. Es geht nicht darum, wie viel du weißt, sondern was du damit anfängst.</p></div>
         </div>
       </div>
 
@@ -1468,7 +1470,7 @@
           <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div id="faq-content-3" class="accordion-content" role="region" aria-labelledby="faq-trigger-3">
-          <p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Der Hauptunterschied: wöchentliches 1:1-Feedback auf deine echten Kampagnen — nicht auf Beispiele aus einem Kurs. Der Trainer ist selbst aktiver Founder, der das Wissen täglich in eigenen Projekten einsetzt. Kein veraltetes Kurswissen, kein generisches Framework — sondern Feedback auf das, was bei dir gerade live läuft.</p>
+          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Der Hauptunterschied: wöchentliches 1:1-Feedback auf deine echten Kampagnen — nicht auf Beispiele aus einem Kurs. Der Trainer ist selbst aktiver Founder, der das Wissen täglich in eigenen Projekten einsetzt. Kein veraltetes Kurswissen, kein generisches Framework — sondern Feedback auf das, was bei dir gerade live läuft.</p></div>
         </div>
       </div>
 
@@ -1478,7 +1480,7 @@
           <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div id="faq-content-4" class="accordion-content" role="region" aria-labelledby="faq-trigger-4">
-          <p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Dafür gibt es das kostenlose Erstgespräch. Es werden mehr Anfragen abgelehnt als angenommen — nicht weil die Hürde hoch ist, sondern weil die Plätze begrenzt sind und eine Zusammenarbeit nur Sinn macht, wenn ein echter Mehrwert entsteht. Das Gespräch klärt das offen und ehrlich.</p>
+          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Dafür gibt es das kostenlose Erstgespräch. Es werden mehr Anfragen abgelehnt als angenommen — nicht weil die Hürde hoch ist, sondern weil die Plätze begrenzt sind und eine Zusammenarbeit nur Sinn macht, wenn ein echter Mehrwert entsteht. Das Gespräch klärt das offen und ehrlich.</p></div>
         </div>
       </div>
 
@@ -1488,7 +1490,7 @@
           <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div id="faq-content-5" class="accordion-content" role="region" aria-labelledby="faq-trigger-5">
-          <p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Die Investition liegt bei 12.000 € — einmalig, kein Abo. Im Vergleich: eine durchschnittliche Marketing-Agentur kostet 2.500 € pro Monat, also 30.000 € pro Jahr — ohne Wissenstransfer. Ratenzahlung ist möglich und wird im Erstgespräch besprochen.</p>
+          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Die Investition liegt bei 12.000 € — einmalig, kein Abo. Im Vergleich: eine durchschnittliche Marketing-Agentur kostet 2.500 € pro Monat, also 30.000 € pro Jahr — ohne Wissenstransfer. Ratenzahlung ist möglich und wird im Erstgespräch besprochen.</p></div>
         </div>
       </div>
 
@@ -1498,7 +1500,7 @@
           <svg class="accordion-chevron w-4 h-4 text-white/70" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
         </button>
         <div id="faq-content-6" class="accordion-content" role="region" aria-labelledby="faq-trigger-6">
-          <p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Für alle. Die Ausbildung hat Startups aus SaaS, E-Commerce, Physical Products, B2B, Fintech und Healthtech erfolgreich begleitet. Das Grundprinzip — Daten verstehen, Kampagnen testen, skalieren was funktioniert — gilt branchenübergreifend. Was sich ändert, sind die Taktiken. Die werden individuell für dein Modell erarbeitet.</p>
+          <div><p class="px-6 pb-5 font-body font-light text-white/75 text-sm leading-[1.75]">Für alle. Die Ausbildung hat Startups aus SaaS, E-Commerce, Physical Products, B2B, Fintech und Healthtech erfolgreich begleitet. Das Grundprinzip — Daten verstehen, Kampagnen testen, skalieren was funktioniert — gilt branchenübergreifend. Was sich ändert, sind die Taktiken. Die werden individuell für dein Modell erarbeitet.</p></div>
         </div>
       </div>
 
@@ -1633,22 +1635,39 @@ window.addEventListener('load', () => {
 });
 
 
-// ---- SPOTLIGHT CARD POINTER TRACKING ----
-document.addEventListener('pointermove', function(e) {
-  document.querySelectorAll('[data-glow]').forEach(function(el) {
-    var rect = el.getBoundingClientRect();
-    var x = e.clientX - rect.left;
-    var y = e.clientY - rect.top;
-    el.style.setProperty('--mx', x + 'px');
-    el.style.setProperty('--my', y + 'px');
-    // also update inner card so its inner glow is in the same coordinate space
-    var inner = el.querySelector('.glow-card-inner');
-    if (inner) {
-      inner.style.setProperty('--mx', (x - 1.5) + 'px');
-      inner.style.setProperty('--my', (y - 1.5) + 'px');
+// ---- SPOTLIGHT CARD POINTER TRACKING (RAF throttled) ----
+(function() {
+  var glowCards = document.querySelectorAll('[data-glow]');
+  if (!glowCards.length) return;
+
+  var pointerX = 0, pointerY = 0;
+  var rafPending = false;
+
+  function updateGlow() {
+    rafPending = false;
+    glowCards.forEach(function(el) {
+      var rect = el.getBoundingClientRect();
+      var x = pointerX - rect.left;
+      var y = pointerY - rect.top;
+      el.style.setProperty('--mx', x + 'px');
+      el.style.setProperty('--my', y + 'px');
+      var inner = el.querySelector('.glow-card-inner');
+      if (inner) {
+        inner.style.setProperty('--mx', (x - 1.5) + 'px');
+        inner.style.setProperty('--my', (y - 1.5) + 'px');
+      }
+    });
+  }
+
+  document.addEventListener('pointermove', function(e) {
+    pointerX = e.clientX;
+    pointerY = e.clientY;
+    if (!rafPending) {
+      rafPending = true;
+      requestAnimationFrame(updateGlow);
     }
   });
-});
+})();
 
 
 // ---- ROI CALCULATOR ----
@@ -1697,21 +1716,22 @@ if (slider) slider.addEventListener('input', updateROI);
 // ---- SLIDER AUTO-ANIMATION ----
 (function() {
   if (!slider) return;
-  let direction = 1;
-  let animFrame = null;
-  let userControlled = false;
-  let lastTime = null;
-  const speed = 0.004; // slider units per ms — slow, elegant sweep
+  var direction = 1;
+  var animFrame = null;
+  var userControlled = false;
+  var lastTime = null;
+  var speed = 0.004;
+  var isVisible = false;
 
   function autoTick(ts) {
-    if (userControlled) return;
+    if (userControlled || !isVisible) { animFrame = null; return; }
     if (lastTime === null) lastTime = ts;
-    const dt = ts - lastTime;
+    var dt = ts - lastTime;
     lastTime = ts;
 
-    let val = parseFloat(slider.value) + direction * speed * dt;
-    const min = parseFloat(slider.min);
-    const max = parseFloat(slider.max);
+    var val = parseFloat(slider.value) + direction * speed * dt;
+    var min = parseFloat(slider.min);
+    var max = parseFloat(slider.max);
 
     if (val >= max) { val = max; direction = -1; }
     if (val <= min) { val = min; direction = 1; }
@@ -1721,19 +1741,43 @@ if (slider) slider.addEventListener('input', updateROI);
     animFrame = requestAnimationFrame(autoTick);
   }
 
-  function stopAuto() {
-    userControlled = true;
-    if (animFrame) cancelAnimationFrame(animFrame);
+  function startAuto() {
+    if (!animFrame && !userControlled) {
+      lastTime = null;
+      animFrame = requestAnimationFrame(autoTick);
+    }
   }
 
-  slider.addEventListener('mousedown', stopAuto);
-  slider.addEventListener('touchstart', stopAuto);
-  slider.addEventListener('keydown', stopAuto);
+  function stopAuto() {
+    if (animFrame) { cancelAnimationFrame(animFrame); animFrame = null; }
+  }
 
-  // Start after a short delay so it's not immediate on page load
-  setTimeout(() => {
-    animFrame = requestAnimationFrame(autoTick);
-  }, 1200);
+  function stopForever() {
+    userControlled = true;
+    stopAuto();
+  }
+
+  slider.addEventListener('mousedown', stopForever);
+  slider.addEventListener('touchstart', stopForever);
+  slider.addEventListener('keydown', stopForever);
+
+  // Only animate when the ROI section is visible
+  var roiSection = document.getElementById('roi');
+  if (roiSection) {
+    var obs = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) {
+        isVisible = e.isIntersecting;
+        if (isVisible) startAuto(); else stopAuto();
+      });
+    }, { threshold: 0.1 });
+    obs.observe(roiSection);
+  }
+
+  // Pause when tab is hidden
+  document.addEventListener('visibilitychange', function() {
+    if (document.hidden) stopAuto();
+    else if (isVisible) startAuto();
+  });
 })();
 
 
