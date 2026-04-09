@@ -1029,7 +1029,7 @@
     </button>
 
     <!-- CTA Button -->
-    <a href="#kontakt" class="btn-cta btn-primary bg-white text-black rounded-full px-4 py-2 text-sm font-body font-medium flex items-center gap-1.5 cursor-pointer flex-shrink-0">
+    <a href="#kontakt" class="btn-cta liquid-glass rounded-full px-4 py-2 text-sm font-body font-medium flex items-center gap-1.5 cursor-pointer flex-shrink-0 text-white">
       Bewerben
       <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
@@ -1040,13 +1040,13 @@
 
 <!-- Mobile Menu Overlay -->
 <div id="mobile-menu" class="fixed inset-x-0 top-0 z-40 lg:hidden" style="display:none;" role="dialog" aria-modal="true" aria-label="Navigation">
-  <div class="min-h-screen bg-black/95 backdrop-blur-xl pt-24 px-6 pb-8 flex flex-col items-center gap-2">
-    <a href="#warum" class="mobile-nav-link font-body font-medium text-white/70 text-lg py-3 px-6 rounded-full w-full max-w-xs text-center" style="transition: background 0.2s ease;">Warum das funktioniert</a>
-    <a href="#angebot" class="mobile-nav-link font-body font-medium text-white/70 text-lg py-3 px-6 rounded-full w-full max-w-xs text-center" style="transition: background 0.2s ease;">Was drin ist</a>
-    <a href="#roi" class="mobile-nav-link font-body font-medium text-white/70 text-lg py-3 px-6 rounded-full w-full max-w-xs text-center" style="transition: background 0.2s ease;">Dein ROI</a>
-    <a href="#investition" class="mobile-nav-link font-body font-medium text-white/70 text-lg py-3 px-6 rounded-full w-full max-w-xs text-center" style="transition: background 0.2s ease;">Investition</a>
+  <div class="min-h-screen bg-black/95 backdrop-blur-xl pt-24 px-6 pb-8 flex flex-col items-start gap-2">
+    <a href="#warum" class="mobile-nav-link font-body font-medium text-white/70 text-lg py-3 px-6 rounded-full text-left" style="transition: background 0.2s ease;">Warum das funktioniert</a>
+    <a href="#angebot" class="mobile-nav-link font-body font-medium text-white/70 text-lg py-3 px-6 rounded-full text-left" style="transition: background 0.2s ease;">Was drin ist</a>
+    <a href="#roi" class="mobile-nav-link font-body font-medium text-white/70 text-lg py-3 px-6 rounded-full text-left" style="transition: background 0.2s ease;">Dein ROI</a>
+    <a href="#investition" class="mobile-nav-link font-body font-medium text-white/70 text-lg py-3 px-6 rounded-full text-left" style="transition: background 0.2s ease;">Investition</a>
     <div class="mt-4">
-      <a href="#kontakt" class="btn-cta btn-primary bg-white text-black rounded-full px-6 py-3 text-base font-body font-medium flex items-center gap-2 cursor-pointer">
+      <a href="#kontakt" class="btn-cta liquid-glass rounded-full px-6 py-3 text-base font-body font-medium flex items-center gap-2 cursor-pointer text-white">
         Bewerben
         <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg>
       </a>
@@ -1098,7 +1098,7 @@
 
     <!-- CTA -->
     <div class="fade-in flex flex-col items-center justify-center gap-3" style="transition-delay:0.75s">
-      <a href="#kontakt" class="btn-cta btn-glass liquid-glass-strong rounded-full px-6 py-3 text-white font-body font-medium text-sm flex items-center gap-2 cursor-pointer">
+      <a href="#kontakt" class="btn-cta btn-primary bg-white text-black rounded-full px-6 py-3 font-body font-medium text-sm flex items-center gap-2 cursor-pointer">
         Bewerben
         <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
           <line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/>
@@ -1134,7 +1134,7 @@
       <!-- Quote -->
       <div class="text-center sm:text-left">
         <p class="font-body italic text-white text-lg sm:text-xl leading-snug mb-2">
-          „Alex erledigt den Job nicht nur sehr gut, sondern du selbst auch nach 3 Monaten. Die Learnings sind zehnmal mehr wert als jede Agentur."
+          „Nach 3 Monaten kannst du es selbst. Zehnmal mehr wert als jede Agentur."
         </p>
         <p class="font-body font-light text-white/45 text-sm">
           Robin — 404 &amp; Atlas <span class="text-white/30 mx-1">·</span> Google Cloud Partner
@@ -1282,23 +1282,27 @@
       </p>
     </div>
 
-    <!-- 2x2 grid with varied sizing -->
+    <!-- Feature grid: 1 featured + 3 secondary -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-      <!-- Card 1: Featured -->
-      <div class="reveal-scale glow-border-wrap" data-glow>
-        <div class="glow-card-inner rounded-2xl p-8 md:p-10 flex flex-col justify-between" style="min-height:220px;">
-          <div>
+      <!-- Card 1: Featured — spans full width -->
+      <div class="reveal-scale glow-border-wrap md:col-span-2" data-glow>
+        <div class="glow-card-inner rounded-2xl p-8 md:p-12 flex flex-col md:flex-row md:items-center md:gap-12" style="min-height:180px;">
+          <div class="flex-1">
             <p class="font-body text-xs uppercase tracking-widest text-white/40 mb-4">01</p>
-            <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-3 leading-tight">90 Tage. Nicht 9 Monate</h3>
-            <p class="text-white/60 font-body font-light text-base leading-[1.7] max-w-md">Strukturierter Lernpfad vom ersten Setup bis zur eigenständigen Optimierung. Alles, was du brauchst — nichts, was du nicht brauchst.</p>
+            <h3 class="text-3xl md:text-4xl font-heading italic text-white mb-3 leading-tight" style="letter-spacing:-0.03em">90 Tage. Nicht 9 Monate</h3>
+            <p class="text-white/60 font-body font-light text-base leading-[1.7] max-w-lg">Strukturierter Lernpfad vom ersten Setup bis zur eigenständigen Optimierung. Alles, was du brauchst — nichts, was du nicht brauchst.</p>
+          </div>
+          <div class="mt-6 md:mt-0 flex-shrink-0 flex items-center gap-3">
+            <span class="font-heading italic text-white text-5xl md:text-6xl" style="letter-spacing:-0.04em; line-height:1">90</span>
+            <span class="font-body font-light text-white/40 text-sm leading-tight">Tage bis zur<br>Unabhängigkeit</span>
           </div>
         </div>
       </div>
 
       <!-- Card 2 -->
       <div class="reveal-scale glow-border-wrap" data-glow style="transition-delay:0.1s">
-        <div class="glow-card-inner rounded-2xl p-8 md:p-10 flex flex-col justify-between" style="min-height:220px;">
+        <div class="glow-card-inner rounded-2xl p-8 md:p-10 flex flex-col justify-between" style="min-height:200px;">
           <div>
             <p class="font-body text-xs uppercase tracking-widest text-white/40 mb-4">02</p>
             <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-3 leading-tight">Founder-Perspektive</h3>
@@ -1309,7 +1313,7 @@
 
       <!-- Card 3 -->
       <div class="reveal-scale glow-border-wrap" data-glow style="transition-delay:0.2s">
-        <div class="glow-card-inner rounded-2xl p-8 md:p-10 flex flex-col justify-between" style="min-height:220px;">
+        <div class="glow-card-inner rounded-2xl p-8 md:p-10 flex flex-col justify-between" style="min-height:200px;">
           <div>
             <p class="font-body text-xs uppercase tracking-widest text-white/40 mb-4">03</p>
             <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-3 leading-tight">Exit-Value steigern</h3>
@@ -1318,14 +1322,18 @@
         </div>
       </div>
 
-      <!-- Card 4 -->
-      <div class="reveal-scale glow-border-wrap" data-glow style="transition-delay:0.3s">
-        <div class="glow-card-inner rounded-2xl p-8 md:p-10 flex flex-col justify-between" style="min-height:220px;">
+      <!-- Card 4 — spans full width, secondary treatment -->
+      <div class="reveal-scale glow-border-wrap md:col-span-2" data-glow style="transition-delay:0.3s">
+        <div class="glow-card-inner rounded-2xl p-8 md:p-10 md:py-8 flex flex-col md:flex-row md:items-center md:justify-between md:gap-8">
           <div>
-            <p class="font-body text-xs uppercase tracking-widest text-white/40 mb-4">04</p>
-            <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-3 leading-tight">ROI nach 5 Monaten</h3>
+            <p class="font-body text-xs uppercase tracking-widest text-white/40 mb-3">04</p>
+            <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-2 leading-tight">ROI nach 5 Monaten</h3>
             <p class="text-white/60 font-body font-light text-base leading-[1.7]">Die Investition amortisiert sich. Danach sparst du jeden Monat — für immer.</p>
           </div>
+          <a href="#roi" class="mt-4 md:mt-0 btn-glass liquid-glass-strong rounded-full px-5 py-2.5 text-white font-body font-medium text-sm inline-flex items-center gap-2 cursor-pointer flex-shrink-0">
+            Rechner öffnen
+            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
       </div>
 
@@ -1374,8 +1382,8 @@
           <div class="text-white/75 font-body font-light text-xs">Projekte abgeschlossen</div>
         </div>
         <div class="reveal-scale liquid-glass-strong rounded-xl p-3 text-center relative" style="transition-delay:0.24s">
-          <div class="text-xl font-heading italic text-white mb-0.5" style="letter-spacing:-0.04em">Mehrere</div>
-          <div class="text-white/75 font-body font-light text-xs">Investment-Runden entschieden</div>
+          <div class="text-2xl font-heading italic text-white mb-0.5" style="letter-spacing:-0.04em">5</div>
+          <div class="text-white/75 font-body font-light text-xs">Eigene Brands aufgebaut</div>
         </div>
         <div class="reveal-scale liquid-glass-strong rounded-xl p-3 text-center relative" style="transition-delay:0.36s">
           <div class="text-2xl font-heading italic text-white mb-0.5" style="letter-spacing:-0.04em">7-stellig</div>
@@ -1556,12 +1564,12 @@
       </div>
     </div>
 
-    <!-- Three supporting testimonials -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <!-- Four supporting testimonials -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
 
       <div class="reveal-up liquid-glass card-shimmer rounded-2xl p-8 flex flex-col relative">
         <p class="text-white/80 font-body font-light text-sm italic leading-[1.75] mb-6 flex-1">
-          "Unsere Kosten pro Registrierung sind seit der Zusammenarbeit mit Alex drastisch gesunken."
+          "70% weniger Kosten pro Registrierung — seit der Zusammenarbeit mit Alex."
         </p>
         <div class="flex items-center gap-3">
           <img src="https://framerusercontent.com/images/v3eSqxxhMdN5FavSzj6RcndPjE.png?width=100" alt="Sebastian" loading="lazy" width="36" height="36" class="w-9 h-9 rounded-full object-cover flex-shrink-0" style="object-position:47.9% 38.9%" />
@@ -1574,7 +1582,7 @@
 
       <div class="reveal-up liquid-glass card-shimmer rounded-2xl p-8 flex flex-col relative" style="transition-delay:0.12s">
         <p class="text-white/80 font-body font-light text-sm italic leading-[1.75] mb-6 flex-1">
-          "Alex hat uns immer wieder schnell und unkompliziert bei technischen Schwierigkeiten geholfen."
+          "Alex hat uns ein kritisches Tracking-Problem vor einem wichtigen Sale gefixt — schnell und unkompliziert."
         </p>
         <div class="flex items-center gap-3">
           <img src="https://framerusercontent.com/images/S1Eq5hpeHn9xlsyAZ73oflJAKc.webp?width=100" alt="Leo & Carla" loading="lazy" width="36" height="36" class="w-9 h-9 rounded-full object-cover flex-shrink-0" />
@@ -1587,13 +1595,26 @@
 
       <div class="reveal-up liquid-glass card-shimmer rounded-2xl p-8 flex flex-col relative" style="transition-delay:0.24s">
         <p class="text-white/80 font-body font-light text-sm italic leading-[1.75] mb-6 flex-1">
-          "Durch die Ausbildung haben wir es geschafft, unser Startup besser zu monetarisieren."
+          "10 € pro Lead — durch die Ausbildung haben wir es geschafft, unser Startup richtig zu monetarisieren."
         </p>
         <div class="flex items-center gap-3">
           <img src="https://framerusercontent.com/images/xENDxFCGW2pL9yflPAVXmZEmOMY.webp?width=100" alt="Felix" loading="lazy" width="36" height="36" class="w-9 h-9 rounded-full object-cover flex-shrink-0" />
           <div>
             <p class="text-white font-body font-medium text-sm">Felix</p>
             <p class="text-white/50 font-body font-light text-xs">Founder, Curawork</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal-up liquid-glass card-shimmer rounded-2xl p-8 flex flex-col relative" style="transition-delay:0.36s">
+        <p class="text-white/80 font-body font-light text-sm italic leading-[1.75] mb-6 flex-1">
+          "Alex hat zwei meiner Mitarbeiter geschult und mit ihnen gemeinsam unsere Kampagnen verbessert."
+        </p>
+        <div class="flex items-center gap-3">
+          <img src="brand_assets/lasse.jpeg" alt="Lasse Dumstrei — Ledist Agency" loading="lazy" width="36" height="36" class="w-9 h-9 rounded-full object-cover flex-shrink-0" style="border: 1px solid rgba(255,255,255,0.1);" />
+          <div>
+            <p class="text-white font-body font-medium text-sm">Lasse Dumstrei</p>
+            <p class="text-white/50 font-body font-light text-xs">Ledist Agency</p>
           </div>
         </div>
       </div>
@@ -1814,7 +1835,7 @@
         <button id="cb-reopen" onclick="window.__cbReopen && window.__cbReopen()" class="text-white/40 text-xs font-body hover:text-white transition-colors duration-200 bg-transparent border-none cursor-pointer py-2 px-0">Cookie-Einstellungen</button>
       </div>
     </div>
-    <p class="text-white/25 text-xs font-body text-center md:text-left mt-6">© 2026 StartupAds.de</p>
+    <p class="text-white/25 text-xs font-body text-center md:text-left mt-6">© 2026 StartupAds</p>
   </div>
 </footer>
 
