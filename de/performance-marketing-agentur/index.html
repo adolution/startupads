@@ -1305,74 +1305,83 @@
       </h2>
     </div>
 
-    <!-- Steps 1–4: Uniform 2×2 grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+    <!-- Steps 1–4: Rhythm layout (wide → pair → wide) -->
+    <div class="flex flex-col gap-6 lg:gap-8">
 
-      <!-- Step 1 -->
+      <!-- Step 1 — Full width, prominent entry point -->
       <div class="fade-in relative" style="transition-delay:0s">
-        <div class="liquid-glass rounded-2xl p-6 md:p-8 flex flex-col" style="border:1px solid rgba(255,255,255,0.06);">
-          <div class="flex items-center gap-3 mb-5">
-            <span class="font-heading italic text-white/20 text-4xl leading-none select-none">01</span>
-            <span class="rounded-full px-2.5 py-0.5 text-[10px] font-body font-semibold leading-none" style="background: var(--color-solution-bg); border: 1px solid var(--color-solution-border); color: var(--color-solution);">Kostenlos &amp; unverbindlich</span>
+        <div class="liquid-glass rounded-2xl p-6 md:p-10 lg:p-12 flex flex-col md:flex-row md:items-start md:gap-12" style="border:1px solid rgba(255,255,255,0.06);">
+          <div class="flex-1">
+            <div class="flex items-center gap-3 mb-5">
+              <span class="font-heading italic text-white/20 text-5xl leading-none select-none">01</span>
+              <span class="rounded-full px-2.5 py-0.5 text-[10px] font-body font-semibold leading-none" style="background: var(--color-solution-bg); border: 1px solid var(--color-solution-border); color: var(--color-solution);">Kostenlos &amp; unverbindlich</span>
+            </div>
+            <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-4 leading-tight">
+              Audit &amp; Analyse
+            </h3>
+            <p class="font-body font-light text-white/75 text-sm md:text-base leading-[1.75] mb-6 max-w-xl">
+              Wir analysieren dein gesamtes Marketing-Setup: Tracking, Kampagnenstruktur, Kanäle, Creatives, Landing Pages. Falls noch kein Setup vorhanden ist, schauen wir uns mögliche Monetarisierung an und sprechen über sinnvolle Setups und Kanäle. Du bekommst einen klaren Bericht mit konkreten Empfehlungen.
+            </p>
+            <a href="#kontakt" class="btn-glass liquid-glass-strong rounded-full px-5 py-2.5 text-white font-body font-medium text-xs inline-flex items-center gap-2 cursor-pointer self-start">
+              Kostenloses Audit anfragen
+              <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </a>
           </div>
-          <h3 class="text-xl md:text-2xl font-heading italic text-white mb-3 leading-tight">
-            Audit &amp; Analyse
-          </h3>
-          <p class="font-body font-light text-white/75 text-sm leading-[1.75] mb-6 flex-1">
-            Wir analysieren dein gesamtes Marketing-Setup: Tracking, Kampagnenstruktur, Kanäle, Creatives, Landing Pages. Falls noch kein Setup vorhanden ist, schauen wir uns mögliche Monetarisierung an und sprechen über sinnvolle Setups und Kanäle. Du bekommst einen klaren Bericht mit konkreten Empfehlungen.
-          </p>
-          <a href="#kontakt" class="btn-glass liquid-glass-strong rounded-full px-5 py-2.5 text-white font-body font-medium text-xs inline-flex items-center gap-2 cursor-pointer self-start">
-            Kostenloses Audit anfragen
-            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-          </a>
         </div>
       </div>
 
-      <!-- Step 2 -->
-      <div class="fade-in relative" style="transition-delay:0.1s">
-        <div class="liquid-glass rounded-2xl p-6 md:p-8 flex flex-col" style="border:1px solid rgba(255,255,255,0.06);">
-          <div class="flex items-center gap-3 mb-5">
-            <span class="font-heading italic text-white/20 text-4xl leading-none select-none">02</span>
+      <!-- Steps 2 & 3 — Side by side, equal weight -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+
+        <!-- Step 2 -->
+        <div class="fade-in relative" style="transition-delay:0.1s">
+          <div class="liquid-glass rounded-2xl p-6 md:p-8 flex flex-col h-full" style="border:1px solid rgba(255,255,255,0.06);">
+            <div class="flex items-center gap-3 mb-5">
+              <span class="font-heading italic text-white/20 text-4xl leading-none select-none">02</span>
+            </div>
+            <h3 class="text-xl md:text-2xl font-heading italic text-white mb-3 leading-tight">
+              Strategie &amp; Setup
+            </h3>
+            <p class="font-body font-light text-white/75 text-sm leading-[1.75] flex-1">
+              Basierend auf dem Audit entwickeln wir deine individuelle Strategie. Tracking wird sauber aufgesetzt, Kampagnen strukturiert, Landing Pages optimiert.
+            </p>
           </div>
-          <h3 class="text-xl md:text-2xl font-heading italic text-white mb-3 leading-tight">
-            Strategie &amp; Setup
-          </h3>
-          <p class="font-body font-light text-white/75 text-sm leading-[1.75] flex-1">
-            Basierend auf dem Audit entwickeln wir deine individuelle Strategie. Tracking wird sauber aufgesetzt, Kampagnen strukturiert, Landing Pages optimiert.
-          </p>
         </div>
+
+        <!-- Step 3 -->
+        <div class="fade-in relative" style="transition-delay:0.2s">
+          <div class="liquid-glass rounded-2xl p-6 md:p-8 flex flex-col h-full" style="border:1px solid rgba(255,255,255,0.06);">
+            <div class="flex items-center gap-3 mb-5">
+              <span class="font-heading italic text-white/20 text-4xl leading-none select-none">03</span>
+              <span class="rounded-full px-2.5 py-0.5 text-[10px] font-body font-semibold leading-none" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);">Datengetrieben</span>
+            </div>
+            <h3 class="text-xl md:text-2xl font-heading italic text-white mb-3 leading-tight">
+              Testing &amp; Optimierung
+            </h3>
+            <p class="font-body font-light text-white/75 text-sm leading-[1.75] flex-1">
+              Wir testen systematisch: Zielgruppen, Creatives, Angebote, Landingpages. Was funktioniert, wird skaliert. Was nicht, wird gestoppt. Keine Bauchgefühl-Entscheidungen.
+            </p>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Step 3 -->
-      <div class="fade-in relative" style="transition-delay:0.2s">
-        <div class="liquid-glass rounded-2xl p-6 md:p-8 flex flex-col" style="border:1px solid rgba(255,255,255,0.06);">
-          <div class="flex items-center gap-3 mb-5">
-            <span class="font-heading italic text-white/20 text-4xl leading-none select-none">03</span>
-            <span class="rounded-full px-2.5 py-0.5 text-[10px] font-body font-semibold leading-none" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);">Datengetrieben</span>
-          </div>
-          <h3 class="text-xl md:text-2xl font-heading italic text-white mb-3 leading-tight">
-            Testing &amp; Optimierung
-          </h3>
-          <p class="font-body font-light text-white/75 text-sm leading-[1.75] flex-1">
-            Wir testen systematisch: Zielgruppen, Creatives, Angebote, Landingpages. Was funktioniert, wird skaliert. Was nicht, wird gestoppt. Keine Bauchgefühl-Entscheidungen.
-          </p>
-        </div>
-      </div>
-
-      <!-- Step 4 -->
+      <!-- Step 4 — Full width, video payoff -->
       <div class="fade-in relative" style="transition-delay:0.3s">
-        <div class="liquid-glass rounded-2xl p-6 md:p-8 flex flex-col" style="border:1px solid rgba(255,255,255,0.06);">
-          <div class="flex items-center gap-3 mb-5">
-            <span class="font-heading italic text-white/20 text-4xl leading-none select-none">04</span>
-            <span class="rounded-full px-2.5 py-0.5 text-[10px] font-body font-semibold leading-none" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);">Wöchentliches Reporting</span>
+        <div class="liquid-glass rounded-2xl p-6 md:p-10 lg:p-12 flex flex-col md:flex-row md:items-start md:gap-12" style="border:1px solid rgba(255,255,255,0.06);">
+          <div class="md:w-2/5 flex-shrink-0 mb-6 md:mb-0">
+            <div class="flex items-center gap-3 mb-5">
+              <span class="font-heading italic text-white/20 text-5xl leading-none select-none">04</span>
+              <span class="rounded-full px-2.5 py-0.5 text-[10px] font-body font-semibold leading-none" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);">Wöchentliches Reporting</span>
+            </div>
+            <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-4 leading-tight">
+              Skalierung &amp; Reporting
+            </h3>
+            <p class="font-body font-light text-white/75 text-sm md:text-base leading-[1.75]">
+              Gewinner-Kampagnen werden skaliert, Budget wird effizient verteilt. Du bekommst wöchentlich kurze, klar verständliche Video-Reports mit allen KPIs — keine Blackbox.
+            </p>
           </div>
-          <h3 class="text-xl md:text-2xl font-heading italic text-white mb-3 leading-tight">
-            Skalierung &amp; Reporting
-          </h3>
-          <p class="font-body font-light text-white/75 text-sm leading-[1.75] mb-5">
-            Gewinner-Kampagnen werden skaliert, Budget wird effizient verteilt. Du bekommst wöchentlich kurze, klar verständliche Video-Reports mit allen KPIs — keine Blackbox.
-          </p>
-          <div class="rounded-xl overflow-hidden mt-auto" style="box-shadow: 0 0 30px var(--color-solution-glow);">
+          <div class="md:w-3/5 rounded-xl overflow-hidden" style="box-shadow: 0 0 30px var(--color-solution-glow);">
             <video class="w-full object-cover rounded-xl" autoplay muted loop playsinline preload="metadata" style="aspect-ratio:16/9;filter:brightness(0.55)" onloadedmetadata="this.playbackRate=2">
               <source src="/brand_assets/reporting vid.mp4" type="video/mp4">
             </video>
