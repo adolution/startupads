@@ -36,7 +36,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <link rel="preload" as="image" href="brand_assets/hero-section-fallback.webp" />
 
   <!-- ===== SCHEMA MARKUP (AI SEO) ===== -->
   <script type="application/ld+json">
@@ -504,8 +503,7 @@
       display: block;
     }
     /* Videos: positioned + hidden. JS sets opacity:1 via style when playing. */
-    .video-section video,
-    #vid-hero {
+    .video-section video {
       position: absolute;
       top: 0; left: 0;
       width: 100%; height: 100%;
@@ -874,6 +872,29 @@
       box-shadow: 0 0 35px rgba(0,160,60,0.16), 0 0 70px rgba(0,160,60,0.06), inset 0 1px 1px rgba(80,220,120,0.1) !important;
     }
 
+    /* ===== HERO NOISE TEXTURE ===== */
+    .hero-noise {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .hero-noise svg {
+      width: 100%;
+      height: 100%;
+    }
+    /* Subtle radial glow behind hero content */
+    .hero-ambient {
+      position: absolute;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 70% 55% at 50% 42%, rgba(255,255,255,0.06) 0%, transparent 70%),
+        radial-gradient(ellipse 50% 40% at 25% 55%, rgba(255,255,255,0.035) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 40% at 75% 35%, rgba(255,255,255,0.035) 0%, transparent 55%);
+    }
+
     /* ===== CONTACT FORM STABLE HEIGHT ===== */
     #msq-card { min-height: 480px; }
 
@@ -1114,20 +1135,17 @@
      ============================================================ -->
 <section id="hero" class="relative overflow-hidden bg-black" style="min-height: 100svh;">
 
-  <!-- Fallback image -->
-  <img src="brand_assets/hero-section-fallback.webp" alt="Performance Marketing Ausbildung für Startup-Founder — Hero Hintergrund" fetchpriority="high"
-       class="vid-fallback" style="object-position: center 40%;">
-
-  <!-- BG Video -->
-  <video
-    id="vid-hero"
-    src="brand_assets/1774160847209081.MP4"
-    autoplay loop muted playsinline preload="metadata"
-    style="filter: brightness(0.45); object-position: center 30%;"
-  ></video>
-
-  <!-- Overlays -->
-  <div class="absolute inset-0 bg-black/45 z-[2] pointer-events-none"></div>
+  <!-- Noise grain texture (replaces hero video — see git history to revert) -->
+  <div class="hero-noise">
+    <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+      <filter id="hero-grain">
+        <feTurbulence type="fractalNoise" baseFrequency="0.7" numOctaves="4" stitchTiles="stitch"/>
+        <feColorMatrix type="matrix" values="0 0 0 0 0.08  0 0 0 0 0.08  0 0 0 0 0.08  0 0 0 0.6 0"/>
+      </filter>
+      <rect width="100%" height="100%" filter="url(#hero-grain)"/>
+    </svg>
+  </div>
+  <div class="hero-ambient"></div>
   <div class="absolute bottom-0 left-0 right-0 z-[2] pointer-events-none" style="height:500px;background:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,0.6) 40%,#000 100%)"></div>
 
   <!-- Content -->
@@ -1827,9 +1845,9 @@
      SECTION 11 — FINAL CTA + FORM (HLS Video BG)
      ============================================================ -->
 <section id="kontakt" class="cv-auto video-section py-32 px-6 md:px-16 lg:px-24">
-  <img src="brand_assets/CTA-section-fallback.webp" alt="Jetzt für die Performance Marketing Ausbildung bewerben" loading="lazy" decoding="async" class="vid-fallback" style="object-position: center 40%; filter: brightness(0.4);">
+  <img src="brand_assets/CTA-section-fallback.webp" alt="Jetzt für die Performance Marketing Ausbildung bewerben" loading="lazy" decoding="async" class="vid-fallback" style="object-position: center 40%; filter: brightness(0.4) saturate(0);">
   <video id="vid-cta" autoplay loop muted playsinline preload="metadata"
-    style="filter: brightness(0.45); object-position: center 35%;"
+    style="filter: brightness(0.45) saturate(0); object-position: center 35%;"
     class="absolute inset-0 w-full h-full object-cover">
   </video>
   <div class="fade-top"></div>
@@ -2199,12 +2217,7 @@ setupHLS('vid-problem', 'https://stream.mux.com/9JXDljEVWYwWu01PUkAemafDugK89o01
 setupHLS('vid-roi',     'https://stream.mux.com/NcU3HlHeF7CUL86azTTzpy3Tlb00d6iF3BmCdFslMJYM.m3u8');
 setupHLS('vid-cta',     'https://stream.mux.com/8wrHPCX2dC3msyYU9ObwqNdm00u3ViXvOSHUMRYSEe5Q.m3u8');
 
-// Hero video (local MP4)
-(function() {
-  const v = document.getElementById('vid-hero');
-  if (!v) return;
-  v.addEventListener('playing', function() { showVideo(v); }, { once: true });
-})();
+// Hero uses noise texture — no video to initialize
 
 
 // ---- ACCORDION ----
