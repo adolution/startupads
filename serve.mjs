@@ -21,11 +21,41 @@ const MIME = {
   '.woff': 'font/woff',
   '.woff2': 'font/woff2',
   '.ttf': 'font/ttf',
+  '.webp': 'image/webp',
+  '.mp4': 'video/mp4',
+  '.xml': 'application/xml',
+  '.txt': 'text/plain',
+  '.m3u8': 'application/vnd.apple.mpegurl',
+};
+
+/* Legacy URL → new /de/ path (301 permanent redirect) */
+const LEGACY_REDIRECTS = {
+  '/index.html':       '/de/',
+  '/impressum.html':   '/de/impressum.html',
+  '/datenschutz.html': '/de/datenschutz.html',
 };
 
 const server = http.createServer((req, res) => {
   let urlPath = req.url.split('?')[0];
-  if (urlPath === '/') urlPath = '/index.html';
+
+  /* Root → /de/ (302 temporary — lets search engines discover both versions) */
+  if (urlPath === '/') {
+    res.writeHead(302, { Location: '/de/' });
+    res.end();
+    return;
+  }
+
+  /* Legacy URLs → 301 to /de/ equivalents */
+  if (LEGACY_REDIRECTS[urlPath]) {
+    res.writeHead(301, { Location: LEGACY_REDIRECTS[urlPath] });
+    res.end();
+    return;
+  }
+
+  /* Directory index: /de/ → /de/index.html, /en/ → /en/index.html */
+  if (urlPath.endsWith('/')) {
+    urlPath += 'index.html';
+  }
 
   const filePath = path.join(__dirname, urlPath);
   const ext = path.extname(filePath);

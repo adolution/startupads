@@ -1,9 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- German homepage -->
   <url>
-    <loc>https://www.startupads.de/</loc>
+    <loc>https://www.startupads.de/de/</loc>
     <lastmod>2026-04-15</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.startupads.de/de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.startupads.de/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.startupads.de/en/" />
   </url>
+
+  <!-- English homepage -->
+  <url>
+    <loc>https://www.startupads.de/en/</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.startupads.de/de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.startupads.de/en/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.startupads.de/en/" />
+  </url>
+
+  <!-- German legal notice -->
+  <url>
+    <loc>https://www.startupads.de/de/impressum.html</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.startupads.de/de/impressum.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.startupads.de/en/imprint.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.startupads.de/en/imprint.html" />
+  </url>
+
+  <!-- English legal notice -->
+  <url>
+    <loc>https://www.startupads.de/en/imprint.html</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.startupads.de/de/impressum.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.startupads.de/en/imprint.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.startupads.de/en/imprint.html" />
+  </url>
+
+  <!-- German privacy policy -->
+  <url>
+    <loc>https://www.startupads.de/de/datenschutz.html</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.startupads.de/de/datenschutz.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.startupads.de/en/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.startupads.de/en/privacy.html" />
+  </url>
+
+  <!-- English privacy policy -->
+  <url>
+    <loc>https://www.startupads.de/en/privacy.html</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.startupads.de/de/datenschutz.html" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.startupads.de/en/privacy.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.startupads.de/en/privacy.html" />
+  </url>
+
 </urlset>
