@@ -1139,31 +1139,6 @@
 </section>
 
 
-<!-- ============================================================
-     SOCIAL PROOF STRIP — After Hero
-     ============================================================ -->
-<section class="relative py-10 md:py-14 px-6 md:px-16 lg:px-24" style="background:#000;">
-  <div class="max-w-3xl mx-auto">
-    <div class="fade-in flex flex-col sm:flex-row items-center gap-5 sm:gap-8">
-      <!-- Photo -->
-      <img src="/brand_assets/robin profile.jpeg" alt="Robin — 404 & Atlas" loading="lazy"
-           width="64" height="64"
-           class="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover flex-shrink-0"
-           style="border: 1.5px solid rgba(255,255,255,0.12);" />
-      <!-- Quote -->
-      <div class="text-center sm:text-left">
-        <p class="font-body italic text-white text-lg sm:text-xl leading-snug mb-2">
-          &bdquo;Zehn mal wertvoller als jede Standard-Agentur.&ldquo;
-        </p>
-        <p class="font-body font-light text-white/45 text-sm">
-          Robin — 404 &amp; Atlas <span class="text-white/30 mx-1">&middot;</span> Google Cloud Partner
-        </p>
-      </div>
-    </div>
-    <!-- Divider -->
-    <div class="mt-10 md:mt-14 h-px w-full" style="background:rgba(255,255,255,0.06);"></div>
-  </div>
-</section>
 
 <!-- ============================================================
      PROBLEM SECTION (Video BG)
@@ -1326,75 +1301,67 @@
       </h2>
     </div>
 
-    <!-- Step 1: Text L, Visual R -->
-    <div class="flex flex-col lg:flex-row items-center gap-12 mb-24">
-      <div class="flex-1 reveal-left">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="font-body text-xs uppercase tracking-widest text-white/40">Schritt 1</span>
-          <span class="rounded-full px-2.5 py-0.5 text-[10px] font-body font-semibold leading-none" style="background: var(--color-solution-bg); border: 1px solid var(--color-solution-border); color: var(--color-solution);">Kostenlos &amp; unverbindlich</span>
+    <!-- Steps 1–3: Timeline layout (text only) -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 lg:gap-10 mb-24">
+
+      <!-- Step 1 -->
+      <div class="fade-in relative" style="transition-delay:0s">
+        <div class="liquid-glass rounded-2xl p-6 md:p-8 h-full" style="border:1px solid rgba(255,255,255,0.06);">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="font-heading italic text-white/20 text-4xl leading-none select-none">01</span>
+            <span class="rounded-full px-2.5 py-0.5 text-[10px] font-body font-semibold leading-none" style="background: var(--color-solution-bg); border: 1px solid var(--color-solution-border); color: var(--color-solution);">Kostenlos &amp; unverbindlich</span>
+          </div>
+          <h3 class="text-xl md:text-2xl font-heading italic text-white mb-3 leading-tight">
+            Audit &amp; Analyse
+          </h3>
+          <p class="font-body font-light text-white/75 text-sm leading-[1.75] mb-6">
+            Wir analysieren dein gesamtes Marketing-Setup: Tracking, Kampagnenstruktur, Kanäle, Creatives, Landing Pages. Falls noch kein Setup vorhanden ist, schauen wir uns mögliche Monetarisierung an und sprechen über sinnvolle Setups und Kanäle. Du bekommst einen klaren Bericht mit konkreten Empfehlungen.
+          </p>
+          <a href="#kontakt" class="btn-glass liquid-glass-strong rounded-full px-5 py-2.5 text-white font-body font-medium text-xs inline-flex items-center gap-2 cursor-pointer">
+            Kostenloses Audit anfragen
+            <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </a>
         </div>
-        <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-4 leading-tight">
-          Audit &amp; Analyse
-        </h3>
-        <p class="font-body font-light text-white/75 text-base leading-[1.75] mb-8 max-w-sm">
-          Wir analysieren dein gesamtes Marketing-Setup: Tracking, Kampagnenstruktur, Kanäle, Creatives, Landing Pages. Falls noch kein Setup vorhanden ist, schauen wir uns mögliche Monetarisierung an und sprechen über sinnvolle Setups und Kanäle. Du bekommst einen klaren Bericht mit konkreten Empfehlungen.
-        </p>
-        <a href="#kontakt" class="btn-glass liquid-glass-strong rounded-full px-6 py-3 text-white font-body font-medium text-sm inline-flex items-center gap-2 cursor-pointer">
-          Kostenloses Audit anfragen
-          <svg class="icon-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
-        </a>
       </div>
-      <div class="flex-1 w-full lg:max-w-sm reveal-right" style="transition-delay:0.15s">
-        <div class="liquid-glass glow-animate float-anim rounded-2xl overflow-hidden relative" style="box-shadow: 0 0 40px var(--color-solution-glow), var(--glass-inner-glow)">
-          <img src="/brand_assets/audit-analyse.webp" alt="Audit & Analyse — Marketing-Setup Überprüfung" class="w-full h-full object-cover rounded-2xl" style="aspect-ratio:16/9" loading="lazy">
+
+      <!-- Step 2 -->
+      <div class="fade-in relative" style="transition-delay:0.1s">
+        <div class="liquid-glass rounded-2xl p-6 md:p-8 h-full" style="border:1px solid rgba(255,255,255,0.06);">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="font-heading italic text-white/20 text-4xl leading-none select-none">02</span>
+          </div>
+          <h3 class="text-xl md:text-2xl font-heading italic text-white mb-3 leading-tight">
+            Strategie &amp; Setup
+          </h3>
+          <p class="font-body font-light text-white/75 text-sm leading-[1.75]">
+            Basierend auf dem Audit entwickeln wir deine individuelle Strategie. Tracking wird sauber aufgesetzt, Kampagnen strukturiert, Landing Pages optimiert.
+          </p>
         </div>
       </div>
+
+      <!-- Step 3 -->
+      <div class="fade-in relative" style="transition-delay:0.2s">
+        <div class="liquid-glass rounded-2xl p-6 md:p-8 h-full" style="border:1px solid rgba(255,255,255,0.06);">
+          <div class="flex items-center gap-3 mb-5">
+            <span class="font-heading italic text-white/20 text-4xl leading-none select-none">03</span>
+            <span class="rounded-full px-2.5 py-0.5 text-[10px] font-body font-semibold leading-none" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);">Datengetrieben</span>
+          </div>
+          <h3 class="text-xl md:text-2xl font-heading italic text-white mb-3 leading-tight">
+            Testing &amp; Optimierung
+          </h3>
+          <p class="font-body font-light text-white/75 text-sm leading-[1.75]">
+            Wir testen systematisch: Zielgruppen, Creatives, Angebote, Landingpages. Was funktioniert, wird skaliert. Was nicht, wird gestoppt. Keine Bauchgefühl-Entscheidungen.
+          </p>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Step 2: Visual L, Text R -->
-    <div class="flex flex-col lg:flex-row-reverse items-center gap-12 mb-24">
-      <div class="flex-1 reveal-right">
-        <span class="font-body text-xs uppercase tracking-widest text-white/40 mb-4 block">Schritt 2</span>
-        <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-4 leading-tight">
-          Strategie &amp; Setup
-        </h3>
-        <p class="font-body font-light text-white/75 text-base leading-[1.75] mb-8 max-w-sm">
-          Basierend auf dem Audit entwickeln wir deine individuelle Strategie. Tracking wird sauber aufgesetzt, Kampagnen strukturiert, Landing Pages optimiert.
-        </p>
-      </div>
-      <div class="flex-1 w-full lg:max-w-sm reveal-left" style="transition-delay:0.15s">
-        <div class="liquid-glass glow-animate float-anim-2 rounded-2xl overflow-hidden relative" style="box-shadow: 0 0 40px var(--color-solution-glow), var(--glass-inner-glow)">
-          <img src="/brand_assets/strategie-setup-bild.webp" alt="Strategie & Setup — Kampagnenplanung und Tracking-Aufbau" class="w-full h-full object-cover rounded-2xl" style="aspect-ratio:16/9" loading="lazy">
-        </div>
-      </div>
-    </div>
-
-    <!-- Step 3: Text L, Visual R -->
-    <div class="flex flex-col lg:flex-row items-center gap-12 mb-24">
-      <div class="flex-1 reveal-left">
-        <div class="flex items-center gap-3 mb-4">
-          <span class="font-body text-xs uppercase tracking-widest text-white/40">Schritt 3</span>
-          <span class="rounded-full px-2.5 py-0.5 text-[10px] font-body font-semibold leading-none" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);">Datengetrieben</span>
-        </div>
-        <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-4 leading-tight">
-          Testing &amp; Optimierung
-        </h3>
-        <p class="font-body font-light text-white/75 text-base leading-[1.75] max-w-sm">
-          Wir testen systematisch: Zielgruppen, Creatives, Angebote, Landingpages. Was funktioniert, wird skaliert. Was nicht, wird gestoppt. Keine Bauchgefühl-Entscheidungen.
-        </p>
-      </div>
-      <div class="flex-1 w-full lg:max-w-sm reveal-right" style="transition-delay:0.15s">
-        <div class="liquid-glass glow-animate float-anim rounded-2xl overflow-hidden relative" style="box-shadow: 0 0 40px var(--color-solution-glow), var(--glass-inner-glow)">
-          <img src="/brand_assets/testing.webp" alt="Testing & Optimierung — datengetriebene A/B-Tests" class="w-full h-full object-cover rounded-2xl" style="aspect-ratio:16/9" loading="lazy">
-        </div>
-      </div>
-    </div>
-
-    <!-- Step 4: Visual L, Text R -->
+    <!-- Step 4: Text + Video (kept) -->
     <div class="flex flex-col lg:flex-row-reverse items-center gap-12">
       <div class="flex-1 reveal-right">
         <div class="flex items-center gap-3 mb-4">
-          <span class="font-body text-xs uppercase tracking-widest text-white/40">Schritt 4</span>
+          <span class="font-heading italic text-white/20 text-4xl leading-none select-none mr-1">04</span>
           <span class="rounded-full px-2.5 py-0.5 text-[10px] font-body font-semibold leading-none" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);">Wöchentliches Reporting</span>
         </div>
         <h3 class="text-2xl md:text-3xl font-heading italic text-white mb-4 leading-tight">
