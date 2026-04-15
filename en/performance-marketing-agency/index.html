@@ -974,6 +974,8 @@
       #cookie-banner { padding: 0 8px 8px !important; }
       footer a, footer button { min-height: 44px; display: inline-flex; align-items: center; }
       footer .flex-wrap { gap: 0.5rem 1.5rem; }
+      #pause-videos { display: none !important; }
+      .pricing-price { white-space: normal !important; font-size: 2rem !important; }
     }
 
     /* ===== CLIP REVEAL ===== */
@@ -1010,25 +1012,8 @@
 <nav class="fixed top-4 left-0 right-0 z-50 px-4 md:px-6">
   <div class="max-w-7xl mx-auto flex items-center justify-between">
 
-    <!-- Logo -->
-    <a href="/en/performance-marketing-agency/" class="flex items-center gap-2 flex-shrink-0">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
-        <path d="M13 2L3.5 13.5H10.5L9.5 22L21 10.5H14L13 2Z"/>
-      </svg>
-      <span class="font-heading italic text-white text-xl leading-none">startupads</span>
-      <span class="liquid-glass rounded-full px-2 py-0.5 text-[10px] font-body font-medium text-white/60 leading-none ml-1">Agency</span>
-    </a>
-
-    <!-- Center Nav Pill -->
-    <div class="hidden lg:flex liquid-glass rounded-full px-2 py-1.5 items-center gap-0.5">
-      <a href="#services" class="nav-link px-4 py-2.5 text-sm font-body font-medium text-white/70">Services</a>
-      <a href="#process"  class="nav-link px-4 py-2.5 text-sm font-body font-medium text-white/70">Process</a>
-      <a href="#results"  class="nav-link px-4 py-2.5 text-sm font-body font-medium text-white/70">Results</a>
-      <a href="#contact"  class="nav-link px-4 py-2.5 text-sm font-body font-medium text-white/70">Contact</a>
-    </div>
-
-    <!-- Mobile Menu Toggle -->
-    <button id="mobile-menu-toggle" class="lg:hidden flex items-center justify-center w-10 h-10 rounded-full liquid-glass cursor-pointer" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+    <!-- Mobile Menu Toggle (appears first / left on mobile via order) -->
+    <button id="mobile-menu-toggle" class="lg:hidden flex items-center justify-center w-10 h-10 rounded-full liquid-glass cursor-pointer order-first" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
       <svg id="hamburger-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
         <line x1="4" y1="7" x2="20" y2="7"/>
         <line x1="4" y1="12" x2="20" y2="12"/>
@@ -1039,6 +1024,23 @@
         <line x1="6" y1="18" x2="18" y2="6"/>
       </svg>
     </button>
+
+    <!-- Logo (hidden on mobile) -->
+    <a href="/en/performance-marketing-agency/" class="hidden lg:flex items-center gap-2 flex-shrink-0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+        <path d="M13 2L3.5 13.5H10.5L9.5 22L21 10.5H14L13 2Z"/>
+      </svg>
+      <span class="font-heading italic text-white text-xl leading-none">startupads</span>
+      <span class="liquid-glass rounded-full px-2 py-0.5 text-[10px] font-body font-medium text-white/60 leading-none ml-1">Agency</span>
+    </a>
+
+    <!-- Center Nav Pill (desktop only) -->
+    <div class="hidden lg:flex liquid-glass rounded-full px-2 py-1.5 items-center gap-0.5">
+      <a href="#services" class="nav-link px-4 py-2.5 text-sm font-body font-medium text-white/70">Services</a>
+      <a href="#process"  class="nav-link px-4 py-2.5 text-sm font-body font-medium text-white/70">Process</a>
+      <a href="#results"  class="nav-link px-4 py-2.5 text-sm font-body font-medium text-white/70">Results</a>
+      <a href="#contact"  class="nav-link px-4 py-2.5 text-sm font-body font-medium text-white/70">Contact</a>
+    </div>
 
     <!-- Right group: lang switcher + CTA -->
     <div class="flex items-center gap-3 flex-shrink-0">
@@ -1306,7 +1308,7 @@
 
       <!-- Step 1 -->
       <div class="fade-in relative" style="transition-delay:0s">
-        <div class="liquid-glass rounded-2xl p-6 md:p-8 h-full flex flex-col" style="border:1px solid rgba(255,255,255,0.06);">
+        <div class="liquid-glass rounded-2xl p-6 md:p-8 flex flex-col" style="border:1px solid rgba(255,255,255,0.06);">
           <div class="flex items-center gap-3 mb-5">
             <span class="font-heading italic text-white/20 text-4xl leading-none select-none">01</span>
             <span class="rounded-full px-2.5 py-0.5 text-[10px] font-body font-semibold leading-none" style="background: var(--color-solution-bg); border: 1px solid var(--color-solution-border); color: var(--color-solution);">Free &amp; no commitment</span>
@@ -1326,7 +1328,7 @@
 
       <!-- Step 2 -->
       <div class="fade-in relative" style="transition-delay:0.1s">
-        <div class="liquid-glass rounded-2xl p-6 md:p-8 h-full flex flex-col" style="border:1px solid rgba(255,255,255,0.06);">
+        <div class="liquid-glass rounded-2xl p-6 md:p-8 flex flex-col" style="border:1px solid rgba(255,255,255,0.06);">
           <div class="flex items-center gap-3 mb-5">
             <span class="font-heading italic text-white/20 text-4xl leading-none select-none">02</span>
           </div>
@@ -1341,7 +1343,7 @@
 
       <!-- Step 3 -->
       <div class="fade-in relative" style="transition-delay:0.2s">
-        <div class="liquid-glass rounded-2xl p-6 md:p-8 h-full flex flex-col" style="border:1px solid rgba(255,255,255,0.06);">
+        <div class="liquid-glass rounded-2xl p-6 md:p-8 flex flex-col" style="border:1px solid rgba(255,255,255,0.06);">
           <div class="flex items-center gap-3 mb-5">
             <span class="font-heading italic text-white/20 text-4xl leading-none select-none">03</span>
             <span class="rounded-full px-2.5 py-0.5 text-[10px] font-body font-semibold leading-none" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);">Data-driven</span>
@@ -1357,7 +1359,7 @@
 
       <!-- Step 4 -->
       <div class="fade-in relative" style="transition-delay:0.3s">
-        <div class="liquid-glass rounded-2xl p-6 md:p-8 h-full flex flex-col" style="border:1px solid rgba(255,255,255,0.06);">
+        <div class="liquid-glass rounded-2xl p-6 md:p-8 flex flex-col" style="border:1px solid rgba(255,255,255,0.06);">
           <div class="flex items-center gap-3 mb-5">
             <span class="font-heading italic text-white/20 text-4xl leading-none select-none">04</span>
             <span class="rounded-full px-2.5 py-0.5 text-[10px] font-body font-semibold leading-none" style="background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15); color: rgba(255,255,255,0.7);">Weekly reporting</span>
@@ -1655,7 +1657,7 @@
     <!-- Pricing Card -->
     <div class="fade-in liquid-glass-strong rounded-2xl p-8 md:p-10 mb-8 text-center" style="box-shadow: 0 0 50px var(--color-solution-glow), var(--glass-inner-glow);">
       <p class="text-white/70 font-body text-xs uppercase tracking-widest mb-4">Performance Marketing Agency</p>
-      <p class="text-4xl md:text-5xl lg:text-6xl font-heading italic text-white mb-2" style="white-space: nowrap">From EUR 2,500&nbsp;/ month</p>
+      <p class="pricing-price text-4xl md:text-5xl lg:text-6xl font-heading italic text-white mb-2" style="white-space: nowrap">From EUR 2,500&nbsp;/ month</p>
       <p class="text-white/50 font-body text-sm mb-8">Individual based on scope and channels</p>
 
       <ul class="space-y-3 mb-8 text-left max-w-sm mx-auto">
