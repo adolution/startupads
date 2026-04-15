@@ -68,4 +68,26 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://www.startupads.de/en/privacy.html" />
   </url>
 
+  <!-- German service page -->
+  <url>
+    <loc>https://www.startupads.de/de/performance-marketing-agentur/</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.startupads.de/de/performance-marketing-agentur/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.startupads.de/en/performance-marketing-agency/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.startupads.de/en/performance-marketing-agency/" />
+  </url>
+
+  <!-- English service page -->
+  <url>
+    <loc>https://www.startupads.de/en/performance-marketing-agency/</loc>
+    <lastmod>2026-04-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="de" href="https://www.startupads.de/de/performance-marketing-agentur/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://www.startupads.de/en/performance-marketing-agency/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://www.startupads.de/en/performance-marketing-agency/" />
+  </url>
+
 </urlset>
